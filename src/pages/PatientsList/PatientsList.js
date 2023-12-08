@@ -20,10 +20,13 @@ class PatientList extends Component{
                 <div className="container-content">
                     <ul className='patient-list'>
                         <Patient url={url} name="Byk" surname="Bychenko" age="38" diagnosis="Rak prostaty"></Patient>
-                        <Patient url={url} name="Byk" surname="Bychenko" age="38" diagnosis="Rak prostaty"></Patient>
+                        <Patient url={url} name="Normis" surname="Takyy" age="24" diagnosis="Kista v mozku"></Patient>
+                        <Patient url={url} name="Zhal`" surname="Hloptsia" age="18" diagnosis="Minus egg"></Patient>
+                        <Patient url={url} name="Evelina" surname="Krinzh" age="89" diagnosis="Zapor"></Patient>
+                        <Patient url={url} name="Lgbt" surname="Gay" age="11" diagnosis="Pomer"></Patient>
                     </ul>
                 </div>
-                
+
             </div>
 
         );
