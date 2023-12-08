@@ -1,8 +1,10 @@
+import './NoMatch.css'
+
 function NoMatch() {
     return (
-      <div style={{ padding: 20 }}>
+      <div className="error-message-container">
         <h2>404: Page Not Found</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
+        <p>Oops! The page you're looking for could not be found.</p>
       </div>
     );
 }

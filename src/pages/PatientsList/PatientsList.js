@@ -23,6 +23,7 @@ class PatientList extends Component{
                         <Patient url={url} name="Byk" surname="Bychenko" age="38" diagnosis="Rak prostaty"></Patient>
                     </ul>
                 </div>
+                
             </div>
 
         );
