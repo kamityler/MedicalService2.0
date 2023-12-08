@@ -8,17 +8,21 @@ import './PatientsList.css';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 class PatientList extends Component{
-    state = {
-        patientList: [],
-        loading: true,
-        error: false,
-        newItemLoading: false,
-        patientEnded: false,
-        errorPurpose: 'unknown'
+    constructor(props){
+        super(props);
+        this.state = {
+            patientList: [],
+            loading: true,
+            error: false,
+            newItemLoading: false,
+            patientEnded: false,
+            errorPurpose: 'unknown' 
+        }
     }
 
     componentDidMount() {
         this.onRequest();
+
     }
 
     onRequest = () => {
@@ -73,7 +77,16 @@ class PatientList extends Component{
     adjustItems(arr) {
         const items = arr.map((item)=>{
             return (
-                <Patient key={item.id} url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} name={item.name} surname={item.surname} age={item.age} diagnosis={item.diagnosis}></Patient>
+                <Patient 
+                    key={item.id}
+                    id={item.id} 
+                    url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} 
+                    name={item.name} 
+                    surname={item.surname} 
+                    age={item.age} 
+                    diagnosis={item.diagnosis}
+                    onGetId = { () => this.props.onGetId(item.id) }>
+                </Patient>
             )
         })
 

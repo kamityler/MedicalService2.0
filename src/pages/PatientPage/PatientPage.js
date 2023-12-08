@@ -9,8 +9,6 @@ class PatientPage extends Component{
     render(){
         return(
             <div className="medical-card-page">
-
-
                 <PatientCard id={1}
                              name={'John'}
                              surname={'Doe'}
@@ -19,7 +17,6 @@ class PatientPage extends Component{
                              email={'johndoe1978@mail.com'}
                              phone={'+380 (63) 420 1312'}
                 >
-
                 </PatientCard>
                 <RecordList></RecordList>
             </div>

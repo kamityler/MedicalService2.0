@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, useParams} from 'react-router-dom'
 
 import './NavBar.css';
 
@@ -17,6 +17,12 @@ class NavBar extends Component{
             patientId: props.id
         }
     }
+
+    onGetId = (patientID) =>{
+        console.log(patientID)
+        patientID = useParams();
+    }
+
     render(){
         return(
             <Router>
@@ -37,13 +43,13 @@ class NavBar extends Component{
                     </ul>
                 </div>    
                 <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/p" element={<PatientPage />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/patientList" element={<PatientList />} />
-                    <Route path="/patientList/:patientID" element={<PatientPage/>}/>
-                    <Route path="/settings" element={<UserPage />} />
-                    <Route path="*" element={<NoMatch />} />
+                    <Route path = "/" element = {<MainPage />} />
+                    <Route path = "/p" element = {<PatientPage />} />
+                    <Route path = "/about" element = {<About />} />
+                    <Route path = "/patientList" element = {<PatientList  onGetId={this.onGetId}/>} />
+                    <Route path = "/patientList/:patientID" element = {<PatientPage />}/>
+                    <Route path = "/settings" element = {<UserPage />} />
+                    <Route path = "*" element = {<NoMatch />} />
                 </Routes>
             </Router>
         );
