@@ -1,0 +1,35 @@
+.container-patient-list {
+    padding: 0;
+    margin: 3% 3% 0 3%
+}
+
+.patient-list {
+    padding: 0;
+    margin: 0
+}
+
+.container-header {
+    background-color: rgba(50, 122, 195, 0.597);
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    padding: 15px;
+    margin: 10px;
+}
+
+.container-header-item {
+    font-size: 16px;
+    float: left;
+    width: 33%;
+    color: white;
+    margin-left: 2%;
+}
+
+.image-item{
+    width: 50px;
+    margin-right: 15px;
+}
