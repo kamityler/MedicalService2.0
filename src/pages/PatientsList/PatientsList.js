@@ -2,6 +2,7 @@ import {Component} from 'react'
 import axios from 'axios';
 
 import Patient from '../../components/Patient/Patient'
+import Spinner from '../../components/spinner/Spinner';
 
 import './PatientsList.css';
 
@@ -62,12 +63,29 @@ class PatientList extends Component{
     }
 
     adjustItems(arr) {
-        
+        const items = arr.map((item)=>{
+            return (
+                <Patient id={item.id} key={item.id} url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} name={item.name} surname={item.surname} age={item.age} diagnosis={item.diagnosis}></Patient>
+            )
+        })
+
+        return(
+            <ul className='patient-list'>
+                {items}
+            </ul>
+        )
     }
 
 
     render(){ 
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
+        const {loading, patientList} = this.state;
+        const adjustedList = this.adjustItems(patientList);
+
+        const spinnerComponent = loading ? <Spinner/> : null;
+
+        const content = !loading ? adjustedList : null
+
         return(
             <div className="container-patient-list">
                 <div className="container-header">
@@ -77,13 +95,8 @@ class PatientList extends Component{
                     <div className="container-header-item">Diagnosis</div>
                 </div>
                 <div className="container-content">
-                    <ul className='patient-list'>
-                        <Patient id={1} url={url} name="Byk" surname="Bychenko" age="38" diagnosis="Rak prostaty"></Patient>
-                        <Patient id={2} url={url} name="Normis" surname="Takyy" age="24" diagnosis="Kista v mozku"></Patient>
-                        <Patient id={3} url={url} name="Zhal`" surname="Hloptsia" age="18" diagnosis="Minus egg"></Patient>
-                        <Patient id={4} url={url} name="Evelina" surname="Krinzh" age="89" diagnosis="Zapor"></Patient>
-                        <Patient id={5} url={url} name="Lgbt" surname="Gay" age="11" diagnosis="Pomer"></Patient>
-                    </ul>
+                    {spinnerComponent}
+                    {content}
                 </div>
 
             </div>

@@ -7,6 +7,7 @@ class Patient extends Component{
         super(props);
         this.state = {
             id: props.id,
+            key: props.key,
             photo: props.url,
             name: props.name,
             surname: props.surname,
