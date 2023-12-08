@@ -22,10 +22,14 @@ class PatientList extends Component{
     onRequest = () => {
         this.onPatientListLoading();
         axios.get('https://localhost:5001/api/MedicalRecords/')
-            //  .then(res => console.log(res.data))
              .then(response => response.data.map(this.transformPatient))
              .then(res => this.onPatientListLoaded(res));
+    }
 
+    onPatientListLoading = () => {
+        this.setState({
+            newItemLoading: true
+        })
     }
 
     transformPatient = (patient) => {
@@ -35,21 +39,13 @@ class PatientList extends Component{
             id: patient.patientID,
             name: patient.firstName,
             surname: patient.lastName,
-            date: age,
+            age: age,
             diagnosis: patient.previousIllnesses
         }
     }
 
-
-    onPatientListLoading = () => {
-        this.setState({
-            newItemLoading: true
-        })
-    }
-
     onPatientListLoaded = (newPatientList) => {
         let ended = false;
-        
         if(newPatientList.length < 10){
             ended = true;
         }
@@ -65,7 +61,7 @@ class PatientList extends Component{
     adjustItems(arr) {
         const items = arr.map((item)=>{
             return (
-                <Patient id={item.id} key={item.id} url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} name={item.name} surname={item.surname} age={item.age} diagnosis={item.diagnosis}></Patient>
+                <Patient key={item.id} url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} name={item.name} surname={item.surname} age={item.age} diagnosis={item.diagnosis}></Patient>
             )
         })
 
@@ -78,7 +74,6 @@ class PatientList extends Component{
 
 
     render(){ 
-        const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
         const {loading, patientList} = this.state;
         const adjustedList = this.adjustItems(patientList);
 
