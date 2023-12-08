@@ -8,6 +8,7 @@ import About from '../../pages/AboutIDSVAZH/About';
 import NoMatch from './../../pages/NoMatch/NoMatch';
 import MainPage from '../../pages/MainPage/Main';
 import UserPage from '../../pages/UserPage/UserPage';
+import PatientPage from './../../pages/PatientPage/PatientPage';
 
 class NavBar extends Component{
     constructor(props){
@@ -37,6 +38,7 @@ class NavBar extends Component{
                 </div>    
                 <Routes>
                     <Route path="/" element={<MainPage />} />
+                    <Route path="/p" element={<PatientPage />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/patientList" element={<PatientList />} />
                     <Route path="/settings" element={<UserPage />} />

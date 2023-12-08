@@ -1,0 +1,45 @@
+.container-patient-card {
+    display: flex;
+    margin: 16px 0 0 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 50%;
+    background-color: #ffffff;
+    /* Set a width for the container */
+}
+
+.container-patient-avatar {
+    padding: 10px;
+    display: block
+}
+
+.container-patient-avatar img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.patient-info-ul {
+    width: 50%;
+    list-style: none;
+    flex: 1;
+    padding: 10px;
+    text-align: left;
+}
+
+.patient-info-li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+    .container-patient-card {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .container-patient-avatar,
+    .patient-info-ul {
+        flex: 1;
+        /* Each item takes up full width in the stacked layout */
+    }
+}

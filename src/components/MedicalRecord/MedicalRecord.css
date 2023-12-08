@@ -1,0 +1,26 @@
+.medical-record-item {
+    list-style: none;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.medical-record-item:hover {
+    background-color: #e0e0e0;
+}
+
+.medical-record-item span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.medical-record-item span:nth-child(odd) {
+    font-weight: bold;
+    color: #333;
+}
+
+.medical-record-item span:nth-child(even) {
+    color: #666;
+}
