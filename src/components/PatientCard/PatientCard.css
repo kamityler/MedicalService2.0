@@ -5,7 +5,6 @@
     overflow: hidden;
     width: 50%;
     background-color: #ffffff;
-    /* Set a width for the container */
 }
 
 .container-patient-avatar {
@@ -40,6 +39,5 @@
     .container-patient-avatar,
     .patient-info-ul {
         flex: 1;
-        /* Each item takes up full width in the stacked layout */
     }
 }
