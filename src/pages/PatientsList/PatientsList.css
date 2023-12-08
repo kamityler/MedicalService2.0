@@ -21,6 +21,13 @@
     margin: 10px;
 }
 
+.error-message-list {
+    color: rgb(84, 84, 84);
+    /* font-size: 18px; */
+    text-align: center;
+    margin-top: 20px;
+  }
+
 .container-header-item {
     font-size: 16px;
     float: left;

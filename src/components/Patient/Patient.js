@@ -6,6 +6,7 @@ class Patient extends Component{
     constructor(props){
         super(props);
         this.state = {
+            id: props.id,
             photo: props.url,
             name: props.name,
             surname: props.surname,
@@ -14,15 +15,21 @@ class Patient extends Component{
         }
     }
 
+    onClickHandler = () => {
+        console.log(`patient id = ${this.state.id} chosen`);
+    }
+
     render(){
-        const {photo, name, surname, age, diagnosis} = this.state;
+        const {id, photo, name, surname, age, diagnosis} = this.state;
         return(
-            <li className='patient-item'>
-                <img src={photo} alt="Patient" />
-                <span>{name} {surname}</span>
-                <span>{age}</span>
-                <span>{diagnosis}</span>
-            </li>
+
+                <li id={id} className='patient-item' onClick={this.onClickHandler}>
+                    <img src={photo} alt="Patient" />
+                    <span>{name} {surname}</span>
+                    <span>{age}</span>
+                    <span>{diagnosis}</span>                        
+                </li>
+            
         );
     }
 }

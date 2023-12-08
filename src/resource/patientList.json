@@ -1,0 +1,15 @@
+[
+    {"id":1, "name":"Danylo", "surname": "Bodnar", "age": 20, "diagnosis":"none"},
+    {"id":2, "name":"Ruslan", "surname": "Miller", "age": 12, "diagnosis":"none"},
+    {"id":3, "name":"Arsen", "surname": "Apple", "age": 54, "diagnosis":"none"},
+    {"id":4, "name":"Stepan", "surname": "Marshall", "age": 65, "diagnosis":"none"},
+    {"id":5, "name":"Victor", "surname": "Bell", "age": 49, "diagnosis":"none"},
+    {"id":6, "name":"Sasha", "surname": "Blanket", "age": 10, "diagnosis":"none"},
+    {"id":7, "name":"Ian", "surname": "War", "age": 5, "diagnosis":"none"},
+    {"id":8, "name":"Volodia", "surname": "Pan", "age": 16, "diagnosis":"none"},
+    {"id":9, "name":"Mykola", "surname": "Peterson", "age": 17, "diagnosis":"none"},
+    {"id":10, "name":"Sofia", "surname": "Harari", "age": 99, "diagnosis":"none"},
+    {"id":11, "name":"Natalia", "surname": "Plohiy", "age": 72, "diagnosis":"none"},
+    {"id":12, "name":"Michael", "surname": "Korniy", "age": 47, "diagnosis":"none"},
+    {"id":13, "name":"Lida", "surname": "Gite", "age": 18, "diagnosis":"none"}
+]

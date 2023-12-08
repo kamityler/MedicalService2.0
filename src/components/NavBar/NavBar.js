@@ -9,7 +9,12 @@ import NoMatch from './../../pages/NoMatch/NoMatch';
 import MainPage from '../../pages/MainPage/Main';
 
 class NavBar extends Component{
-
+    constructor(props){
+        super(props);
+        this.state = {
+            patientId: props.id
+        }
+    }
     render(){
         return(
             <Router>
