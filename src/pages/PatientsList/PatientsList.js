@@ -5,6 +5,7 @@ import Patient from '../../components/Patient/Patient'
 import Spinner from '../../components/spinner/Spinner';
 
 import './PatientsList.css';
+import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 class PatientList extends Component{
     state = {
@@ -12,7 +13,8 @@ class PatientList extends Component{
         loading: true,
         error: false,
         newItemLoading: false,
-        patientEnded: false
+        patientEnded: false,
+        errorPurpose: 'unknown'
     }
 
     componentDidMount() {
@@ -22,8 +24,10 @@ class PatientList extends Component{
     onRequest = () => {
         this.onPatientListLoading();
         axios.get('https://localhost:5001/api/MedicalRecords/')
+            //  .then(data=>console.log(data))
              .then(response => response.data.map(this.transformPatient))
-             .then(res => this.onPatientListLoaded(res));
+             .then(res => this.onPatientListLoaded(res))
+             .catch(this.onError);
     }
 
     onPatientListLoading = () => {
@@ -58,6 +62,14 @@ class PatientList extends Component{
         }))
     }
 
+    onError = (errorBody) => {
+        this.setState({
+            error: true,
+            loading: false,
+            errorPurpose: errorBody.message
+        })
+    }
+
     adjustItems(arr) {
         const items = arr.map((item)=>{
             return (
@@ -74,12 +86,18 @@ class PatientList extends Component{
 
 
     render(){ 
-        const {loading, patientList} = this.state;
+        const {loading, patientList, error} = this.state;
         const adjustedList = this.adjustItems(patientList);
 
         const spinnerComponent = loading ? <Spinner/> : null;
+        const errorComponent = 
+            error ? 
+            <ErrorMessage 
+                errorMessage={'List cannot be displayed'} 
+                errorPurpose={this.state.errorPurpose}/> 
+            : null;
 
-        const content = !loading ? adjustedList : null
+        const content = !(loading||error) ? adjustedList : null;
 
         return(
             <div className="container-patient-list">
@@ -90,6 +108,7 @@ class PatientList extends Component{
                     <div className="container-header-item">Diagnosis</div>
                 </div>
                 <div className="container-content">
+                    {errorComponent}
                     {spinnerComponent}
                     {content}
                 </div>

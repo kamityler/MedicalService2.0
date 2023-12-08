@@ -1,18 +1,14 @@
 import img from './Error.gif'
 
-const ErrorMessage = () => {
+import './ErrorMessage.css'
+
+const ErrorMessage = (props) => {
     return (
-        <img 
-            style = {{
-                display: 'block',
-                width: '250px',
-                height: '250px',
-                objectFit: 'contain',
-                margin: '0 auto'
-            }} 
-            src = {img}
-            alt='error_image'
-        />
+        <div className="error-container">
+            <img className="error-message-img" src = {img} alt='error_image'/>
+            <h1 className="error-message-text upper"> {props.errorMessage?props.errorMessage:'Something went wrong'}</h1>
+            <h1 className="error-message-text lower">{props.errorPurpose} </h1>
+        </div>
     )
 }
 

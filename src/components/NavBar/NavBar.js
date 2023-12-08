@@ -41,6 +41,7 @@ class NavBar extends Component{
                     <Route path="/p" element={<PatientPage />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/patientList" element={<PatientList />} />
+                    <Route path="/patientList/:patientID" element={<PatientPage/>}/>
                     <Route path="/settings" element={<UserPage />} />
                     <Route path="*" element={<NoMatch />} />
                 </Routes>
