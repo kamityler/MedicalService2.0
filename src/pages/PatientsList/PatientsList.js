@@ -85,7 +85,8 @@ class PatientList extends Component{
                     surname={item.surname} 
                     age={item.age} 
                     diagnosis={item.diagnosis}
-                    onGetId = { () => this.props.onGetId(item.id) }>
+                    // onGetId = { () => this.props.onGetId(item.id) }
+                    >
                 </Patient>
             )
         })
