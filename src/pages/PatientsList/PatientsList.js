@@ -23,7 +23,6 @@ class PatientList extends Component{
 
     componentDidMount() {
         this.onRequest();
-
     }
 
     onRequest = () => {
