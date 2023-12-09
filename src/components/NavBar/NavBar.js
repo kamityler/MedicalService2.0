@@ -1,5 +1,5 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+// import { Component } from 'react';
 import './NavBar.css';
 
 import PatientList from '../../pages/PatientsList/PatientsList';
@@ -9,9 +9,15 @@ import MainPage from '../../pages/MainPage/Main';
 import UserPage from '../../pages/UserPage/UserPage';
 import PatientPage from './../../pages/PatientPage/PatientPage';
 
+
 function NavBar(){
+    function onGetId(patientID){
+        console.log(patientID)
+
+    }
+    // render(){
     return(
-        <Router>
+        <BrowserRouter>
             <div className="NavBar">
                 <ul className='navigationbar'>
                     <li className='navigationbar-item main-page-li'>
@@ -30,15 +36,15 @@ function NavBar(){
             </div>    
             <Routes>
                 <Route path = "/" element = {<MainPage />} />
-                <Route path = "/p" element = {<PatientPage />} />
                 <Route path = "/about" element = {<About />} />
-                <Route path = "/patientList" element = {<PatientList />} />
-                <Route path = "/patientList/:patientID" element = {<PatientPage />}/>
+                <Route path = "/patientList" element = {<PatientList onGetId={onGetId}/>}/>
+                <Route path = "/patientList/:patientID" element={<PatientPage />}/>
                 <Route path = "/settings" element = {<UserPage />} />
                 <Route path = "*" element = {<NoMatch />} />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
+    // }
 }
 
 

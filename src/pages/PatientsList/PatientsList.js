@@ -1,10 +1,11 @@
 import {Component} from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
+
+import './PatientsList.css';
 
 import Patient from '../../components/Patient/Patient'
 import Spinner from '../../components/spinner/Spinner';
-
-import './PatientsList.css';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 class PatientList extends Component{
@@ -77,17 +78,21 @@ class PatientList extends Component{
     adjustItems(arr) {
         const items = arr.map((item)=>{
             return (
-                <Patient 
-                    key={item.id}
-                    id={item.id} 
-                    url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} 
-                    name={item.name} 
-                    surname={item.surname} 
-                    age={item.age} 
-                    diagnosis={item.diagnosis}
-                    // onGetId = { () => this.props.onGetId(item.id) }
-                    >
-                </Patient>
+                <div key={item.id}>
+                    <Link to={`/patientList/${item.id}`}>
+                        <Patient                       
+                            id={item.id} 
+                            url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} 
+                            name={item.name} 
+                            surname={item.surname} 
+                            age={item.age} 
+                            diagnosis={item.diagnosis}
+                            onGetId = { () => this.props.onGetId(item.id) }
+                            >
+                        </Patient>
+                    </Link>
+                </div>
+
             )
         })
 
@@ -97,7 +102,6 @@ class PatientList extends Component{
             </ul>
         )
     }
-
 
     render(){ 
         const {loading, patientList, error} = this.state;
