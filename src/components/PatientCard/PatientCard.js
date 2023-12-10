@@ -77,11 +77,9 @@ class PatientCard extends Component{
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
 
         return(
-            <div id={id} className="container-patient-card">
-                <div className="container-patient-avatar">
-                    <img src={url} alt="Patient" />
-                </div>
+            <div id={id} className="patient-card">
                 <ul className="patient-info-ul">
+                    <img className="patient-avatar" src={url} alt="Patient" />
                     <li className="patient-info-li">Name: <span className="exact-information-item">{name}</span></li>
                     <li className="patient-info-li">Surname: <span className="exact-information-item">{surname}</span></li>
                     <li className="patient-info-li">Gender: <span className="exact-information-item">{gender}</span></li>

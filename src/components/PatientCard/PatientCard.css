@@ -1,51 +1,34 @@
-.container-patient-card {
-    display: flex;
-    margin: 16px 40px 0 40px;
-    padding: 10px;
-    border-radius: 8px;
-    overflow: hidden;
-    width: auto;
-    background-color: #ffffff;
+.patient-card{
+    max-width: fit-content;
+    font-family: arial;
+    background-color: #fff;
+    margin: 0 0 16px 0;
+    border-radius: 15px;
 }
 
-.container-patient-avatar {
-    /* padding: 10px; */
-    /* display: block */
-}
-
-.patient-medical-info{
-    padding: 10px;
-}
-
-.container-patient-avatar img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+.patient-avatar{
+    display: block;
+    margin: auto;
+    margin-bottom: 8px;
+    max-width: 250px;
+    border-radius: 15px;
 }
 
 .patient-info-ul {
-    width: 50%;
     list-style: none;
     padding: 10px;
-    text-align: left;
-}
-
-.patient-info-ul div{
-    width: 40px;
+    margin: 0;
 }
 
 .patient-info-li {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+    padding: 0 8px 0 8px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-@media (max-width: 600px) {
-    .container-patient-card {
-        flex-direction: column;
-        width: 1%;
-    }
-
-    .container-patient-avatar,
-    .patient-info-ul {
-        flex: 1;
-    }
+.exact-information-item{
+    font-weight: normal;
+    font-size: 18px;
+    color: #555;
 }
