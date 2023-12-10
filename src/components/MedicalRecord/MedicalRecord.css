@@ -1,26 +1,29 @@
 .medical-record-item {
     list-style: none;
-    margin: 10px;
     padding: 10px;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    border-radius: 15px;
+    background-color: #fff;
     cursor: pointer;
+    display: block;
 }
 
 .medical-record-item:hover {
-    background-color: #e0e0e0;
+    background-color: #f3f3f3;
 }
 
-.medical-record-item span {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.medical-record-item span:nth-child(odd) {
+.medical-record-p{
     font-weight: bold;
-    color: #333;
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 8px;
 }
 
-.medical-record-item span:nth-child(even) {
-    color: #666;
+.medical-record-p span{
+    color: #555;
+    font-weight: normal;
+    font-size: 18px;
 }
+

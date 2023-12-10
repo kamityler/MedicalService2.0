@@ -19,11 +19,19 @@ class MedicalRecord extends Component{
         const {id, diagnosis, date, doctor, description, treatment} = this.state;
         return(
             <li id={id} className='medical-record-item' onClick={this.onClickHandler}>
-                <span> Diagnosis: {diagnosis} </span>
+                {/* <span> Diagnosis: {diagnosis} </span>
                 <span> Date of admission: {date}</span>
-                <span> Doctor: {doctor}</span>   
+                <span> Doctor: {doctor}</span>    
                 <span> Description: {description}</span>         
-                <span> Ways of treatment: {treatment}</span>                     
+                <span> Ways of treatment: {treatment}</span>    */}
+
+                <p className="medical-record-p">Diagnosis: <span>{diagnosis}</span></p>
+                <p className="medical-record-p">Date of admission: <span>{date}</span></p> 
+                <p className="medical-record-p">Doctor: <span>{doctor}</span></p>
+                <p className="medical-record-p">Description: <span>{description}</span></p>
+                <p className="medical-record-p">Ways of treatment: <span>{treatment}</span></p>
+
+
             </li>
         );
     }

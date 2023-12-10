@@ -1,9 +1,15 @@
-.patient-card {
-    display: block
-}
-
-
 .medical-card-page{
     padding: 20px 5% 0 5%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.patient-card {
+    display: block;
+    float: left;
+}
+
+.record-list{
+    display: block;
 
 }

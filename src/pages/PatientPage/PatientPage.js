@@ -10,10 +10,8 @@ function PatientPage(){
 
     return(
         <div className="medical-card-page">
-            <div className="patient-card">
-               <PatientCard id={patientID}/> 
-            </div>
-            <RecordList></RecordList>
+            <PatientCard className="patient-card" id={patientID}/> 
+            <RecordList className="record-list"></RecordList>
         </div>
     );
 }
