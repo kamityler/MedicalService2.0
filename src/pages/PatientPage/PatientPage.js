@@ -11,7 +11,7 @@ function PatientPage(){
     return(
         <div className="medical-card-page">
             <PatientCard className="patient-card" id={patientID}/> 
-            <RecordList className="record-list"></RecordList>
+            <RecordList className="record-list" id={patientID}></RecordList>
         </div>
     );
 }
