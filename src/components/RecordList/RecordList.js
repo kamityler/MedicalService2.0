@@ -27,9 +27,7 @@ class RecordList extends Component{
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
-            //  .then(res => console.log(res.data))
              .then(response => response.data.map(this.transformRecords))
-            //  .then(result => console.log(result))
              .then(res => this.onRecordsListLoaded(res))
              .catch(this.onError);
 
@@ -37,7 +35,6 @@ class RecordList extends Component{
 
     transformRecords = (record) => {
         const date = (item) => {
-            console.log(item)
             const dateArr = item.split("-")
             return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
         }
@@ -104,7 +101,7 @@ class RecordList extends Component{
         const errorComponent = 
             error ? 
             <ErrorMessage 
-                errorMessage={'List cannot be displayed'} 
+                errorMessage={'Records cannot be displayed'} 
                 errorPurpose={this.state.errorPurpose}/> 
             : null;
 

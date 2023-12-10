@@ -12,10 +12,8 @@ import PatientPage from './../../pages/PatientPage/PatientPage';
 
 function NavBar(){
     function onGetId(patientID){
-        console.log(patientID)
-
+        //some code
     }
-    // render(){
     return(
         <BrowserRouter>
             <div className="NavBar">

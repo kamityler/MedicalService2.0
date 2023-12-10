@@ -41,7 +41,6 @@ class PatientCard extends Component{
 
     transformPatient = (response) => {
         const date = (item) => {
-            console.log(item)
             const dateArr = item.split("-")
             return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
         }
