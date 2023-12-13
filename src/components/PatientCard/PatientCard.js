@@ -107,7 +107,7 @@ class PatientCard extends Component{
 
 
         return(
-            <div>
+            <div className='ready-patient-card'>
                 {errorComponent}
                 {spinnerComponent}
                 {content}

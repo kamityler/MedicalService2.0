@@ -1,7 +1,7 @@
 .medical-card-page{
     padding: 20px 5% 0 5%;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 313px auto;
 }
 
 .patient-card {
@@ -11,5 +11,4 @@
 
 .record-list{
     display: block;
-
 }

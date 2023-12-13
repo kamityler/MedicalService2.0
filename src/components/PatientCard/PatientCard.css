@@ -7,6 +7,10 @@
     border: 1px solid #ddd;
 }
 
+.ready-patient-card{
+    max-width: 315px;
+}
+
 .patient-avatar{
     display: block;
     margin: auto;
