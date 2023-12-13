@@ -5,6 +5,13 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
+  animation-name: animaopen;
+  animation-duration: 0.4s
+}
+
+@keyframes animaopen {
+  from    { opacity: 0; }
+  to  { opacity: 1; }
 }
 
 .modal-main {
@@ -12,7 +19,6 @@
   background: white;
   width: auto;
   height: auto;
-  /* max-height: a; */
   max-width: 700px;
   top: 50%;
   left: 50%;
@@ -26,6 +32,13 @@
 
 .display-none {
   display: none;
+  animation-name: animaclose;
+  animation-duration: 0.4s
+}
+
+@keyframes animaclose {
+  from    { opacity: 1; }
+  to  { opacity: 0; }
 }
 
 .modal-close {
@@ -38,5 +51,5 @@
   font-weight: 700;
   border: none;
   background-color: transparent;
-  cursor: pointer
+  cursor: pointer;
 }

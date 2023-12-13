@@ -16,22 +16,22 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-
     padding: 15px;
     margin: 10px;
+    display: grid;
+    grid-template-columns: 75px 2fr 2fr 2fr;
+
 }
 
 .error-message-list {
     color: rgb(84, 84, 84);
-    /* font-size: 18px; */
     text-align: center;
     margin-top: 20px;
   }
 
 .container-header-item {
-    font-size: 16px;
+    font-size: 20px;
     float: left;
-    width: 33%;
     color: white;
     margin-left: 2%;
 }

@@ -72,11 +72,10 @@ class PatientCard extends Component{
     }
 
     htmlFunc = () => {
-        const {id, name, surname, dateOfBirth, address, email, phone, gender} = this.state.patient
+        const {name, surname, dateOfBirth, address, email, phone, gender} = this.state.patient
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
 
         return(
-            <div id={id} className="patient-card">
                 <ul className="patient-info-ul">
                     <img className="patient-avatar" src={url} alt="Patient" />
                     <li className="patient-info-li">Name: <span className="exact-information-item">{name}</span></li>
@@ -87,7 +86,6 @@ class PatientCard extends Component{
                     <li className="patient-info-li">Email: <span className="exact-information-item">{email}</span></li>
                     <li className="patient-info-li">Phone: <span className="exact-information-item">{phone}</span></li>
                 </ul>
-            </div>
         )
     }
 
@@ -104,13 +102,15 @@ class PatientCard extends Component{
             : null;
 
         const content = !(loading||error) ? adjusted : null;
-
+        const {id} = this.state.patient;
 
         return(
             <div className='ready-patient-card'>
-                {errorComponent}
-                {spinnerComponent}
-                {content}
+                <div id={id} className="patient-card">
+                    {errorComponent}
+                    {spinnerComponent}
+                    {content}
+                </div>
             </div>
         );
     }

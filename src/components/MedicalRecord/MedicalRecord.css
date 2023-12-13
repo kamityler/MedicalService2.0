@@ -6,12 +6,12 @@
     border: 1px solid #ddd;
     border-radius: 15px;
     background-color: #fff;
-    cursor: pointer;
     display: block;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
 .medical-record-item:hover {
-    background-color: #f3f3f3;
+    background-color: #f3f3f3a4;
 }
 
 .medical-record-p{

@@ -6,6 +6,9 @@
     margin: 0 auto
 }
 
+.error-container{
+    padding: 20px;
+}
 
 .error-message-text{
     color: rgb(84, 84, 84);
