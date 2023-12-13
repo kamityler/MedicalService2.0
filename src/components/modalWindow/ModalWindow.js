@@ -1,6 +1,6 @@
-import './AddRecordModal.css';
+import './ModalWindow.css';
 
-const AddRecordModal = ({ handleClose, show, children }) => {
+const ModalWindow = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
   return (
@@ -15,4 +15,4 @@ const AddRecordModal = ({ handleClose, show, children }) => {
   );
 };
 
-export default AddRecordModal;
+export default ModalWindow;

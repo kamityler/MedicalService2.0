@@ -2,13 +2,12 @@
     padding: 20px 5% 0 5%;
     display: grid;
     grid-template-columns: 313px auto;
+    /* grid-template-rows: auto auto; */
 }
 
-.patient-card {
+.record-list-container{
     display: block;
-    float: left;
+    grid-column: 2;
+    grid-row: 1 / span 2;
 }
 
-.record-list{
-    display: block;
-}

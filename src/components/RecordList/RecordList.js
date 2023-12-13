@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import './RecordList.css';
 
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from './../errorMessage/ErrorMessage';
+import Spinner from '../basicComponents/spinner/Spinner';
+import ErrorMessage from '../basicComponents/errorMessage/ErrorMessage';
 import MedicalRecord from './../MedicalRecord/MedicalRecord';
 
 
@@ -87,9 +87,9 @@ class RecordList extends Component{
         })
 
         return(
-            <ul className='record-list'>
-                {items}
-            </ul>
+            <ul className="record-list">
+                {items}    
+            </ul> 
         ) 
     }
 
@@ -108,13 +108,12 @@ class RecordList extends Component{
         const content = !(loading||error) ? adjustedList : null;
         
         return(
-            <div className="container-record-list">
-                <div className="container-content">
-                    {errorComponent}
-                    {spinnerComponent}
-                    {content}
-                </div>
+            <div>
+                {errorComponent}
+                {spinnerComponent}
+                {content}                
             </div>
+
         );
     }
 }
