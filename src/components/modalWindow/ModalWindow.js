@@ -7,9 +7,7 @@ const ModalWindow = ({ handleClose, show, children }) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         {children}
-        <button type="button" onClick={handleClose}>
-          Close
-        </button>
+        <div className="modal-close" onClick={handleClose}>×</div>       
       </section>
     </div>
   );

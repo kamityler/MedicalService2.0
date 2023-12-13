@@ -1,10 +1,10 @@
-.medical-card-page{
+.medical-card-page {
     padding: 20px 5% 0 5%;
     display: grid;
     gap: 10px;
 }
 
-.record-list-container{
+.record-list-container {
     display: block;
     grid-column: 2;
     grid-row: 1 / span 2;
@@ -31,4 +31,71 @@
 .add-form-button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(50, 122, 195, 0.597);
+}
+
+.modal-field {
+    font-family: Arial, sans-serif;
+    display: block;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.modal-field:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(50, 122, 195, 0.597);
+}
+
+.modal-input {
+    width: 280px;
+    height: 50px;
+    padding: 0 20px;
+}
+
+.modal-textarea {
+    padding: 20px;
+    width: 280px;
+    max-width: 620px;
+    min-width: 200px;
+    max-height: 148px;
+    min-height: 22px;
+}
+
+.modal-label{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.modal-header{
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.modal-form{
+    padding: 0 20px 30px 20px;
+}
+
+.form-button-submit{
+    background-color: #fff;
+    width: 50%;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    background-color: rgb(165, 213, 234);
+    width:100%;
+    
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

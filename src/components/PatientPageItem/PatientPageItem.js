@@ -4,13 +4,13 @@ import './PatientPageItem.css'
 
 import PatientCard from './../PatientCard/PatientCard';
 import RecordList from './../RecordList/RecordList';
-import AddRecord from './../AddRecord/AddRecord';
+import ModalWindow from './../ModalWindow/ModalWindow';
 
 class PatientPageItem extends Component{
     constructor() {
         super();
         this.state = {
-            show: false
+            show: true
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -30,9 +30,20 @@ class PatientPageItem extends Component{
             <div className="medical-card-page">
                 <div className="patient-card-container"> 
                     <PatientCard id={patientID}/> 
-                    <AddRecord show={this.state.show} handleClose={this.hideModal}>
-                        <p>Modal</p>
-                    </AddRecord>
+                    <ModalWindow show={this.state.show} handleClose={this.hideModal}>
+                        <form className="modal-form">
+                            <h1 className="modal-header">Add new medical record</h1>
+                            <p className="modal-label">Enter diagnosis here:</p>
+                            <input required placeholder="Diagnosis" type="text" name="diagnosis" className="modal-field modal-input"></input>
+                            <p className="modal-label">Enter description here:</p>
+                            <textarea required placeholder="Enter description here..." name="description" className="modal-field modal-textarea"></textarea>
+                            <p className="modal-label">Enter ways of treatment here:</p>
+                            <textarea required placeholder="Enter treatment here..." name="treatment" className="modal-field modal-textarea"></textarea>
+
+                            <input type="submit" value="Submit"/>
+                            <input type="reset" value="Reset"/>
+                        </form>
+                    </ModalWindow>
                     <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
                 </div>
                 <div className="record-list-container">
