@@ -39,9 +39,11 @@ class PatientPageItem extends Component{
                             <textarea required placeholder="Enter description here..." name="description" className="modal-field modal-textarea"></textarea>
                             <p className="modal-label">Enter ways of treatment here:</p>
                             <textarea required placeholder="Enter treatment here..." name="treatment" className="modal-field modal-textarea"></textarea>
-
-                            <input type="submit" value="Submit"/>
-                            <input type="reset" value="Reset"/>
+                            <div className="form-button-container">
+                                <input className="form-button-submit" type="submit" value="Submit"/>
+                                <div className="between-div-container"></div>
+                                <input className="form-button-submit" type="reset" value="Reset"/>
+                            </div>
                         </form>
                     </ModalWindow>
                     <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
