@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom'
 import './PatientsList.css';
 
 import Patient from '../../components/Patient/Patient'
-import Spinner from '../../components/spinner/Spinner';
-import ErrorMessage from '../../components/errorMessage/ErrorMessage';
+import Spinner from '../../components/basicComponents/spinner/Spinner';
+import ErrorMessage from '../../components/basicComponents/errorMessage/ErrorMessage';
 
 class PatientList extends Component{
     constructor(props){

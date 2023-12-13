@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import './PatientCard.css';
 
-import Spinner from '../../components/spinner/Spinner';
-import ErrorMessage from '../../components/errorMessage/ErrorMessage';
+import Spinner from './../basicComponents/spinner/Spinner';
+import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 
 class PatientCard extends Component{
     constructor(props){
