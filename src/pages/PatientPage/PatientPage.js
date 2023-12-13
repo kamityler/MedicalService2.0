@@ -12,7 +12,7 @@ function PatientPage(){
         <div className="medical-card-page">
             <div className="patient-card-container"> 
                 <PatientCard id={patientID}/> 
-                <button className="add-form-button">click</button>
+                <button className="add-form-button">Add new record</button>
             </div>
             <div className="record-list-container">
                 <RecordList id={patientID}></RecordList>
