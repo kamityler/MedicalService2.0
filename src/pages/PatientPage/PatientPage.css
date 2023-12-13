@@ -1,7 +1,8 @@
 .medical-card-page{
     padding: 20px 5% 0 5%;
     display: grid;
-    grid-template-columns: 313px auto;
+    gap: 10px;
+    /* grid-template-columns: 313px auto; */
     /* grid-template-rows: auto auto; */
 }
 
