@@ -1,13 +1,17 @@
 .account-settings{
     font-family: Arial, sans-serif;
-    margin: 10px;
-    display: flex;
+    margin: 10px 0;
+    /* display: flex; */
     align-items:flex-start;
     justify-content: center;
     height: 100vh;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 0.75fr 0.25fr 1fr;
 }
 
 .profile-container {
+    /* justify-content:right; */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -67,3 +71,53 @@
     outline: none;
     box-shadow: 0 0 5px rgba(50, 122, 195, 0.597);
 }
+
+
+/* ////////////////////////////////// */
+
+
+.doctor-card{
+    max-width: fit-content;
+    width: 100%;
+    font-family: arial;
+    background-color: #fff;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    display: flex;
+    /* justify-content:center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.doctor-info-ul {
+    list-style: none;
+    padding: 10px;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.doctor-info-li {
+    margin-bottom: 16px;
+    padding: 0 8px 0 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.exact-information-item{
+    font-weight: normal;
+    font-size: 18px;
+    color: #555;
+}
+
+.doctor-avatar{
+    margin: auto;
+    margin-bottom: 8px;
+    max-width: 250px;
+    border-radius: 15px;
+}
+
+
+
+
