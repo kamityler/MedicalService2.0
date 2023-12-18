@@ -8,6 +8,7 @@ import './SearchBar.css'
 import Patient from '../../components/Patient/Patient'
 import Spinner from '../../components/basicComponents/spinner/Spinner';
 import ErrorMessage from '../../components/basicComponents/errorMessage/ErrorMessage';
+import SearchPannel from '../../components/basicComponents/searchPannel/SearchPannel';
 
 class PatientList extends Component{
     constructor(props){
@@ -120,9 +121,7 @@ class PatientList extends Component{
         return(
             <div className="container-patient-list">
                 <div className='search-element'>
-                    <input className = 'search-bar' placeholder='Enter name'>
-                    
-                    </input>
+                    <SearchPannel/>
                     <button className='search-button'>Search</button>
                 </div>
                 <div className="container-header">
