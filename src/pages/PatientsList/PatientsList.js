@@ -14,6 +14,7 @@ class PatientList extends Component{
     constructor(props){
         super(props);
         this.state = {
+            term: '',
             patientList: [],
             loading: true,
             error: false,
@@ -104,9 +105,27 @@ class PatientList extends Component{
         )
     }
 
+    searchEmp = (items, term) => {
+        if (term.length === 0) {
+            return items;
+        }
+
+        return items.filter(item => {
+            console.log(item.name)
+            return item.name.indexOf(term) > -1
+        })
+    }
+
+    onUpdateSearch = (term) => {
+        this.setState({term});
+    }
+
     render(){ 
-        const {loading, patientList, error} = this.state;
-        const adjustedList = this.adjustItems(patientList);
+        const {loading, patientList, error, term} = this.state;
+        const visibleData = this.searchEmp(patientList, term);
+        const adjustedList = this.adjustItems(visibleData);
+
+        
 
         const spinnerComponent = loading ? <Spinner/> : null;
         const errorComponent = 
@@ -121,7 +140,7 @@ class PatientList extends Component{
         return(
             <div className="container-patient-list">
                 <div className='search-element'>
-                    <SearchPannel/>
+                    <SearchPannel onUpdateSearch={this.onUpdateSearch}/>
                     <button className='search-button'>Search</button>
                 </div>
                 <div className="container-header">
