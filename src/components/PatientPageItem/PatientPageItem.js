@@ -27,67 +27,29 @@ class PatientPageItem extends Component{
         this.hideModal = this.hideModal.bind(this);
     }
 
-    adjustRequest = (diagnosis, description, treatment) => {
-        console.log(diagnosis,description,treatment)
-        let newObj = this.state.medicalRecord;
-        newObj = {
-            appointmentID: 0,
-            diagnosis: diagnosis,
-            appointmentDate: new Date(),
-            doctor: 'dr.Bodnar',
-            description: description,
-            treatment: treatment,
-            appointmentType: 'General'
-        }
-        // this.setState(() => ({
-        //     medicalRecord: {
-        //         diagnosis: {diagnosis},
-        //         description: {description},
-        //         treatment: {treatment} 
-        //     }
-        // }))
-        
+    onChangeHandle = (name, value) =>{
+        this.setState(prevState => {
+            let medicalRecord = Object.assign({}, prevState.medicalRecord);
+            medicalRecord[name] = value
+            return {medicalRecord};
+        })
+    }
 
-        this.setState(()=>({
-            medicalRecord: newObj,
-        }))
-        this.setState(()=>({
-            medicalRecord: newObj,
-        }))
-        // console.log(this.state.medicalRecord);
-        // console.log(newObj);
+
+    adjustRequest = (diagnosis, description, treatment) => {
         return console.log(this.state.medicalRecord)
     }
 
     addRecord = (e) => {
         e.preventDefault();
-        const newObj = {
-            appointmentID: 0,
-            diagnosis: e.target.diagnosis.value,
-            appointmentDate: new Date(),
-            doctor: 'dr.Bodnar',
-            description: e.target.description.value,
-            treatment: e.target.treatment.value,
-            appointmentType: 'General'
-        }
         
-        this.setState(()=>({
-            medicalRecord: newObj,
-        }))
-
-        this.setState(()=>({
-            medicalRecord: newObj,
-        }))
-
-        console.log(this.state.medicalRecord)
-
         axios.post(
             `https://localhost:5001/api/MedicalRecords/${this.state.patientID}/Appointments`,
             this.state.medicalRecord,
             { headers: { 
                 "Access-Control-Allow-Origin": "*"
             } } )
-            // .then(response => console.log(response))
+            .then(response => console.log(response))
             .catch(err => { console.log(err); })
     }
 
@@ -100,6 +62,8 @@ class PatientPageItem extends Component{
     };
 
     render(){
+
+        // onChange={(e) => this.onChangeHandle("treatment", e.target.value )}
         const {patientID} = this.props;
         return(
             <div className="medical-card-page">
@@ -109,13 +73,13 @@ class PatientPageItem extends Component{
                         <form className="modal-form" onSubmit={this.addRecord}>
                             <h1 className="modal-header">Add new medical record</h1>
                             <p className="modal-label">Enter diagnosis here:</p>
-                            <input required placeholder="Diagnosis" type="text" name="diagnosis" className="modal-field modal-input" defaultValue="something0"></input>
+                            <input required placeholder="Diagnosis" type="text" onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} name="diagnosis" className="modal-field modal-input"></input>
                             <p className="modal-label">Enter description here:</p>
-                            <textarea required placeholder="Enter description here..." name="description" className="modal-field modal-textarea" defaultValue="something1"></textarea>
+                            <textarea required placeholder="Enter description here..." onChange={(e) => this.onChangeHandle("description", e.target.value )} name="description" className="modal-field modal-textarea"></textarea>
                             <p className="modal-label">Enter ways of treatment here:</p>
-                            <textarea required placeholder="Enter treatment here..." name="treatment" className="modal-field modal-textarea" defaultValue="something2"></textarea>
+                            <textarea required placeholder="Enter treatment here..." onChange={(e) => this.onChangeHandle("treatment", e.target.value )} name="treatment" className="modal-field modal-textarea"></textarea>
                             <div className="form-button-container">
-                                <button className="form-button-submit" value="Submit" type="submit">Submit</button>
+                                <button className="form-button-submit" value="Submit" type="submit" >Submit</button>
                                 <div className="between-div-container"></div>
                                 <input className="form-button-submit" type="reset" value="Reset"/>
                             </div>
