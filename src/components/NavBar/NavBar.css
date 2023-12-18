@@ -3,14 +3,8 @@
   padding: 20px;
 }
 
-.display-block {
-  display: block;
-}
-
-.display-none {
+.display-none{
   display: none;
-  animation-name: animaclose;
-  animation-duration: 0.4s
 }
 
 .navigationbar {

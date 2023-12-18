@@ -34,12 +34,24 @@ function MainPage() {
           <p>Doctors quantity: 1</p>
           <p>Patients quantity: 14</p>
         </article>  
+
         <article className='article-container'>
           <h2>Statistics for yesterday</h2>
           <p>Doctors quantity: 1</p>
           <p>Patients quantity: 13</p>
         </article>  
         
+        <article className='article-container'>
+          <h2>Statistics for 16.11.2023</h2>
+          <p>Doctors quantity: 1</p>
+          <p>Patients quantity: 12</p>
+        </article>  
+
+        <article className='article-container'>
+          <h2>Statistics for 15.11.2023</h2>
+          <p>Doctors quantity: 1</p>
+          <p>Patients quantity: 13</p>
+        </article>
       </div>
     </div>
   );
