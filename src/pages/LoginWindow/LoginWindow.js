@@ -15,10 +15,10 @@ class LoginWindow extends Component{
                         <h2>Login</h2>
                     </div>
                     <div className="login-form">
-                        <form action="/mainpage">
+                        <form action="/mainpage" method=''>
                             <div className="form-group">
                                 <label htmlFor="username">Username:</label>
-                                <input type="text" id="username" name="username" required/>
+                                <input type="text" id="username" name="username" required autocomplete="off"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password:</label>

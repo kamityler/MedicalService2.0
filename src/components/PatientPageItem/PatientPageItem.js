@@ -35,11 +35,6 @@ class PatientPageItem extends Component{
         })
     }
 
-
-    adjustRequest = (diagnosis, description, treatment) => {
-        return console.log(this.state.medicalRecord)
-    }
-
     addRecord = (e) => {
         e.preventDefault();
         
@@ -52,8 +47,14 @@ class PatientPageItem extends Component{
             .then(response => console.log(response))
             .catch(err => { console.log(err); })
 
-        
         this.hideModal();
+    }
+
+    recordList = (patientID) => {
+        return (           
+        <div className="record-list-container">
+            <RecordList id={patientID}></RecordList>
+        </div>)        
     }
 
     showModal = () => {
@@ -63,13 +64,6 @@ class PatientPageItem extends Component{
     hideModal = () => {
         this.setState({ show: false });
     };
-
-    recordList = (patientID) => {
-        return (           
-        <div className="record-list-container">
-            <RecordList id={patientID}></RecordList>
-        </div>)        
-    }
 
     render(){
         

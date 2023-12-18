@@ -15,11 +15,13 @@ class UserPage extends Component{
                     <ul className="doctor-info-ul">
                             <img className="doctor-avatar" src={url} alt="doctor" />
                             <li className="doctor-info-li">Name: <span className="exact-information-item">dr.Bodnar</span></li>
+                            <li className="doctor-info-li">Occupation: <span className="exact-information-item">Therapist</span></li>
                             <li className="doctor-info-li">Gender: <span className="exact-information-item">Male</span></li>
                             <li className="doctor-info-li">Date of brith: <span className="exact-information-item">30.05.2003</span></li>
                             <li className="doctor-info-li">Address: <span className="exact-information-item">Lviv, Ukraine</span></li>
                             <li className="doctor-info-li">Email: <span className="exact-information-item">bodnar.dp@gmail.com</span></li>
                             <li className="doctor-info-li">Phone: <span className="exact-information-item">+380731231234</span></li>
+                            
                         </ul>
                 </div>
                 <div className="profile-container">
