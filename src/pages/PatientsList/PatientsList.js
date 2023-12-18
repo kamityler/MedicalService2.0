@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 import './PatientsList.css';
+import './SearchBar.css'
 
 import Patient from '../../components/Patient/Patient'
 import Spinner from '../../components/basicComponents/spinner/Spinner';
@@ -118,12 +119,18 @@ class PatientList extends Component{
 
         return(
             <div className="container-patient-list">
+                <div className='search-element'>
+                    <input className = 'search-bar' placeholder='Enter name'>
+                    
+                    </input>
+                    <button className='search-button'>Search</button>
+                </div>
                 <div className="container-header">
                     <div className="container-header-item image-item"></div>
                     <div className="container-header-item">Name</div>
                     <div className="container-header-item">Age</div>
                     <div className="container-header-item">Diagnosis</div>
-                </div>
+                </div>                     
                 <div className="container-content">
                     {errorComponent}
                     {spinnerComponent}
