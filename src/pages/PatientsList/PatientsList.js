@@ -20,12 +20,14 @@ class PatientList extends Component{
             error: false,
             newItemLoading: false,
             patientEnded: false,
+            doctorId: localStorage.getItem('id'),
             errorPurpose: 'unknown' 
         }
     }
 
     componentDidMount() {
         this.onRequest();
+        console.log(this.state.doctorId);
     }
 
     onRequest = () => {

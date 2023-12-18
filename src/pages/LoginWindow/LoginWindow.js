@@ -6,7 +6,20 @@ class LoginWindow extends Component{
     componentDidMount(){
         document.querySelector('.NavBar').classList.add('display-none');
     }    
-
+    handleClick=(e)=>{
+        //e.preventDefault();
+        let email = document.querySelector('#username').value;
+        let id = null
+        if(email === '123@gmail.com'){
+            id = 1;
+        }
+        else{
+            id=2;
+        }
+        // Зберігаємо значення в localStorage з ключем "id" і значенням 1
+        localStorage.setItem('id', id);
+        console.log(localStorage.getItem('id'));
+      };
     render(){
         return(
             <div className="login-window">
@@ -25,7 +38,7 @@ class LoginWindow extends Component{
                                 <input type="password" id="password" name="password" required/>
                             </div>
                             <div className="form-group">
-                                <button type="submit">Log in</button>
+                                <button onClick={this.handleClick} >Log in</button>
                             </div>
                         </form>
                     </div>
