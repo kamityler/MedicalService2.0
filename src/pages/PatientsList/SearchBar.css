@@ -1,14 +1,15 @@
-.search-element{
+/* .search-element{
     display: grid;
     grid-template-columns: 1fr 0.25fr;
     gap: 10px;
-}
+} */
 
 
 .search-bar {
     border: 1px solid #ddd;
     background-color: #fff;
-    /* margin: 10px; */
+    margin: 10px;
+    width: 97%;
     padding: 15px;
     display: grid;
     align-items: center;
