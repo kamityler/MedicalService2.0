@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import axios from 'axios';
 
 import './PatientPageItem.css'
@@ -27,20 +27,68 @@ class PatientPageItem extends Component{
         this.hideModal = this.hideModal.bind(this);
     }
 
+    adjustRequest = (diagnosis, description, treatment) => {
+        console.log(diagnosis,description,treatment)
+        let newObj = this.state.medicalRecord;
+        newObj = {
+            appointmentID: 0,
+            diagnosis: diagnosis,
+            appointmentDate: new Date(),
+            doctor: 'dr.Bodnar',
+            description: description,
+            treatment: treatment,
+            appointmentType: 'General'
+        }
+        // this.setState(() => ({
+        //     medicalRecord: {
+        //         diagnosis: {diagnosis},
+        //         description: {description},
+        //         treatment: {treatment} 
+        //     }
+        // }))
+        
+
+        this.setState(()=>({
+            medicalRecord: newObj,
+        }))
+        this.setState(()=>({
+            medicalRecord: newObj,
+        }))
+        // console.log(this.state.medicalRecord);
+        // console.log(newObj);
+        return console.log(this.state.medicalRecord)
+    }
+
     addRecord = (e) => {
         e.preventDefault();
+        const newObj = {
+            appointmentID: 0,
+            diagnosis: e.target.diagnosis.value,
+            appointmentDate: new Date(),
+            doctor: 'dr.Bodnar',
+            description: e.target.description.value,
+            treatment: e.target.treatment.value,
+            appointmentType: 'General'
+        }
+        
+        this.setState(()=>({
+            medicalRecord: newObj,
+        }))
+
+        this.setState(()=>({
+            medicalRecord: newObj,
+        }))
+        
+        console.log(this.state.medicalRecord)
+
         axios.post(
             `https://localhost:5001/api/MedicalRecords/${this.state.patientID}/Appointments`,
             this.state.medicalRecord,
             { headers: { 
                 "Access-Control-Allow-Origin": "*"
             } } )
-            .then(response => console.log(response))
-            .catch(err => {
-                console.log(err);
-                console.log(err.data);
-                console.log(err);
-            })
+            // .then(response => console.log(response))
+            .catch(err => { console.log(err); })
     }
 
     showModal = () => {
