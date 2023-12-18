@@ -8,6 +8,7 @@ import NoMatch from './../../pages/NoMatch/NoMatch';
 import MainPage from '../../pages/MainPage/Main';
 import UserPage from '../../pages/UserPage/UserPage';
 import PatientPage from './../../pages/PatientPage/PatientPage';
+import LoginWindow from './../../pages/LoginWindow/LoginWindow';
 
 
 function NavBar(){
@@ -33,7 +34,8 @@ function NavBar(){
                 </ul>
             </div>    
             <Routes>
-                <Route path = "/" element = {<MainPage />} />
+                <Route path = "/" element = {<LoginWindow />} />
+                <Route path = "/mainpage" element = {<MainPage />} />
                 <Route path = "/about" element = {<About />} />
                 <Route path = "/patientList" element = {<PatientList onGetId={onGetId}/>}/>
                 <Route path = "/patientList/:patientID" element={<PatientPage />}/>
