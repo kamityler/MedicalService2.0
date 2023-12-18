@@ -48,8 +48,7 @@ class PatientList extends Component{
         let age = new Date().getFullYear() - birth.getFullYear();
         return {
             id: patient.patientID,
-            name: patient.firstName,
-            surname: patient.lastName,
+            name: patient.firstName + ' ' + patient.lastName,
             age: age,
             diagnosis: patient.previousIllnesses
         }
@@ -85,8 +84,7 @@ class PatientList extends Component{
                         <Patient                       
                             id={item.id} 
                             url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} 
-                            name={item.name} 
-                            surname={item.surname} 
+                            name={item.name}
                             age={item.age} 
                             diagnosis={item.diagnosis}
                             onGetId = { () => this.props.onGetId(item.id) }
@@ -111,7 +109,6 @@ class PatientList extends Component{
         }
 
         return items.filter(item => {
-            console.log(item.name)
             return item.name.indexOf(term) > -1
         })
     }
@@ -139,16 +136,16 @@ class PatientList extends Component{
 
         return(
             <div className="container-patient-list">
-                <div className='search-element'>
-                    <SearchPannel onUpdateSearch={this.onUpdateSearch}/>
-                    <button className='search-button'>Search</button>
-                </div>
                 <div className="container-header">
                     <div className="container-header-item image-item"></div>
                     <div className="container-header-item">Name</div>
                     <div className="container-header-item">Age</div>
                     <div className="container-header-item">Diagnosis</div>
-                </div>                     
+                </div>    
+                <div className='search-element'>
+                    <SearchPannel onUpdateSearch={this.onUpdateSearch}/>
+                    {/* <button className='search-button'>Search</button> */}
+                </div>                 
                 <div className="container-content">
                     {errorComponent}
                     {spinnerComponent}
