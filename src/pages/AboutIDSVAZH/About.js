@@ -1,11 +1,7 @@
 import './About.css'
 
-import NavBar from './../../components/NavBar/NavBar';
-
-
 function About() {
     return (
-        <NavBar>
         <div className="about-container">
             <h2 className="about-heading">About Our Information and Diagnostic System</h2>
             <p className="about-description">Welcome to our innovative Information and Diagnostic System designed for assessing the quality of life. Our system is a comprehensive tool developed to gather, analyze, and interpret data related to various aspects of an individual's well-being.</p>
@@ -17,7 +13,7 @@ function About() {
                 <li className="feature-item">User-Friendly Interface: Our intuitive interface makes it easy for users to navigate the system, view their assessments, and access valuable insights about their health and lifestyle choices.</li>
             </ul>
             <p className="about-summary">Our mission is to empower individuals with the knowledge and tools to make informed decisions about their well-being. Whether you are focused on improving your physical health, mental well-being, or overall lifestyle, our Information and Diagnostic System is here to support your journey to a healthier and happier life.</p>
-        </div></NavBar>
+        </div>
     );
 }
 
