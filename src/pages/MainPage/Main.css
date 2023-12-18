@@ -1,0 +1,21 @@
+.main-page{
+    margin: 15px 5% 5% 5%;
+    padding: 20px;
+    justify-content: center;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 2fr 1fr;
+}
+
+.article-container{
+    background-color: #fff;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.article-container:hover {
+    background-color: #f3f3f3a4;
+}
