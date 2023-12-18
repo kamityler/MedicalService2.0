@@ -11,9 +11,10 @@ class PatientPageItem extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            show: false,
+            show: true,
+            patientID: this.props.patientID,
             medicalRecord: {
-                patientID: this.props.patientID,
+                appointmentID: 0,
                 diagnosis: 'some diagnosis',
                 appointmentDate: new Date(),
                 doctor: 'dr.Bodnar',
@@ -29,10 +30,17 @@ class PatientPageItem extends Component{
     addRecord = (e) => {
         e.preventDefault();
         axios.post(
-            `https://localhost:5001/api/MedicalRecords/${55}/Appointments`,
-            // headers: { 'Content-Type': 'application/json' },
-            {data : this.state.medicalRecord}
-        ).then(response => console.log(response)).catch(err => console.log(err))
+            `https://localhost:5001/api/MedicalRecords/${this.state.patientID}/Appointments`,
+            this.state.medicalRecord,
+            { headers: { 
+                "Access-Control-Allow-Origin": "*"
+            } } )
+            .then(response => console.log(response))
+            .catch(err => {
+                console.log(err);
+                console.log(err.data);
+                console.log(err);
+            })
     }
 
     showModal = () => {
@@ -53,11 +61,11 @@ class PatientPageItem extends Component{
                         <form className="modal-form" onSubmit={this.addRecord}>
                             <h1 className="modal-header">Add new medical record</h1>
                             <p className="modal-label">Enter diagnosis here:</p>
-                            <input required placeholder="Diagnosis" type="text" name="diagnosis" className="modal-field modal-input"></input>
+                            <input required placeholder="Diagnosis" type="text" name="diagnosis" className="modal-field modal-input" defaultValue="something0"></input>
                             <p className="modal-label">Enter description here:</p>
-                            <textarea required placeholder="Enter description here..." name="description" className="modal-field modal-textarea"></textarea>
+                            <textarea required placeholder="Enter description here..." name="description" className="modal-field modal-textarea" defaultValue="something1"></textarea>
                             <p className="modal-label">Enter ways of treatment here:</p>
-                            <textarea required placeholder="Enter treatment here..." name="treatment" className="modal-field modal-textarea"></textarea>
+                            <textarea required placeholder="Enter treatment here..." name="treatment" className="modal-field modal-textarea" defaultValue="something2"></textarea>
                             <div className="form-button-container">
                                 <button className="form-button-submit" value="Submit" type="submit">Submit</button>
                                 <div className="between-div-container"></div>
