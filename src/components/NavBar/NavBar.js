@@ -20,7 +20,7 @@ function NavBar(){
             <div className="NavBar">
                 <ul className='navigationbar'>
                     <li className='navigationbar-item main-page-li'>
-                        <a href="/">Main Page</a>
+                        <a href="/mainpage">Main Page</a>
                     </li>
                     <li className='navigationbar-item default-li'>
                         <a href="/patientList">Patients</a>

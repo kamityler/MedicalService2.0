@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { Component } from "react";
 import axios from 'axios';
 
 import './PatientPageItem.css'
@@ -78,7 +78,7 @@ class PatientPageItem extends Component{
         this.setState(()=>({
             medicalRecord: newObj,
         }))
-        
+
         console.log(this.state.medicalRecord)
 
         axios.post(
