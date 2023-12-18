@@ -11,7 +11,7 @@ class PatientPageItem extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            show: true,
+            show: false,
             patientID: this.props.patientID,
             medicalRecord: {
                 appointmentID: 0,
@@ -51,6 +51,9 @@ class PatientPageItem extends Component{
             } } )
             .then(response => console.log(response))
             .catch(err => { console.log(err); })
+
+        
+        this.hideModal();
     }
 
     showModal = () => {
@@ -61,10 +64,17 @@ class PatientPageItem extends Component{
         this.setState({ show: false });
     };
 
-    render(){
+    recordList = (patientID) => {
+        return (           
+        <div className="record-list-container">
+            <RecordList id={patientID}></RecordList>
+        </div>)        
+    }
 
-        // onChange={(e) => this.onChangeHandle("treatment", e.target.value )}
+    render(){
+        
         const {patientID} = this.props;
+        const records = this.recordList(patientID);
         return(
             <div className="medical-card-page">
                 <div className="patient-card-container"> 
@@ -87,9 +97,7 @@ class PatientPageItem extends Component{
                     </ModalWindow>
                     <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
                 </div>
-                <div className="record-list-container">
-                    <RecordList id={patientID}></RecordList>
-                </div>
+                {records}
             </div>
         );
     }

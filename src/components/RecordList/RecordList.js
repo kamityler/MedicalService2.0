@@ -56,8 +56,9 @@ class RecordList extends Component{
     }
 
     onRecordsListLoaded = (newRecordsList) => {
+        const newarr = newRecordsList.reverse();
         this.setState(({records})=>({
-            records: [...records, ...newRecordsList],
+            records: [...records, ...newarr],
             loading: false,
             newRecordLoading: false
         }))
@@ -85,7 +86,7 @@ class RecordList extends Component{
                     </MedicalRecord>
             )
         })
-
+        console.log(items)
         return(
             <ul className="record-list">
                 {items}    
