@@ -1,8 +1,8 @@
 .login-window{
     font-family: Arial, sans-serif;
-    margin: 30px;
+    margin: 10px;
     display: flex;
-    /* align-items: center; */
+    align-items:flex-start;
     justify-content: center;
     height: 100vh;
 }
@@ -12,7 +12,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    max-height: 325px;
+    /* max-height: 325px; */
     width: 300px;
 }
 
