@@ -26,13 +26,14 @@ class LoginWindow extends Component{
         let id = null
         let form = document.querySelector('form')
        
-        if(email.value === 'oleg.olegovich@example.com'){
+        if(email.value === 'emily.jones@example.com'){
             id = 1;
             form.submit();
             
         }
-        else if(email.value  === '123@gmail.com'){
-            id=2;e.target.submit();
+        else if(email.value  === 'oleg.olegovich@example.com'){
+            id=2;            form.submit();
+
         }
         else{
             if(!email.parentNode.isSameNode(this.state.errorMessage.parentNode)){
