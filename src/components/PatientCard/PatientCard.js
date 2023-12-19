@@ -28,29 +28,28 @@ class PatientCard extends Component{
     }
 
     componentDidMount() {
-        console.log(this.state.patient.id);
         this.onRequest();
     }
 
     onRequest = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.patient.id}`)
-            //.then(response=>console.log(response.data))
+            //  .then(response=>console.log(response.data))
              .then(response => this.transformPatient(response.data))
              .then(result => this.onPatientInfoLoaded(result))
              .catch(this.onError);
     }
 
     transformPatient = (response) => {
-        // const date = (item) => {
-        //     const dateArr = item.split("-")
-        //     return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
-        // }
+        const date = (item) => {
+            const dateArr = item.split("-")
+            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
+        }
 
         return({
             name: response.firstName,
             surname: response.lastName,
             gender: response.gender,
-            dateOfBirth: '13', //date(response.dateOfBirth),
+            dateOfBirth: date(response.dateOfBirth),
             address: response.address,
             email: response.email,
             phone: response.phoneNumber,

@@ -6,8 +6,7 @@ class LoginWindow extends Component{
     componentDidMount(){
         document.querySelector('.NavBar').classList.add('display-none');
     }    
-    handleClick=(e)=>{
-        //e.preventDefault();
+    handleClick=()=>{
         let email = document.querySelector('#username').value;
         let id = null
         if(email === '123@gmail.com'){
@@ -16,7 +15,6 @@ class LoginWindow extends Component{
         else{
             id=2;
         }
-        // Зберігаємо значення в localStorage з ключем "id" і значенням 1
         localStorage.setItem('id', id);
         console.log(localStorage.getItem('id'));
       };

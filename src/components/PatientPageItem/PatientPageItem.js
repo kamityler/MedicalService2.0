@@ -5,7 +5,7 @@ import './PatientPageItem.css'
 
 import PatientCard from './../PatientCard/PatientCard';
 import RecordList from './../RecordList/RecordList';
-import ModalWindow from './../modalWindow/ModalWindow';
+import ModalWindow from './../ModalWindow/ModalWindow';
 
 class PatientPageItem extends Component{
     constructor(props) {

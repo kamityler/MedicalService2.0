@@ -1,11 +1,6 @@
 import './Main.css';
-import axios from 'axios';
-
-
 
 function MainPage() {
-  
-
   return (
     
     <div className="main-page">

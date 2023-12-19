@@ -27,7 +27,6 @@ class PatientList extends Component{
 
     componentDidMount() {
         this.onRequest();
-        console.log(this.state.doctorId);
     }
 
     onRequest = () => {
@@ -47,6 +46,8 @@ class PatientList extends Component{
 
     transformPatient = (patient) => {
         const birth = new Date(patient.dateOfBirth);
+        console.log(patient)
+
         let age = new Date().getFullYear() - birth.getFullYear();
         return {
             id: patient.patientID,
@@ -89,7 +90,6 @@ class PatientList extends Component{
                             name={item.name}
                             age={item.age} 
                             diagnosis={item.diagnosis}
-                            onGetId = { () => this.props.onGetId(item.id) }
                             >
                         </Patient>
                     </Link>
@@ -124,8 +124,6 @@ class PatientList extends Component{
         const visibleData = this.searchEmp(patientList, term);
         const adjustedList = this.adjustItems(visibleData);
 
-        
-
         const spinnerComponent = loading ? <Spinner/> : null;
         const errorComponent = 
             error ? 
@@ -146,7 +144,6 @@ class PatientList extends Component{
                 </div>    
                 <div className='search-element'>
                     <SearchPannel onUpdateSearch={this.onUpdateSearch}/>
-                    {/* <button className='search-button'>Search</button> */}
                 </div>                 
                 <div className="container-content">
                     {errorComponent}
