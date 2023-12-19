@@ -40,16 +40,16 @@ class PatientCard extends Component{
     }
 
     transformPatient = (response) => {
-        const date = (item) => {
-            const dateArr = item.split("-")
-            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
-        }
+        // const date = (item) => {
+        //     const dateArr = item.split("-")
+        //     return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
+        // }
 
         return({
             name: response.firstName,
             surname: response.lastName,
             gender: response.gender,
-            dateOfBirth: date(response.dateOfBirth),
+            dateOfBirth: 13,
             address: response.address,
             email: response.email,
             phone: response.phoneNumber,
