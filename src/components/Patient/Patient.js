@@ -9,7 +9,6 @@ class Patient extends Component{
             id: props.id,
             photo: props.url,
             name: props.name,
-            surname: props.surname,
             age: props.age,
             diagnosis: props.diagnosis
         }
@@ -21,13 +20,13 @@ class Patient extends Component{
     }
 
     render(){
-        const {id, photo, name, surname, age, diagnosis} = this.state;
+        const {id, photo, name, age, diagnosis} = this.state;
         const {onGetId} =this.props; 
         return(
 
                 <li id={id} className='patient-item' onClick={onGetId}>
                     <img src={photo} alt="Patient" />
-                    <span>{name} {surname}</span>
+                    <span>{name}</span>
                     <span>{age}</span>
                     <span>{diagnosis}</span>                        
                 </li>

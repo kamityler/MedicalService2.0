@@ -7,6 +7,10 @@
   display: none;
 }
 
+.display-none{
+  display: none;
+}
+
 .navigationbar {
   list-style-type: none;
   margin: 0;

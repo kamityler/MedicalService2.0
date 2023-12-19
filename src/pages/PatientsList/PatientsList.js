@@ -3,31 +3,36 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 import './PatientsList.css';
+import './SearchBar.css'
 
 import Patient from '../../components/Patient/Patient'
 import Spinner from '../../components/basicComponents/spinner/Spinner';
 import ErrorMessage from '../../components/basicComponents/errorMessage/ErrorMessage';
+import SearchPannel from '../../components/basicComponents/searchPannel/SearchPannel';
 
 class PatientList extends Component{
     constructor(props){
         super(props);
         this.state = {
+            term: '',
             patientList: [],
             loading: true,
             error: false,
             newItemLoading: false,
             patientEnded: false,
+            doctorId: localStorage.getItem('id'),
             errorPurpose: 'unknown' 
         }
     }
 
     componentDidMount() {
         this.onRequest();
+        console.log(this.state.doctorId);
     }
 
     onRequest = () => {
         this.onPatientListLoading();
-        axios.get('https://localhost:5001/api/MedicalRecords/')
+        axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.doctorId}/Patients`)
             //  .then(data=>console.log(data))
              .then(response => response.data.map(this.transformPatient))
              .then(res => this.onPatientListLoaded(res))
@@ -45,8 +50,7 @@ class PatientList extends Component{
         let age = new Date().getFullYear() - birth.getFullYear();
         return {
             id: patient.patientID,
-            name: patient.firstName,
-            surname: patient.lastName,
+            name: patient.firstName + ' ' + patient.lastName,
             age: age,
             diagnosis: patient.previousIllnesses
         }
@@ -82,8 +86,7 @@ class PatientList extends Component{
                         <Patient                       
                             id={item.id} 
                             url={"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"} 
-                            name={item.name} 
-                            surname={item.surname} 
+                            name={item.name}
                             age={item.age} 
                             diagnosis={item.diagnosis}
                             onGetId = { () => this.props.onGetId(item.id) }
@@ -102,9 +105,26 @@ class PatientList extends Component{
         )
     }
 
+    searchEmp = (items, term) => {
+        if (term.length === 0) {
+            return items;
+        }
+
+        return items.filter(item => {
+            return item.name.indexOf(term) > -1
+        })
+    }
+
+    onUpdateSearch = (term) => {
+        this.setState({term});
+    }
+
     render(){ 
-        const {loading, patientList, error} = this.state;
-        const adjustedList = this.adjustItems(patientList);
+        const {loading, patientList, error, term} = this.state;
+        const visibleData = this.searchEmp(patientList, term);
+        const adjustedList = this.adjustItems(visibleData);
+
+        
 
         const spinnerComponent = loading ? <Spinner/> : null;
         const errorComponent = 
@@ -123,7 +143,11 @@ class PatientList extends Component{
                     <div className="container-header-item">Name</div>
                     <div className="container-header-item">Age</div>
                     <div className="container-header-item">Diagnosis</div>
-                </div>
+                </div>    
+                <div className='search-element'>
+                    <SearchPannel onUpdateSearch={this.onUpdateSearch}/>
+                    {/* <button className='search-button'>Search</button> */}
+                </div>                 
                 <div className="container-content">
                     {errorComponent}
                     {spinnerComponent}

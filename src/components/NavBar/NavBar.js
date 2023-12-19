@@ -31,6 +31,9 @@ function NavBar(){
                     <li className='navigationbar-item default-li'>
                         <a href="/settings">My account</a>
                     </li>
+                    <li className='navigationbar-item default-li'>
+                        <a href="/">Log out</a>
+                    </li>
                 </ul>
             </div>    
             <Routes>
