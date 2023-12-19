@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import './PatientCard.css';
 
-import Spinner from './../basicComponents/spinner/Spinner';
-import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
+// import Spinner from './../basicComponents/spinner/Spinner';
+// import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 
 class PatientCard extends Component{
     constructor(props){
@@ -57,12 +57,10 @@ class PatientCard extends Component{
     }
 
     onPatientInfoLoaded = (info) => {
-        console.log(info);
         this.setState(()=>({
             patient: info,
             loading: false
-        }))
-        
+        }))        
     }
 
     onError = (errorBody) => {
@@ -92,26 +90,66 @@ class PatientCard extends Component{
     }
 
     render(){
-        const {loading, error} = this.state;
-        const adjusted = this.htmlFunc();
+        // const {loading, error} = this.state;
+        // const adjusted = this.htmlFunc();
         
-        const spinnerComponent = loading ? <Spinner/> : null;
-        const errorComponent = 
-            error ? 
-            <ErrorMessage 
-                errorMessage={'Patient card cannot be displayed'} 
-                errorPurpose={this.state.errorPurpose}/> 
-            : null;
+        // const spinnerComponent = loading ? <Spinner/> : null;
+        // const errorComponent = 
+        //     error ? 
+        //     <ErrorMessage 
+        //         errorMessage={'Patient card cannot be displayed'} 
+        //         errorPurpose={this.state.errorPurpose}/> 
+        //     : null;
 
-        const content = !(loading||error) ? adjusted : null;
-        const {id} = this.state.patient;
+        // const content = !(loading||error) ? adjusted : null;
+        // const {id} = this.state.patient;
 
         return(
-            <div className='ready-patient-card'>
-                <div id={id} className="patient-card">
-                    {errorComponent}
-                    {spinnerComponent}
-                    {content}
+            // <div className='ready-patient-card'>
+            //     <div id={id} className="patient-card">
+            //         {errorComponent}
+            //         {spinnerComponent}
+            //         {content}
+            //     </div>
+            // </div>
+            <div>
+                <div className="patient-card">
+                    <h1 className="card-header">Медична карта амбулаторного хворого №250</h1>
+                    <p className="card-field">Дата заповнення: <span className='card-data'>{(new Date()).toString()}</span></p>
+                    <p className="card-field">Код хворого: <span className='card-data'>123456</span></p>
+                    <p className="card-field">Прізвище: <span className='card-data'>Фоменко</span></p>
+                    <p className="card-field">Ім'я: <span className='card-data'>Андрій</span></p>
+                    <p className="card-field">По батькові: <span className='card-data'>Вікторович</span></p>
+                    <p className="card-field">Телефон: <span className='card-data'>+380 98 765 4321</span></p>
+                    <p className="card-field">Місце проживання: <span className='card-data'>м. Львів, Україна</span></p>
+                    <p className="card-field">Місце роботи, посада: <span className='card-data'>НУЛП, викладач</span></p>
+                    <p className="card-field">Диспансерна група: <span className='card-data'>Так</span></p>
+                    <p className="card-field">Контингенти: <span className='card-data'>УБД, ліквідатор наслідків ЧАЕС</span></p>
+                    <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>123456</span></p>
+                </div>
+                <div className="patient-card">
+                    <h3 className="card-topic">Хвороби</h3>
+                    <p className="card-field">Взятий на облік <span className='card-data'>22.08.2021</span></p>
+                    <p className="card-field">Причина <span className='card-data'>Ковід</span></p>
+                    <p className="card-field">Знятий з обліку <span className='card-data'>18.09.2021</span></p>
+                    <p className="card-field">Причина <span className='card-data'>Вілікуваний</span></p>
+                    <br></br>
+                    <p className="card-field">Взятий на облік <span className='card-data'>22.08.2021</span></p>
+                    <p className="card-field">Причина <span className='card-data'>Діабет</span></p>
+                    <p className="card-field">Знятий з обліку <span className='card-data'>--.--.----</span></p>
+                    <p className="card-field">Причина <span className='card-data'>___________</span></p>
+                </div>
+                <div className="patient-card">
+                    <h3 className="card-topic">Інформація про щеплення</h3>
+                    <p className="card-field">Стовбняк <span className='card-data'>05.01.2017</span></p>
+                    <p className="card-field">Модерна <span className='card-data'>12.07.2021</span></p>
+                    <p className="card-field">Модерна <span className='card-data'>16.08.2021</span></p>
+                    <p className="card-field">Гепатит <span className='card-data'>24.12.2022</span></p>
+                </div>
+                <div className="patient-card">
+                    <h3 className="card-topic">Інформація про страхування</h3>
+                    <p className="card-field">Застрахований до <span className='card-data'>27.06.2025</span></p>
+
                 </div>
             </div>
         );

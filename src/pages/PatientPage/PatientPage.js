@@ -7,9 +7,12 @@ function PatientPage(){
     const { patientID } = useParams();
     return(
         <div className="patient-page">
-            <PatientCard patientID={patientID}/>
             <Link to={`/patientList/${patientID}/records`}>
-                <button>records</button>
+                <button>перейти до записів</button>
+            </Link>
+            <PatientCard id={patientID}/>
+            <Link to={`/patientList/${patientID}/records`}>
+                <button>перейти до записів</button>
             </Link>
         </div>
     );

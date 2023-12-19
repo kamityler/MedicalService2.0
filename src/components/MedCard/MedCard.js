@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
+import RecordList from './../RecordList/RecordList';
 
 class MedCard extends Component{
     constructor(props){
@@ -12,9 +13,20 @@ class MedCard extends Component{
     render(){
         return(
             <div className='record-list'>
-                this is medcard
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button>records</button>
+                    <button>повернутись до сторінки пацієнта</button>
+                </Link>    
+                <p>Додати новий запис</p>
+                <button>Додати</button>
+                <br></br>
+                <p>Відфільтрувати по хворобах:</p>
+                <button>діабет</button>
+                <button>ковід</button>
+                <div className="record-list-container">
+                    <RecordList id={this.state.id}></RecordList>
+                </div>
+                <Link to={`/patientList/${this.state.id}`}>
+                    <button>повернутись до сторінки пацієнта</button>
                 </Link>
             </div>
         );
