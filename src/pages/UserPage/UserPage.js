@@ -1,8 +1,63 @@
 import {Component} from 'react'
+import axios from 'axios';
 
 import './UserPage.css';
 
 class UserPage extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            user: {
+                id: localStorage.getItem('id'),
+                firstName: 'name',
+                lastName: 'surname',
+                birthDate: 'dateOfBirth',
+                specialty: 'none',
+                address: 'address',
+                email: 'email',
+                phoneNumber: 'phone',
+                // description: 'description'
+            },
+            loading: true,
+            error: false,
+            errorPurpose: 'unknown'
+        }
+    }
+
+    componentDidMount() {
+        this.onRequest();
+    }
+    onRequest = () => {
+        axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.user.id}/Doctor`)
+            //.then(response=>console.log(response.data))
+             .then(response => this.transformPatient(response.data))
+             .then(result => this.onPatientInfoLoaded(result))
+             .catch(this.onError);
+    }
+
+    transformPatient = (response) => {
+        const date = (item) => {
+            const dateArr = item.split("-")
+            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
+        }
+
+        return({
+            firstName: response.lastName,
+            lastName: response.firstName,
+            birthDate: date(response.birthDate),
+            specialty: response.specialty,
+            address: response.address,
+            email: response.email,
+            phoneNumber: response.phoneNumber
+        })
+    }
+    onPatientInfoLoaded = (info) => {
+        this.setState(()=>({
+            user: info,
+            loading: false
+        }))
+    }
 
     render(){
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
@@ -14,13 +69,14 @@ class UserPage extends Component{
                 <div className="doctor-card">
                     <ul className="doctor-info-ul">
                             <img className="doctor-avatar" src={url} alt="doctor" />
-                            <li className="doctor-info-li">Name: <span className="exact-information-item">dr.Bodnar</span></li>
-                            <li className="doctor-info-li">Occupation: <span className="exact-information-item">Therapist</span></li>
+                            <li className="doctor-info-li">Name: <span className="exact-information-item">{this.state.user.firstName}</span></li>
+                            <li className="doctor-info-li">Surname: <span className="exact-information-item">{this.state.user.lastName}</span></li>
+                            <li className="doctor-info-li">Occupation: <span className="exact-information-item">{this.state.user.specialty}</span></li>
                             <li className="doctor-info-li">Gender: <span className="exact-information-item">Male</span></li>
-                            <li className="doctor-info-li">Date of brith: <span className="exact-information-item">30.05.2003</span></li>
+                            <li className="doctor-info-li">Date of brith: <span className="exact-information-item">{this.state.user.birthDate}</span></li>
                             <li className="doctor-info-li">Address: <span className="exact-information-item">Lviv, Ukraine</span></li>
-                            <li className="doctor-info-li">Email: <span className="exact-information-item">bodnar.dp@gmail.com</span></li>
-                            <li className="doctor-info-li">Phone: <span className="exact-information-item">+380731231234</span></li>
+                            <li className="doctor-info-li">Email: <span className="exact-information-item">{this.state.user.email}</span></li>
+                            <li className="doctor-info-li">Phone: <span className="exact-information-item">{this.state.user.phoneNumber}</span></li>
                             
                         </ul>
                 </div>

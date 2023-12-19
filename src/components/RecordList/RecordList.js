@@ -34,15 +34,11 @@ class RecordList extends Component{
     }
 
     transformRecords = (record) => {
-        const date = (item) => {
-            const dateArr = item.split("-")
-            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
-        }
-
+        
         return {
             id: record.appointmentID,
             diagnosis: record.diagnosis,
-            date: date(record.appointmentDate),
+            //date: date(record.appointmentDate),
             doctor: record.doctor,
             description: record.description,
             treatment: record.treatment
@@ -86,7 +82,6 @@ class RecordList extends Component{
                     </MedicalRecord>
             )
         })
-        console.log(items)
         return(
             <ul className="record-list">
                 {items}    

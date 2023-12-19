@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { Component } from 'react';
-
-
+import './LoginWindow.css'
 class LoginWindow extends Component{
     componentDidMount(){
         document.querySelector('.NavBar').classList.add('display-none');
