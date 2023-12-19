@@ -9,6 +9,7 @@ import MainPage from '../../pages/MainPage/Main';
 import UserPage from '../../pages/UserPage/UserPage';
 import PatientPage from './../../pages/PatientPage/PatientPage';
 import LoginWindow from './../../pages/LoginWindow/LoginWindow';
+import MedCard from './../MedCard/MedCard';
 
 
 function NavBar(){
@@ -42,6 +43,7 @@ function NavBar(){
                 <Route path = "/about" element = {<About />} />
                 <Route path = "/patientList" element = {<PatientList onGetId={onGetId}/>}/>
                 <Route path = "/patientList/:patientID" element={<PatientPage />}/>
+                <Route path = "/patientList/:patientID/records" element={<MedCard />}/>
                 <Route path = "/settings" element = {<UserPage />} />
                 <Route path = "*" element = {<NoMatch />} />
             </Routes>
