@@ -17,7 +17,7 @@ function NavBar(){
     }
     return(
         <BrowserRouter>
-            <div className="NavBar">
+            <div className="NavBar display">
                 <ul className='navigationbar'>
                     <li className='navigationbar-item main-page-li'>
                         <a href="/mainpage">Main Page</a>

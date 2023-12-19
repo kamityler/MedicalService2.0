@@ -1,6 +1,10 @@
 .NavBar {
+  
   background-color: rgba(50, 122, 195, 0.597);
   padding: 20px;
+}
+.display{
+  display: none;
 }
 
 .navigationbar {
