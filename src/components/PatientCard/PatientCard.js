@@ -5,6 +5,7 @@ import './PatientCard.css';
 
 import Spinner from './../basicComponents/spinner/Spinner';
 import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
+import Disease from '../Disease/Disease';
 
 class PatientCard extends Component {
     constructor(props) {
@@ -52,6 +53,9 @@ class PatientCard extends Component {
             year: 'numeric',
         })
 
+        const disease = response.diseases ? null : [...response.diseases];
+        console.log(1);
+
         return ({
             id: response.patientID,
             completionDate: date(response.completionDate),
@@ -69,6 +73,8 @@ class PatientCard extends Component {
             groupDispensary: response.groupDispensary,
             contingents: response.contingents,
             privilegeNumber: response.privilegeNumber,
+
+            diseases: disease,
         })
     }
 
@@ -85,6 +91,18 @@ class PatientCard extends Component {
             loading: false,
             errorPurpose: errorBody.message
         })
+    }
+
+    diseasesList = (arr) => {
+
+        if (!arr.length) {
+            return 'Список порожній'
+        } else {
+            const diseases = arr.map(item => {
+                return (<Disease key={item.diseaseID}></Disease>)
+            })
+            return diseases;
+        }
     }
 
     htmlFunc = () => {
@@ -114,6 +132,8 @@ class PatientCard extends Component {
 
         let workHtml = work ? work + ', ' + position : 'Безробітний';
 
+        const diseases = this.diseasesList(this.state.patient.diseases);
+
         return(
             <div className="patient-card">
                 <h1 className="card-header">Медична карта амбулаторного хворого №25{patientCode}</h1>
@@ -142,15 +162,7 @@ class PatientCard extends Component {
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
-                    <p className="card-field">Взятий на облік <span className='card-data'>22.08.2021</span></p>
-                    <p className="card-field">Причина <span className='card-data'>Ковід</span></p>
-                    <p className="card-field">Знятий з обліку <span className='card-data'>18.09.2021</span></p>
-                    <p className="card-field">Причина <span className='card-data'>Вілікуваний</span></p>
-                    <br></br>
-                    <p className="card-field">Взятий на облік <span className='card-data'>22.08.2021</span></p>
-                    <p className="card-field">Причина <span className='card-data'>Діабет</span></p>
-                    <p className="card-field">Знятий з обліку <span className='card-data'>--.--.----</span></p>
-                    <p className="card-field">Причина <span className='card-data'>___________</span></p>
+                    {diseases}
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про щеплення</h3>
@@ -188,7 +200,6 @@ class PatientCard extends Component {
                 {spinnerComponent}
                 {content}
             </div>
-            
         );
     }
 }
