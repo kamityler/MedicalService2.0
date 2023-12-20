@@ -6,8 +6,8 @@
     /* justify-content: center; */
     height: 100vh;
     display: grid;
-    gap: 5%;
-    grid-template-columns: 0fr 0.5fr 0fr;
+    gap: 6%;
+    grid-template-columns: 0% 14% 57% 10%;
 }
 
 .profile-container {
@@ -159,3 +159,85 @@
     font-size: 20px;
     cursor: pointer;
   }
+
+  .appointment-block{height: 600px;
+    width: 1000px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;}
+
+    .appointmentContainer{
+        height: 100%;
+        width: 100%;
+    }
+    .medical-record-item {
+        list-style: none;
+        padding: 10px;
+        padding-bottom: 2px;
+        margin: 10px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        background-color: #fff;
+        display: block;
+        transition: background-color 0.3s, color 0.3s, border 0.3s;
+        width: 40%;
+        display: inline flow-root list-item
+    }
+    
+    .medical-record-item:hover {
+        background-color: #f3f3f3a4;
+    }
+    
+    .medical-record-p{
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+        margin-bottom: 8px;
+    }
+    
+    .medical-record-p span{
+        color: #555;
+        font-weight: normal;
+        font-size: 18px;
+    }
+    .MuiPagination-ul{
+        justify-content: center;
+    }
+    .card {
+        font-weight: 400;
+        border: 0;
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+      }
+      .card-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,0.03);
+        border-bottom: 1px solid rgba(0,0,0,0.125);
+      }
+      .list-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        border-radius: .25rem;
+      }
+      .list-group-flush {
+        border-radius: 0;
+      }
+      .list-group-item {
+        position: relative;
+        display: block;
+        padding: .75rem 1.25rem;
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,0.125);
+          border-top-width: 1px;
+          border-right-width: 1px;
+          border-bottom-width: 1px;
+          border-left-width: 1px;
+      }
+      .list-group-flush > .list-group-item {
+        border-width: 0 0 1px;
+      }

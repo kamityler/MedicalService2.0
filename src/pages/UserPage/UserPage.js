@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import axios from 'axios';
-
+import MedicalRecord from '../../components/MedicalRecord/MedicalRecord';
 import './UserPage.css';
+import Pagination from '@mui/material/Pagination';
 
 class UserPage extends Component{
 
@@ -19,29 +20,93 @@ class UserPage extends Component{
                 phoneNumber: 'phone',
                 // description: 'description'
             },
+            records:[],
             loading: true,
             error: false,
-            errorPurpose: 'unknown'
+            errorPurpose: 'unknown',
+            loadingApp: true,
+            newRecordLoading: false
         }
     }
 
     componentDidMount() {
         this.onRequest();
+        //this.onAppointmentRequest();
     }
-    onRequest = () => {
+        onRequest = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${this.state.user.id}`)
             //.then(response=>console.log(response.data))
              .then(response => this.transformPatient(response.data))
              .then(result => this.onPatientInfoLoaded(result))
+             .then(this.onAppointmentRequest)
              .catch(this.onError);
     }
+    onAppointmentRequest = () => {
+        axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/Appointments/${this.state.user.id}`)
+            //.then(response=>console.log(response.data))
+            .then(response => response.data.map(this.transformRecords))
+            .then(res => this.onRecordsListLoaded(res))
+            .catch(this.onError);
+   }
+
+   transformRecords = (record) => {
+       const date = (item) => {
+           const dateArr = item.split("-")
+           return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
+       }
+       console.log(record.medicalRecord)
+       return {
+           id: record.appointmentID,
+           diagnosis: record.diagnosis,
+           date: date(record.appointmentDate),
+           doctor: record.doctor,
+           description: record.description,
+           treatment: record.treatment,
+           medicalRecord: record.medicalRecord
+       }
+   }
+
+   onRecordsListLoading = () => {
+       this.setState({
+           newRecordLoading: true
+       })
+   }
+
+   onRecordsListLoaded = (newRecordsList) => {
+       const newarr = newRecordsList.reverse();
+       this.setState(({records})=>({
+           records: [...records, ...newarr],
+           loading: false,
+           newRecordLoading: false
+       }))
+   }
+   adjustItems(arr) {
+    const items = arr.map((item)=>{
+        return (
+                <MedicalRecord key={item.id}
+                    id={item.id} 
+                    patient={item.medicalRecord.lastName} 
+                    diagnosis={item.diagnosis}
+                    date={item.date}
+                    description={item.description}
+                    treatment={item.treatment}
+                >
+                </MedicalRecord>
+        )
+    })
+    return(
+        <ul className="record-list">
+            {items}    
+        </ul> 
+    ) 
+}
 
     transformPatient = (response) => {
         const date = (item) => {
             const dateArr = item.split("-")
             return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
         }
-
+        
         return({
             firstName: response.lastName,
             lastName: response.firstName,
@@ -49,7 +114,8 @@ class UserPage extends Component{
             specialty: response.specialty,
             address: response.address,
             email: response.email,
-            phoneNumber: response.phoneNumber
+            phoneNumber: response.phoneNumber,
+            medicalRecord: response.medicalRecord
         })
     }
     onPatientInfoLoaded = (info) => {
@@ -75,7 +141,8 @@ class UserPage extends Component{
          user.phoneNumber = (phoneNumber.responce) ? phoneNumber.value: user.phoneNumber
          user.address = (address.responce) ? address.value: user.address
          this.setState({user:user});
-        setTimeout(()=>{         document.querySelector('.editButton').style.width = document.querySelector('.doctor-card').getBoundingClientRect().width + 'px';
+
+         setTimeout(()=>{         document.querySelector('.editButton').style.width = document.querySelector('.doctor-card').getBoundingClientRect().width + 'px';
     },1)
 
 
@@ -91,6 +158,8 @@ class UserPage extends Component{
       }
     render(){
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
+        const {records} = this.state;
+        const adjustedList = this.adjustItems(records);
         return(
             <div className="account-settings">
                 <div className="settings-spacer">
@@ -114,6 +183,29 @@ class UserPage extends Component{
                         <button className="editButton" onClick={this.openModal}type="button" >Edit profile</button>
 
                 </div>
+                
+                <div className='appointment-block'>
+                    <h1>Історія записів</h1>
+                    <div className='appointmentContainer'>
+                        {adjustedList}
+                        
+                        <Pagination   count={10} variant="outlined" />
+                    </div>
+                        
+        
+                    
+                           
+                </div>
+                <div class="card">
+  <div class="card-header">
+    Історія записів
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Календар</li>
+    <li class="list-group-item">Результати опитувань</li>
+    <li class="list-group-item">Безпека</li>
+  </ul>
+</div>
                 <div id="MyModal" className=" modal">
                     <div className='modal-content profile-container'>
                     <div className="profile-header">
