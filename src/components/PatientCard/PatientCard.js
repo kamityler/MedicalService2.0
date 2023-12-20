@@ -112,22 +112,29 @@ class PatientCard extends Component{
             //         {content}
             //     </div>
             // </div>
-            <div>
-                <div className="patient-card">
-                    <h1 className="card-header">Медична карта амбулаторного хворого №250</h1>
-                    <p className="card-field">Дата заповнення: <span className='card-data'>{(new Date()).toString()}</span></p>
-                    <p className="card-field">Код хворого: <span className='card-data'>123456</span></p>
-                    <p className="card-field">Прізвище: <span className='card-data'>Фоменко</span></p>
-                    <p className="card-field">Ім'я: <span className='card-data'>Андрій</span></p>
-                    <p className="card-field">По батькові: <span className='card-data'>Вікторович</span></p>
-                    <p className="card-field">Телефон: <span className='card-data'>+380 98 765 4321</span></p>
-                    <p className="card-field">Місце проживання: <span className='card-data'>м. Львів, Україна</span></p>
-                    <p className="card-field">Місце роботи, посада: <span className='card-data'>НУЛП, викладач</span></p>
-                    <p className="card-field">Диспансерна група: <span className='card-data'>Так</span></p>
-                    <p className="card-field">Контингенти: <span className='card-data'>УБД, ліквідатор наслідків ЧАЕС</span></p>
-                    <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>123456</span></p>
+            <div className="patient-card">
+                <h1 className="card-header">Медична карта амбулаторного хворого №250</h1>
+
+                <div className="patient-card-block">
+                    <p className="card-field block1-row-1-col-1">Код хворого: <span className='card-data'>123456</span></p>
+                    <p className="card-field block1-row-1-col-2 left-aligned-text"><span className='card-data'>{(new Date()).toLocaleDateString().toString()}</span> дата заповнення</p>
+                    <div className='block1-row-2-col-1'>
+                        <p className="card-field">Прізвище: <span className='card-data'>Фоменко</span></p>
+                        <p className="card-field">Ім'я: <span className='card-data'>Андрій</span></p>
+                        <p className="card-field">По батькові: <span className='card-data'>Вікторович</span></p>
+                    </div>
+                    <div className='block1-row-2-col-2'>
+                        <p className="card-field left-aligned-text"><span className='card-data'>+380 98 765 4321</span> телефон</p>
+                        <p className="card-field left-aligned-text"><span className='card-data'>м. Львів, Україна</span> місце проживання</p>
+                        <p className="card-field left-aligned-text"><span className='card-data'>НУЛП, викладач</span> місце роботи, посада</p>                    
+                    </div>
+                    <div className='block1-row-3'>
+                        <p className="card-field">Диспансерна група: <span className='card-data'>Так</span></p>
+                        <p className="card-field">Контингенти: <span className='card-data'>УБД, ліквідатор наслідків ЧАЕС</span></p>
+                        <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>123456</span></p>
+                    </div>
                 </div>
-                <div className="patient-card">
+                <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
                     <p className="card-field">Взятий на облік <span className='card-data'>22.08.2021</span></p>
                     <p className="card-field">Причина <span className='card-data'>Ковід</span></p>
@@ -139,14 +146,14 @@ class PatientCard extends Component{
                     <p className="card-field">Знятий з обліку <span className='card-data'>--.--.----</span></p>
                     <p className="card-field">Причина <span className='card-data'>___________</span></p>
                 </div>
-                <div className="patient-card">
+                <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про щеплення</h3>
                     <p className="card-field">Стовбняк <span className='card-data'>05.01.2017</span></p>
                     <p className="card-field">Модерна <span className='card-data'>12.07.2021</span></p>
                     <p className="card-field">Модерна <span className='card-data'>16.08.2021</span></p>
                     <p className="card-field">Гепатит <span className='card-data'>24.12.2022</span></p>
                 </div>
-                <div className="patient-card">
+                <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про страхування</h3>
                     <p className="card-field">Застрахований до <span className='card-data'>27.06.2025</span></p>
 
