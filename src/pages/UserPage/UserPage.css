@@ -12,7 +12,7 @@
 
 .profile-container {
     /* justify-content:right; */
-    background-color: #fff;
+    background-color: #aaaaaa;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -20,7 +20,7 @@
 }
 
 .profile-header {
-    background-color: rgba(50, 122, 195, .8);
+    background-color: rgba(44, 173, 65, 0.932);
     color: #fff;
     text-align: center;
     padding: 15px;
@@ -89,6 +89,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    margin-left: -200%;
 }
 
 .doctor-info-ul {
