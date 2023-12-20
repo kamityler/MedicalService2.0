@@ -58,7 +58,15 @@ class UserPage extends Component{
             loading: false
         }))
     }
+     openModal= () =>{
+        console.log('swd');
+        document.querySelector(".modal").style.display = "block";
 
+      }
+      closeModal = ()=>{
+        document.querySelector(".modal").style.display = "none";
+
+      }
     render(){
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
         return(
@@ -81,14 +89,15 @@ class UserPage extends Component{
                             
                         </ul>
                         </div>
-                        <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
+                        <button className="editButton" onClick={this.openModal}type="button" >Edit profile</button>
 
                 </div>
-                <div className="profile-container">
+                <div id="MyModal" className=" modal">
+                    <div className='modal-content profile-container'>
                     <div className="profile-header">
                         <h2>Profile Settings</h2>
                     </div>
-                    <div className="profile-form">
+                    <div className="profile-form "  >
                         <form>
                             <div className="form-group">
                                 <label htmlFor="fullName">Change your name:</label>
@@ -111,9 +120,10 @@ class UserPage extends Component{
                                 <input type="password" id="password" name="password" autoComplete="on"/>
                             </div>
                             <div className="form-group">
-                                <button type="submit" onClick={(e)=>{e.preventDefault()}}>Save Changes</button>
+                                <button type="submit" onClick={this.closeModal} >Save Changes</button>
                             </div>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>
