@@ -21,7 +21,8 @@ class RecordList extends Component{
     }
 
     componentDidMount() {
-        this.onRequest();
+        setTimeout(()=>{this.onRequest()},1000)
+        //this.onRequest();
     }
 
     onRequest = () => {
