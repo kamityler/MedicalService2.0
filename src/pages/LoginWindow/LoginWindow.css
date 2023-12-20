@@ -60,12 +60,12 @@
 }
 
 .form-group button:hover {
-    background-color: rgba(50, 122, 195, 0.597);
-    border: 1px solid rgba(50, 122, 195, 0.597);
+    background-color: rgba(44, 173, 65, 0.932);
+    border: 1px solid rgba(44, 173, 65, 0.932);
     color: #fff;
 }
 
 .form-group button:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(50, 122, 195, 0.597);
+    box-shadow: 0 0 5px rgba(44, 173, 65, 0.932);
 }
