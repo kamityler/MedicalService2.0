@@ -2,7 +2,6 @@ import { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { CiSquareChevLeft } from "react-icons/ci";
 
-
 import './MedCard.css'
 import './AddRecordModal.css'
 
@@ -38,10 +37,11 @@ class MedCard extends Component{
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
-                    {/* <button>повернутись до сторінки пацієнта</button> */}
-                    <div className='goback-button'>
-                        Повернутись до сторінки пацієнта <CiSquareChevLeft stroke-width="1" viewBox="3 -3 24 24" height="1em" ></CiSquareChevLeft>
-                    </div>
+                    <button>
+                    {/* <div className='goback-button'> */}
+                        Повернутись до сторінки пацієнта <CiSquareChevLeft strokeWidth="1" viewBox="3 -3 24 24" height="1em" ></CiSquareChevLeft>
+                    {/* </div> */}
+                    </button>
                 </Link>
                 <div className='filter-block'>
                     <p>Додати новий запис</p>
@@ -59,7 +59,6 @@ class MedCard extends Component{
                 <Link to={`/patientList/${this.state.id}`}>
                     <button>повернутись до сторінки пацієнта</button>
                 </Link>
-
 
                 <ModalWindow show={this.state.show} handleClose={this.hideModal}>
                         <form className="modal-form" onSubmit={this.addRecord}>
@@ -89,7 +88,7 @@ class MedCard extends Component{
                                 <button className="form-button-submit" value="Reset" type="reset" >Скинути</button>
                             </div>
                         </form>
-                    </ModalWindow>
+                </ModalWindow>
             </div>
         );
     }
