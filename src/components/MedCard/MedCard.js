@@ -1,5 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { CiSquareChevLeft } from "react-icons/ci";
+
 
 import './MedCard.css'
 import './AddRecordModal.css'
@@ -11,7 +13,7 @@ class MedCard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            show: true,
+            show: false,
             id: window.location.href.toString().split('/')[4]
         }
         this.showModal = this.showModal.bind(this);
@@ -36,7 +38,10 @@ class MedCard extends Component{
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button>повернутись до сторінки пацієнта</button>
+                    {/* <button>повернутись до сторінки пацієнта</button> */}
+                    <div className='goback-button'>
+                        Повернутись до сторінки пацієнта <CiSquareChevLeft stroke-width="1" viewBox="3 -3 24 24" height="1em" ></CiSquareChevLeft>
+                    </div>
                 </Link>
                 <div className='filter-block'>
                     <p>Додати новий запис</p>
