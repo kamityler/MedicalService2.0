@@ -74,7 +74,9 @@ class UserPage extends Component{
          user.email = (email.responce) ? email.value: user.email
          user.phoneNumber = (phoneNumber.responce) ? phoneNumber.value: user.phoneNumber
          user.address = (address.responce) ? address.value: user.address
-        this.setState({user:user});
+         this.setState({user:user});
+        setTimeout(()=>{         document.querySelector('.editButton').style.width = document.querySelector('.doctor-card').getBoundingClientRect().width + 'px';
+    },1)
 
 
         document.querySelector(".modal").style.display = "none";
