@@ -35,12 +35,12 @@ class PatientCard extends Component{
     }
 
     componentDidMount() {
-        //this.onRequest();
+        this.onRequest();
     }
 
     onRequest = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.patient.id}`)
-             .then(response=>console.log(response.data))
+            //  .then(response=>console.log(response.data))
              .then(response => this.transformPatient(response.data))
              .then(result => this.onPatientInfoLoaded(result))
              .catch(this.onError);
@@ -51,10 +51,15 @@ class PatientCard extends Component{
         //     const dateArr = item.split("-")
         //     return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
         // }
+        const date = (item) => {
+            // console.log('item ' + item)
+            // console.log(new Date(item)).getLocaleDateString())
+            return item
+        }
 
         return({
-
-            completionDate: response.completionDate,
+            id: response.patientID,
+            completionDate: date(response.completionDate),
             name: response.firstName,
             middlename: response.middlename,
             surname: response.lastName,
@@ -91,6 +96,7 @@ class PatientCard extends Component{
         const {id, completionDate, name, middlename, surname, gender, dateOfBirth, phone, email, address, work, position, groupDispensary, contingents, privilegeNumber} = this.state.patient;
 
         let patientCode = '';
+        // console.log(this.state.patient)
         for (let zeros = 6 - id.toString().length; zeros > 0; zeros--) {
             patientCode += '0';
         }
@@ -117,9 +123,9 @@ class PatientCard extends Component{
                         <p className="card-field left-aligned-text"><span className='card-data'>{work}, {position}</span> місце роботи, посада</p>                    
                     </div>
                     <div className='block1-row-3'>
-                        <p className="card-field">Диспансерна група: <span className='card-data'>{groupDispensary}</span></p>
-                        <p className="card-field">Контингенти: <span className='card-data'>{contingents}</span></p>
-                        <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>{privilegeNumber}</span></p>
+                        <p className="card-field">Диспансерна група: <span className='card-data'>{groupDispensary ? 'Так' : 'Ні'}</span></p>
+                        <p className="card-field">Контингенти: <span className='card-data'>{contingents === null ? 'Відсутні' : contingents}</span></p>
+                        <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>{privilegeNumber  === null ? 'Відсутній' : privilegeNumber}</span></p>
                     </div>
                 </div>
                 <div className="patient-card-block">
