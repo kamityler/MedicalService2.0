@@ -46,8 +46,6 @@ class PatientList extends Component{
 
     transformPatient = (patient) => {
         const birth = new Date(patient.dateOfBirth);
-        console.log(patient)
-
         let age = new Date().getFullYear() - birth.getFullYear();
         return {
             id: patient.patientID,
