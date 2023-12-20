@@ -29,7 +29,7 @@ class UserPage extends Component{
         this.onRequest();
     }
     onRequest = () => {
-        axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.user.id}/Doctor`)
+        axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${this.state.user.id}`)
             //.then(response=>console.log(response.data))
              .then(response => this.transformPatient(response.data))
              .then(result => this.onPatientInfoLoaded(result))
@@ -66,6 +66,7 @@ class UserPage extends Component{
                 <div className="settings-spacer">
 
                 </div>
+                <div>
                 <div className="doctor-card">
                     <ul className="doctor-info-ul">
                             <img className="doctor-avatar" src={url} alt="doctor" />
@@ -79,6 +80,9 @@ class UserPage extends Component{
                             <li className="doctor-info-li">Phone: <span className="exact-information-item">{this.state.user.phoneNumber}</span></li>
                             
                         </ul>
+                        </div>
+                        <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
+
                 </div>
                 <div className="profile-container">
                     <div className="profile-header">

@@ -1,58 +1,54 @@
 import './Main.css';
+import { Component } from 'react';
 
-function MainPage() {
-  return (
+  class MainPage extends Component{
+
+    componentDidMount(){
+      var articles = document.querySelectorAll('.article-container');
+
+      function revealArticle(index) {
+        setTimeout(function () {
+            articles[index].classList.add('show');
+        }, index * 500); // Затримка залежить від індексу, щоб стати по черзі
+    }
+
+    for (var i = 0; i < articles.length; i++) {
+        revealArticle(i);
+    }
     
+  }    
+
+  render (){
+    return(
+    <div>
+    <h1>Система Діагностики Якості Життя</h1>
     <div className="main-page">
-      <div className='news-contsiner'>
-        <article className='article-container'>
-          <h2>Advancing Medical Expertise: New Continuing Education Courses Empower Physicians</h2>
-          <p>In a dynamic era of healthcare, continuous learning is paramount for medical professionals to stay abreast of advancements and deliver optimal patient care. Recognizing this need, a comprehensive set of continuing education courses tailored for physicians has been introduced, aiming to enhance their skills and knowledge.</p>
-          <p>These specialized courses cover a wide array of medical disciplines, ranging from cutting-edge treatment modalities to the latest technological innovations in healthcare. Participants have the opportunity to delve into interactive sessions, workshops, and hands-on training, fostering a collaborative environment conducive to skill development.</p>
-          <p>As the field of medicine continues to evolve, investing in continuous education becomes imperative. These advanced courses not only empower physicians with the latest knowledge and skills but also contribute to a collaborative and forward-thinking medical community. By embracing lifelong learning, healthcare professionals are better positioned to navigate the complexities of modern medicine and, ultimately, provide superior care to their patients.</p>
-        </article>
-          
-        <article className='article-container'>
-          <h2>Specialized courses cover a wide array of medical disciplines</h2>
-          <p>As the field of medicine continues to evolve, investing in continuous education becomes imperative. These advanced courses not only empower physicians with the latest knowledge and skills but also contribute to a collaborative and forward-thinking medical community. By embracing lifelong learning, healthcare professionals are better positioned to navigate the complexities of modern medicine and, ultimately, provide superior care to their patients1.</p>
-          <p>In the dynamic era of healthcare, continuous learning is paramount for medical professionals to stay abreast of advancements and deliver optimal patient care. Recognizing this need, a comprehensive set of continuing education courses tailored for physicians has been introduced, aiming to enhance their skills and knowledge1. These specialized courses cover a wide array of medical disciplines, ranging from cutting-edge treatment modalities to the latest technological innovations in healthcare12. Participants have the opportunity to delve into interactive sessions, workshops, and hands-on training, fostering a collaborative environment conducive to skill development1.</p>
-        </article>
+    <div>
+    <article className='article-container left'>
+    <p>Наша місія — надавати вам засоби для об'єктивного аналізу, освітлення сильних та слабких сторін та розробки персоналізованих стратегій для досягнення гармонії та щастя.</p>
+</article>
+<article className='article-container right'>
 
-        <article className='article-container'>
-          <h2>Field of medicine continues to evolve</h2>
-          <p>These specialized courses cover a wide array of medical disciplines, ranging from cutting-edge treatment modalities to the latest technological innovations in healthcare. Participants have the opportunity to delve into interactive sessions, workshops, and hands-on training, fostering a collaborative environment conducive to skill development.</p>
-          <p>In a dynamic era of healthcare, continuous learning is paramount for medical professionals to stay abreast of advancements and deliver optimal patient care. Recognizing this need, a comprehensive set of continuing education courses tailored for physicians has been introduced, aiming to enhance their skills and knowledge.</p>
-          <p>As the field of medicine continues to evolve, investing in continuous education becomes imperative. These advanced courses not only empower physicians with the latest knowledge and skills but also contribute to a collaborative and forward-thinking medical community. By embracing lifelong learning, healthcare professionals are better positioned to navigate the complexities of modern medicine and, ultimately, provide superior care to their patients.</p>
-        </article>
-             
-      </div>
-      <div className="second-container">
-        <article className='article-container'>
-          <h2>Statistics for today</h2>
-          <p>Doctors quantity: 1</p>
-          <p>Patients quantity: 14</p>
-        </article>  
+    <p>В інтерфейсі "Системи Діагностики Якості Життя" використовуються передові технології для збору різноманітних даних, враховуючи фізичне здоров'я, рівень стресу, соціальні взаємини та інші важливі аспекти вашого життя. Наша аналітика не лише надає об'єктивні відомості, але й виокремлює можливості для росту та розвитку.</p>
+    </article>
+    <article className='article-container left'>
 
-        <article className='article-container'>
-          <h2>Statistics for yesterday</h2>
-          <p>Doctors quantity: 1</p>
-          <p>Patients quantity: 13</p>
-        </article>  
-        
-        <article className='article-container'>
-          <h2>Statistics for 16.11.2023</h2>
-          <p>Doctors quantity: 1</p>
-          <p>Patients quantity: 12</p>
-        </article>  
+<p>Ми віримо в силу персоналізації, тому кожен користувач отримує індивідуальні рекомендації та інструменти, відповідно до його унікальних потреб та цілей. Незалежно від того, чи ви прагнете покращити фізичне здоров'я, знайти баланс у роботі та особистому житті чи розвивати нові навички, ми тут, щоб вам допомогти.</p>
+</article>
+<article className='article-container right'>
 
-        <article className='article-container'>
-          <h2>Statistics for 15.11.2023</h2>
-          <p>Doctors quantity: 1</p>
-          <p>Patients quantity: 13</p>
-        </article>
-      </div>
+<p>Приєднуйтеся до нашої спільноти сьогодні та розпочніть свій шлях до більш насиченого, задовільного та здорового життя. "Система Діагностики Якості Життя" — ваш персональний партнер у досягненні найкращої версії себе.</p>
+    </article>
     </div>
-  );
+      <div className='photo'><img src="https://images.unsplash.com/photo-1626315869436-d6781ba69d6e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9zcGl0YWwlMjBleHRlcmlvcnxlbnwwfHwwfHx8MA%3D%3D" alt="Ілюстрація" /></div>
+    
+        
+        
+        
+    </div>
+    </div>
+    )
+  }
 }
 
 

@@ -1,40 +1,101 @@
-.patient-card{
-    /* max-width: fit-content; */
+/* .patient-card{
     width: 100%;
     font-family: arial;
     background-color: #fff;
-    margin: 0 0 10px 0;
+    margin: 20px 50px;
     border-radius: 15px;
     border: 1px solid #ddd;
-}
+} */
 
-.ready-patient-card{
+/* .ready-patient-card{
     margin: auto;
-}
+} */
 
-.patient-avatar{
+/* .patient-avatar{
     display: block;
     margin: auto;
     margin-bottom: 8px;
     max-width: 250px;
     border-radius: 15px;
-}
+} */
 
-.patient-info-ul {
+/* .patient-info-ul {
     list-style: none;
     padding: 10px;
     padding-bottom: 0;
     margin: 0;
-}
+} */
 
-.patient-info-li {
+/* .patient-info-li {
     margin-bottom: 16px;
     padding: 0 8px 0 8px;
     font-weight: bold;
     font-size: 16px;
+} */
+
+/* .exact-information-item{
+    font-weight: normal;
+    font-size: 18px;
+    color: #555;
+} */
+
+.patient-card {
+    max-width: fit-content;
+    font-family: arial;
+    margin: 20px 50px;
 }
 
-.exact-information-item{
+.patient-card-block {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 0px 10px 10px;
+    margin-bottom: 10px;
+
+    display: grid;
+    grid: 1fr 1fr;
+    gap: 10px;
+}
+
+.block1-row-1-col-1 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.block1-row-1-col-2 {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.block1-row-2-col-1 {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.left-aligned-text{
+    justify-self: end;
+}
+
+.block1-row-2-col-2 {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.block1-row-3{
+    grid-row: 3;
+    grid-column: 1 / span 2;
+}
+
+.card-field {
+    margin-bottom: 16px;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: 16px;
+    
+}
+
+.card-data {
     font-weight: normal;
     font-size: 18px;
     color: #555;

@@ -3,17 +3,42 @@ import React from 'react';
 import { Component } from 'react';
 import './LoginWindow.css'
 class LoginWindow extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            errorMessage: null ,
+            loading: true,
+            error: false,
+            errorPurpose: 'unknown'
+        }
+    }
     componentDidMount(){
+        var er = document.createElement('span');
+        er.textContent = "Невірний пароль";
+        er.style.color = 'red';
+       this.setState({errorMessage: er})
+
         document.querySelector('.NavBar').classList.add('display-none');
     }    
-    handleClick=()=>{
-        let email = document.querySelector('#username').value;
+    handleClick=(e)=>{
+        e.preventDefault();
+        let email = document.querySelector('#username');
         let id = null
-        if(email === '123@gmail.com'){
+        let form = document.querySelector('form')
+       
+        if(email.value === 'emily.jones@example.com'){
             id = 1;
+            form.submit();
+            
+        }
+        else if(email.value  === 'oleg.olegovich@example.com'){
+            id=2;            form.submit();
+
         }
         else{
-            id=2;
+            if(!email.parentNode.isSameNode(this.state.errorMessage.parentNode)){
+                email.parentElement.appendChild(this.state.errorMessage);
+            }
         }
         localStorage.setItem('id', id);
         console.log(localStorage.getItem('id'));
