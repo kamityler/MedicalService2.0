@@ -1,0 +1,79 @@
+.modal-field {
+    font-family: Arial, sans-serif;
+    display: block;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.modal-field:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(50, 122, 195, 0.597);
+}
+
+.modal-input {
+    width: 280px;
+    height: 50px;
+    padding: 0 20px;
+}
+
+.modal-textarea {
+    padding: 20px;
+    width: 280px;
+    max-width: 620px;
+    min-width: 200px;
+    max-height: 148px;
+    min-height: 22px;
+}
+
+.modal-label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.modal-form {
+    padding: 0 20px 30px 20px;
+}
+
+.form-button-submit {
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+    display:inline-block;
+    margin: 20px 0 0 0;
+}
+
+.form-button-container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.between-div-container{
+    padding:10px;
+}
+
+.form-button-submit:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(50, 122, 195, 0.597);
+}
+
+.form-button-submit:hover {
+    background-color: rgba(50, 122, 195, 0.597);
+    border: 1px solid rgba(50, 122, 195, 0.597);
+    color: #fff;
+}
+

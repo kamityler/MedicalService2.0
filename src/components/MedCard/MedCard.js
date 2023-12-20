@@ -1,5 +1,9 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
+
+import './MedCard.css'
+import './AddRecordModal.css'
+
 import RecordList from './../RecordList/RecordList';
 import ModalWindow from './../ModalWindow/ModalWindow';
 
@@ -7,6 +11,7 @@ class MedCard extends Component{
     constructor(props){
         super(props);
         this.state = {
+            show: true,
             id: window.location.href.toString().split('/')[4]
         }
         this.showModal = this.showModal.bind(this);
@@ -53,18 +58,30 @@ class MedCard extends Component{
 
                 <ModalWindow show={this.state.show} handleClose={this.hideModal}>
                         <form className="modal-form" onSubmit={this.addRecord}>
-                            <h1 className="modal-header">Add new medical record</h1>
-                            <p className="modal-label">Enter diagnosis here:</p>
-                            <input required placeholder="Diagnosis" type="text" name="diagnosis" className="modal-field modal-input"></input>
+                            <h1 className="modal-header">Додавання запису</h1>
+
+                            <p className="modal-label">Причина запису:</p>
+                            <input required placeholder="Причина" type="text" name="reason" className="modal-field modal-input"></input>
+
+                            <p className="modal-label">Обрати приналежність:</p>
+                            <input type="text" id="diagnosis-input" list="diagnosis" name="diagnosis" autoComplete='off'/>
+                            <datalist id="diagnosis">
+                                <option value="Діабет"/>
+                                <option value="Рак"/>
+                                <option value="Інше"/>    
+                            </datalist>
+
                             {/* onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} */}
-                            <p className="modal-label">Enter description here:</p>
-                            <textarea required placeholder="Enter description here..." name="description" className="modal-field modal-textarea"></textarea>
-                            <p className="modal-label">Enter ways of treatment here:</p>
-                            <textarea required placeholder="Enter treatment here..." name="treatment" className="modal-field modal-textarea"></textarea>
+                            <p className="modal-label">Опис:</p>
+                            <textarea required placeholder="Введіть опис тут..." name="description" className="modal-field modal-textarea"></textarea>
+
+                            <p className="modal-label">Спосіб лікування:</p>
+                            <textarea required placeholder="Введіть спосіб лікування тут..." name="treatment" className="modal-field modal-textarea"></textarea>
+
                             <div className="form-button-container">
-                                <button className="form-button-submit" value="Submit" type="submit" >Submit</button>
+                                <button className="form-button-submit" value="Submit" type="submit" >Додати</button>
                                 <div className="between-div-container"></div>
-                                <input className="form-button-submit" type="reset" value="Reset"/>
+                                <button className="form-button-submit" value="Reset" type="reset" >Скинути</button>
                             </div>
                         </form>
                     </ModalWindow>
