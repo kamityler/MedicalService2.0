@@ -1,10 +1,10 @@
 .main-page{
-    margin: 15px 5% 5% 5%;
-    padding: 20px;
-    justify-content: center;
-    display: grid;
-    gap: 10px;
+    
     grid-template-columns: 2fr 1fr;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: grid;
 }
 
 .article-container{
@@ -18,4 +18,61 @@
 
 .article-container:hover {
     background-color: #f3f3f3a4;
+}
+
+
+img {
+    width: 100%;
+  height: auto;
+  margin-left: auto;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 1.5em;
+    max-width: 800px;
+    margin: 20px auto; /* Відступи для кращого читання тексту */
+    line-height: 1.5; /* Міжрядковий інтервал */
+}
+
+.photo{
+    width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+.article-container{
+    border-radius: 15px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+  background-color: #ececec82;
+  height: auto;
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden; /* Забезпечення обрізання зайвих елементів, які можуть вилазити за межі */
+            opacity: 0; /* Початкова прозорість */
+            transform: translateX(-50px); /* Зміщення вліво на 50px при початковій стані */
+            transition: opacity 0.5s, transform 0.5s; /* Анімація для прозорості та трансформації */
+}
+.article-container:nth-child(odd) {
+    flex-direction: row-reverse; /* Шаховий порядок для непарних елементів */
+}
+.right{
+    margin-left: 30%
+}
+.left{
+    transform: translateX(-100%);
+    margin-left: 10%
+}
+.article-container.show {
+    opacity: 1; /* Прозорість 1 при виведенні на екран */
+    transform: translateX(0); /* Повернення в початкову позицію */
 }

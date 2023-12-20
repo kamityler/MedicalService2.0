@@ -9,7 +9,7 @@
 
 
 .login-container {
-    background-color: #fff;
+    background-color: #eeeeee;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -18,7 +18,7 @@
 }
 
 .login-header {
-    background-color: rgba(50, 122, 195, .8);
+    background-color: rgba(44, 173, 65, 0.932);
     color: #fff;
     text-align: center;
     padding: 15px;

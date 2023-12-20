@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { CiLogin } from "react-icons/ci";
 // import { Component } from 'react';
 import './NavBar.css';
 
@@ -20,19 +21,22 @@ function NavBar(){
             <div className="NavBar display">
                 <ul className='navigationbar'>
                     <li className='navigationbar-item main-page-li'>
-                        <a href="/mainpage">Main Page</a>
+                        <a href="/mainpage">Головна сторінка</a>
                     </li>
                     <li className='navigationbar-item default-li'>
-                        <a href="/patientList">Patients</a>
+                        <a href="/patientList">Пацієнти</a>
                     </li>
                     <li className='navigationbar-item default-li'>
-                        <a href="/about">About</a>
+                        <a href="/about">Про нас</a>
                     </li>
                     <li className='navigationbar-item default-li'>
-                        <a href="/settings">My account</a>
+                        <a href="/settings">Мій кабінет</a>
                     </li>
-                    <li className='navigationbar-item default-li'>
-                        <a href="/">Log out</a>
+                    <li className='navigationbar-item default-li log-out'>
+                    <a href="/">
+        Вийти <CiLogin stroke-width="1" viewBox="3 -3 24 24" height="1em" ></CiLogin>
+      </a>
+                        
                     </li>
                 </ul>
             </div>    
