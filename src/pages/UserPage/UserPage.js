@@ -58,7 +58,35 @@ class UserPage extends Component{
             loading: false
         }))
     }
+     openModal= () =>{
+        console.log('swd');
+        document.querySelector(".modal").style.display = "block";
 
+      }
+      closeModal = (e)=>{
+        e.preventDefault();
+        var user = this.state.user;
+        var email = this.emptyCheck(document.querySelector("#email").value);
+        var phoneNumber  = this.emptyCheck(document.querySelector("#tel").value);
+        var address = this.emptyCheck(document.querySelector('#adress').value);
+        
+
+         user.email = (email.responce) ? email.value: user.email
+         user.phoneNumber = (phoneNumber.responce) ? phoneNumber.value: user.phoneNumber
+         user.address = (address.responce) ? address.value: user.address
+        this.setState({user:user});
+
+
+        document.querySelector(".modal").style.display = "none";
+
+      }
+      emptyCheck=(value)=>{
+        
+        if(value.length!==0){
+            return{responce:true,value:value}
+        }
+        return{responce:false}
+      }
     render(){
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
         return(
@@ -75,45 +103,41 @@ class UserPage extends Component{
                             <li className="doctor-info-li">Occupation: <span className="exact-information-item">{this.state.user.specialty}</span></li>
                             <li className="doctor-info-li">Gender: <span className="exact-information-item">Male</span></li>
                             <li className="doctor-info-li">Date of brith: <span className="exact-information-item">{this.state.user.birthDate}</span></li>
-                            <li className="doctor-info-li">Address: <span className="exact-information-item">Lviv, Ukraine</span></li>
+                            <li className="doctor-info-li">Address: <span className="exact-information-item">{this.state.user.address}</span></li>
                             <li className="doctor-info-li">Email: <span className="exact-information-item">{this.state.user.email}</span></li>
                             <li className="doctor-info-li">Phone: <span className="exact-information-item">{this.state.user.phoneNumber}</span></li>
                             
                         </ul>
                         </div>
-                        <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
+                        <button className="editButton" onClick={this.openModal}type="button" >Edit profile</button>
 
                 </div>
-                <div className="profile-container">
+                <div id="MyModal" className=" modal">
+                    <div className='modal-content profile-container'>
                     <div className="profile-header">
                         <h2>Profile Settings</h2>
                     </div>
-                    <div className="profile-form">
+                    <div className="profile-form "  >
                         <form>
-                            <div className="form-group">
-                                <label htmlFor="fullName">Change your name:</label>
-                                <input type="text" id="fullName" name="fullName"/>
-                            </div>
+            
                             <div className="form-group">
                                 <label htmlFor="adress">Change your adress:</label>
                                 <input type="text" id="adress" name="adress"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Change your email:</label>
-                                <input type="email" id="email" name="email" required/>
+                                <input type="email" id="email" name="email" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="tel">Change your phone number:</label>
-                                <input type="text" id="tel" name="tel" required/>
+                                <input type="text" id="tel" name="tel" />
                             </div>
+                          
                             <div className="form-group">
-                                <label htmlFor="password">New Password:</label>
-                                <input type="password" id="password" name="password" autoComplete="on"/>
-                            </div>
-                            <div className="form-group">
-                                <button type="submit" onClick={(e)=>{e.preventDefault()}}>Save Changes</button>
+                                <button type="submit" onClick={this.closeModal} >Save Changes</button>
                             </div>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>
