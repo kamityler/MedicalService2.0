@@ -7,19 +7,26 @@ import './PatientCard.css';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 
 class PatientCard extends Component{
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             patient: {
                 id: props.id,
+                completionDate: 'dd.mm.yyyy',
                 name: 'name',
+                middlename: 'fathername',
                 surname: 'surname',
                 gender: 'gender',
                 dateOfBirth: 'dateOfBirth',
-                address: 'address',
-                email: 'email',
                 phone: 'phone',
-                // description: 'description'
+                email: 'email',
+                address: 'address',
+                work: 'work',
+                position: 'position',
+
+                groupDispensary: false,
+                contingents: null,
+                privilegeNumber: null
             },
             loading: true,
             error: false,
@@ -28,12 +35,12 @@ class PatientCard extends Component{
     }
 
     componentDidMount() {
-        this.onRequest();
+        //this.onRequest();
     }
 
     onRequest = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.patient.id}`)
-            //  .then(response=>console.log(response.data))
+             .then(response=>console.log(response.data))
              .then(response => this.transformPatient(response.data))
              .then(result => this.onPatientInfoLoaded(result))
              .catch(this.onError);
@@ -46,13 +53,22 @@ class PatientCard extends Component{
         // }
 
         return({
+
+            completionDate: response.completionDate,
             name: response.firstName,
+            middlename: response.middlename,
             surname: response.lastName,
             gender: response.gender,
-            dateOfBirth: 13,
-            address: response.address,
-            email: response.email,
+            dateOfBirth: response.dateOfBirth,
             phone: response.phoneNumber,
+            email: response.email,
+            address: response.address,
+            work: response.workplace,
+            position: response.position,
+
+            groupDispensary: response.groupDispensary,
+            contingents: response.contingents,
+            privilegeNumber: response.privilegeNumber,
         })
     }
 
@@ -72,66 +88,38 @@ class PatientCard extends Component{
     }
 
     htmlFunc = () => {
-        const {name, surname, dateOfBirth, address, email, phone, gender} = this.state.patient
-        const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
+        const {id, completionDate, name, middlename, surname, gender, dateOfBirth, phone, email, address, work, position, groupDispensary, contingents, privilegeNumber} = this.state.patient;
+
+        let patientCode = '';
+        for (let zeros = 6 - id.toString().length; zeros > 0; zeros--) {
+            patientCode += '0';
+        }
+        patientCode += id
         
         return(
-                <ul className="patient-info-ul">
-                    <img className="patient-avatar" src={url} alt="Patient" />
-                    <li className="patient-info-li">Name: <span className="exact-information-item">{name}</span></li>
-                    <li className="patient-info-li">Surname: <span className="exact-information-item">{surname}</span></li>
-                    <li className="patient-info-li">Gender: <span className="exact-information-item">{gender}</span></li>
-                    <li className="patient-info-li">Date of brith: <span className="exact-information-item">{dateOfBirth}</span></li>
-                    <li className="patient-info-li">Address: <span className="exact-information-item">{address}</span></li>
-                    <li className="patient-info-li">Email: <span className="exact-information-item">{email}</span></li>
-                    <li className="patient-info-li">Phone: <span className="exact-information-item">{phone}</span></li>
-                </ul>
-        )
-    }
-
-    render(){
-        // const {loading, error} = this.state;
-        // const adjusted = this.htmlFunc();
-        
-        // const spinnerComponent = loading ? <Spinner/> : null;
-        // const errorComponent = 
-        //     error ? 
-        //     <ErrorMessage 
-        //         errorMessage={'Patient card cannot be displayed'} 
-        //         errorPurpose={this.state.errorPurpose}/> 
-        //     : null;
-
-        // const content = !(loading||error) ? adjusted : null;
-        // const {id} = this.state.patient;
-
-        return(
-            // <div className='ready-patient-card'>
-            //     <div id={id} className="patient-card">
-            //         {errorComponent}
-            //         {spinnerComponent}
-            //         {content}
-            //     </div>
-            // </div>
             <div className="patient-card">
                 <h1 className="card-header">Медична карта амбулаторного хворого №250</h1>
 
                 <div className="patient-card-block">
-                    <p className="card-field block1-row-1-col-1">Код хворого: <span className='card-data'>123456</span></p>
-                    <p className="card-field block1-row-1-col-2 left-aligned-text"><span className='card-data'>{(new Date()).toLocaleDateString().toString()}</span> дата заповнення</p>
+                    <p className="card-field block1-row-1-col-1">Код хворого: <span className='card-data'>{patientCode}</span></p>
+                    <p className="card-field block1-row-1-col-2 left-aligned-text"><span className='card-data'>{completionDate}</span> дата заповнення</p>
                     <div className='block1-row-2-col-1'>
-                        <p className="card-field">Прізвище: <span className='card-data'>Фоменко</span></p>
-                        <p className="card-field">Ім'я: <span className='card-data'>Андрій</span></p>
-                        <p className="card-field">По батькові: <span className='card-data'>Вікторович</span></p>
+                        <p className="card-field">Прізвище: <span className='card-data'>{surname}</span></p>
+                        <p className="card-field">Ім'я: <span className='card-data'>{name}</span></p>
+                        <p className="card-field">По батькові: <span className='card-data'>{middlename}</span></p>
+                        <p className="card-field">Стать: <span className='card-data'>{gender}</span></p>
+                        <p className="card-field">Дата народження: <span className='card-data'>{dateOfBirth}</span></p>
                     </div>
                     <div className='block1-row-2-col-2'>
-                        <p className="card-field left-aligned-text"><span className='card-data'>+380 98 765 4321</span> телефон</p>
-                        <p className="card-field left-aligned-text"><span className='card-data'>м. Львів, Україна</span> місце проживання</p>
-                        <p className="card-field left-aligned-text"><span className='card-data'>НУЛП, викладач</span> місце роботи, посада</p>                    
+                        <p className="card-field left-aligned-text"><span className='card-data'>{phone}</span> телефон</p>
+                        <p className="card-field left-aligned-text"><span className='card-data'>{email}</span> е-пошта</p>
+                        <p className="card-field left-aligned-text"><span className='card-data'>{address}</span> місце проживання</p>
+                        <p className="card-field left-aligned-text"><span className='card-data'>{work}, {position}</span> місце роботи, посада</p>                    
                     </div>
                     <div className='block1-row-3'>
-                        <p className="card-field">Диспансерна група: <span className='card-data'>Так</span></p>
-                        <p className="card-field">Контингенти: <span className='card-data'>УБД, ліквідатор наслідків ЧАЕС</span></p>
-                        <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>123456</span></p>
+                        <p className="card-field">Диспансерна група: <span className='card-data'>{groupDispensary}</span></p>
+                        <p className="card-field">Контингенти: <span className='card-data'>{contingents}</span></p>
+                        <p className="card-field">Номер пільгового посвідчення: <span className='card-data'>{privilegeNumber}</span></p>
                     </div>
                 </div>
                 <div className="patient-card-block">
@@ -159,6 +147,36 @@ class PatientCard extends Component{
 
                 </div>
             </div>
+        )
+    }
+
+    render(){
+        // const {loading, error} = this.state;
+        const adjusted = this.htmlFunc();
+        
+        // const spinnerComponent = loading ? <Spinner/> : null;
+        // const errorComponent = 
+        //     error ? 
+        //     <ErrorMessage 
+        //         errorMessage={'Patient card cannot be displayed'} 
+        //         errorPurpose={this.state.errorPurpose}/> 
+        //     : null;
+
+        // const content = !(loading||error) ? adjusted : null;
+        // const {id} = this.state.patient;
+
+        return(
+            // <div className='ready-patient-card'>
+            //     <div id={id} className="patient-card">
+            //         {errorComponent}
+            //         {spinnerComponent}
+            //         {content}
+            //     </div>
+            // </div>
+            <div>
+             {adjusted}   
+            </div>
+            
         );
     }
 }
