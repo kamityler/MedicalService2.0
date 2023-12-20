@@ -11,12 +11,15 @@ class MedicalRecord extends Component{
             date: props.date,
             doctor: props.doctor,
             description: props.description,
-            treatment: props.treatment
+            treatment: props.treatment,
+            patient: props.patient
         }
     }
 
     render(){
-        const {id, diagnosis, date, doctor, description, treatment} = this.state;
+        let {id, diagnosis, date, doctor,patient, description, treatment} = this.state;
+        const patientOrDoctor = (doctor===undefined)? 'Піцієнт' : 'Доктор'
+        doctor = (doctor===undefined)? patient : doctor
         return(
             <li id={id} className='medical-record-item' onClick={this.onClickHandler}>
                 {/* <span> Diagnosis: {diagnosis} </span>
@@ -25,11 +28,11 @@ class MedicalRecord extends Component{
                 <span> Description: {description}</span>         
                 <span> Ways of treatment: {treatment}</span>    */}
 
-                <p className="medical-record-p">Diagnosis: <span>{diagnosis}</span></p>
-                <p className="medical-record-p">Date of admission: <span>{date}</span></p> 
-                <p className="medical-record-p">Doctor: <span>{doctor}</span></p>
-                <p className="medical-record-p">Description: <span>{description}</span></p>
-                <p className="medical-record-p">Ways of treatment: <span>{treatment}</span></p>
+                <p className="medical-record-p">Діагноз: <span>{diagnosis}</span></p>
+                <p className="medical-record-p">Дата: <span>{date}</span></p> 
+                <p className="medical-record-p">{patientOrDoctor}: <span>{doctor}</span></p>
+                <p className="medical-record-p">Опис: <span>{description}</span></p>
+                <p className="medical-record-p">Рецепт: <span>{treatment}</span></p>
 
 
             </li>
