@@ -1,0 +1,8 @@
+.goback-button{
+    background-color: rgb(212, 212, 212);
+    max-width:fit-content;
+    border: 1px solid rgba(44, 173, 65, 0.825);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;;
+}

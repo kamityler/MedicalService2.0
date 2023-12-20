@@ -35,7 +35,7 @@ function NavBar(){
                     </li>
                     <li className='navigationbar-item default-li log-out'>
                     <a href="/">
-        Вийти <CiLogin stroke-width="1" viewBox="3 -3 24 24" height="1em" ></CiLogin>
+        Вийти <CiLogin strokeWidth="1" viewBox="3 -3 24 24" height="1em" ></CiLogin>
       </a>
                         
                     </li>
