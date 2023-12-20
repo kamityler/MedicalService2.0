@@ -1,12 +1,12 @@
-import {Component} from 'react'
+import { Component } from 'react'
 import axios from 'axios';
 
 import './PatientCard.css';
 
-// import Spinner from './../basicComponents/spinner/Spinner';
-// import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
+import Spinner from './../basicComponents/spinner/Spinner';
+import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 
-class PatientCard extends Component{
+class PatientCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,10 +23,10 @@ class PatientCard extends Component{
                 address: 'address',
                 work: 'work',
                 position: 'position',
-
                 groupDispensary: false,
                 contingents: null,
-                privilegeNumber: null
+                privilegeNumber: null,
+                diseases: []
             },
             loading: true,
             error: false,
@@ -40,31 +40,26 @@ class PatientCard extends Component{
 
     onRequest = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.patient.id}`)
-            //  .then(response=>console.log(response.data))
-             .then(response => this.transformPatient(response.data))
-             .then(result => this.onPatientInfoLoaded(result))
-             .catch(this.onError);
+            .then(response => this.transformPatient(response.data))
+            .then(result => this.onPatientInfoLoaded(result))
+            .catch(this.onError);
     }
 
     transformPatient = (response) => {
-        // const date = (item) => {
-        //     const dateArr = item.split("-")
-        //     return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
-        // }
-        const date = (item) => {
-            // console.log('item ' + item)
-            // console.log(new Date(item)).getLocaleDateString())
-            return item
-        }
+        const date = (item) => (new Date(item)).toLocaleDateString('uk-UA', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        })
 
-        return({
+        return ({
             id: response.patientID,
             completionDate: date(response.completionDate),
             name: response.firstName,
             middlename: response.middlename,
             surname: response.lastName,
             gender: response.gender,
-            dateOfBirth: response.dateOfBirth,
+            dateOfBirth: date(response.dateOfBirth),
             phone: response.phoneNumber,
             email: response.email,
             address: response.address,
@@ -93,18 +88,35 @@ class PatientCard extends Component{
     }
 
     htmlFunc = () => {
-        const {id, completionDate, name, middlename, surname, gender, dateOfBirth, phone, email, address, work, position, groupDispensary, contingents, privilegeNumber} = this.state.patient;
+        const {
+            id,
+            completionDate,
+            name,
+            middlename,
+            surname,
+            gender,
+            dateOfBirth,
+            phone,
+            email,
+            address,
+            work,
+            position,
+            groupDispensary,
+            contingents,
+            privilegeNumber
+        } = this.state.patient;
 
         let patientCode = '';
-        // console.log(this.state.patient)
         for (let zeros = 6 - id.toString().length; zeros > 0; zeros--) {
             patientCode += '0';
         }
         patientCode += id
-        
+
+        let workHtml = work ? work + ', ' + position : 'Безробітний';
+
         return(
             <div className="patient-card">
-                <h1 className="card-header">Медична карта амбулаторного хворого №250</h1>
+                <h1 className="card-header">Медична карта амбулаторного хворого №25{patientCode}</h1>
 
                 <div className="patient-card-block">
                     <p className="card-field block1-row-1-col-1">Код хворого: <span className='card-data'>{patientCode}</span></p>
@@ -120,7 +132,7 @@ class PatientCard extends Component{
                         <p className="card-field left-aligned-text"><span className='card-data'>{phone}</span> телефон</p>
                         <p className="card-field left-aligned-text"><span className='card-data'>{email}</span> е-пошта</p>
                         <p className="card-field left-aligned-text"><span className='card-data'>{address}</span> місце проживання</p>
-                        <p className="card-field left-aligned-text"><span className='card-data'>{work}, {position}</span> місце роботи, посада</p>                    
+                        <p className="card-field left-aligned-text"><span className='card-data'>{workHtml}</span> місце роботи, посада</p>                    
                     </div>
                     <div className='block1-row-3'>
                         <p className="card-field">Диспансерна група: <span className='card-data'>{groupDispensary ? 'Так' : 'Ні'}</span></p>
@@ -157,30 +169,24 @@ class PatientCard extends Component{
     }
 
     render(){
-        // const {loading, error} = this.state;
+        const {loading, error} = this.state;
         const adjusted = this.htmlFunc();
         
-        // const spinnerComponent = loading ? <Spinner/> : null;
-        // const errorComponent = 
-        //     error ? 
-        //     <ErrorMessage 
-        //         errorMessage={'Patient card cannot be displayed'} 
-        //         errorPurpose={this.state.errorPurpose}/> 
-        //     : null;
+        const spinnerComponent = loading ? <Spinner/> : null;
+        const errorComponent = 
+            error ? 
+            <ErrorMessage 
+                errorMessage={'Patient card cannot be displayed'} 
+                errorPurpose={this.state.errorPurpose}/> 
+            : null;
 
-        // const content = !(loading||error) ? adjusted : null;
-        // const {id} = this.state.patient;
+        const content = !(loading||error) ? adjusted : null;
 
         return(
-            // <div className='ready-patient-card'>
-            //     <div id={id} className="patient-card">
-            //         {errorComponent}
-            //         {spinnerComponent}
-            //         {content}
-            //     </div>
-            // </div>
             <div>
-             {adjusted}   
+                {errorComponent}
+                {spinnerComponent}
+                {content}
             </div>
             
         );
