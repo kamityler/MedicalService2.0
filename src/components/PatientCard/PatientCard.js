@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import './PatientCard.css';
 
-import Spinner from './../basicComponents/spinner/Spinner';
-import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
+// import Spinner from './../basicComponents/spinner/Spinner';
+// import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
 
 class PatientCard extends Component {
@@ -53,9 +53,8 @@ class PatientCard extends Component {
             year: 'numeric',
         })
 
-        const disease = response.diseases ? null : [...response.diseases];
-        console.log(1);
-
+        const disease = response.diseases ? [...response.diseases] : [];
+        console.log(response)
         return ({
             id: response.patientID,
             completionDate: date(response.completionDate),
@@ -69,11 +68,9 @@ class PatientCard extends Component {
             address: response.address,
             work: response.workplace,
             position: response.position,
-
             groupDispensary: response.groupDispensary,
             contingents: response.contingents,
             privilegeNumber: response.privilegeNumber,
-
             diseases: disease,
         })
     }
@@ -94,35 +91,18 @@ class PatientCard extends Component {
     }
 
     diseasesList = (arr) => {
-
         if (!arr.length) {
             return 'Список порожній'
         } else {
             const diseases = arr.map(item => {
-                return (<Disease key={item.diseaseID}></Disease>)
+                return (<Disease key={item.diseaseID} data={item}></Disease>)
             })
             return diseases;
         }
     }
 
     htmlFunc = () => {
-        const {
-            id,
-            completionDate,
-            name,
-            middlename,
-            surname,
-            gender,
-            dateOfBirth,
-            phone,
-            email,
-            address,
-            work,
-            position,
-            groupDispensary,
-            contingents,
-            privilegeNumber
-        } = this.state.patient;
+        const { id, completionDate, name, middlename, surname, gender, dateOfBirth, phone, email, address, work, position, groupDispensary, contingents, privilegeNumber } = this.state.patient;
 
         let patientCode = '';
         for (let zeros = 6 - id.toString().length; zeros > 0; zeros--) {
@@ -181,24 +161,25 @@ class PatientCard extends Component {
     }
 
     render(){
-        const {loading, error} = this.state;
+        // const {loading, error} = this.state;
         const adjusted = this.htmlFunc();
         
-        const spinnerComponent = loading ? <Spinner/> : null;
-        const errorComponent = 
-            error ? 
-            <ErrorMessage 
-                errorMessage={'Patient card cannot be displayed'} 
-                errorPurpose={this.state.errorPurpose}/> 
-            : null;
+        // const spinnerComponent = loading ? <Spinner/> : null;
+        // const errorComponent = 
+        //     error ? 
+        //     <ErrorMessage 
+        //         errorMessage={'Patient card cannot be displayed'} 
+        //         errorPurpose={this.state.errorPurpose}/> 
+        //     : null;
 
-        const content = !(loading||error) ? adjusted : null;
+        // const content = !(loading||error) ? adjusted : null;
 
         return(
             <div>
-                {errorComponent}
+                {/* {errorComponent}
                 {spinnerComponent}
-                {content}
+                {content} */}
+                {adjusted}
             </div>
         );
     }
