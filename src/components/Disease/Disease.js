@@ -67,11 +67,14 @@ class Disease extends Component{
         const {admissionDate, diseaseName, diseaseStatus, dischargeDate, result} = this.state.data;
 
         const classes = diseaseStatus === 'Active' ? 'disease-block active-disease' : 'disease-block closed-disease';
-
-        const closeButton = diseaseStatus === 'Active' ? <button onClick={this.onClosed}>Завершити лікування</button> : null;
+        const isHealth = diseaseStatus === 'Active' ? false : true
+        const statusClasess = (isHealth)? 'badge badge-success' : ' badge badge-danger';
+        const closeButton = diseaseStatus === 'Active' ? <button className="endDiseaseButton" onClick={this.onClosed}>Завершити лікування</button> : null;
 
         return(                    
-            <div className={classes}>
+            <div className="desease-container" >
+                 <span class={statusClasess}>{(isHealth)? 'Вилікуванно' : 'Хворіє'}</span>
+
                 <div className="disease-upper-block">
                     <p className="card-field">Взятий на облік <span className='card-data'>{admissionDate}</span></p>
                     <p className="card-field">Причина <span className='card-data'>{diseaseName}</span></p>

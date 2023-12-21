@@ -225,7 +225,7 @@ class PatientCard extends Component {
                 <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
                     {diseases}
-                    <button onClick={this.showModal}>Додати хворобу</button>
+                    <button className="form-button-addDisease" onClick={this.showModal}>Додати хворобу</button>
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про щеплення</h3>

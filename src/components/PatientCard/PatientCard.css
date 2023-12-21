@@ -38,7 +38,28 @@
     font-size: 18px;
     color: #555;
 } */
+.form-button-addDisease{
+    float: left;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #bfbfbf;
+  border-color: #e5e5e6;
+  border: 1px solid;
+  border-radius: 10px;
+  transition: background-color 0.5s ease
+}
+.form-button-addDisease:hover{
+    background-color: #949494;
 
+}
 .patient-card {
     max-width: fit-content;
     font-family: arial;
