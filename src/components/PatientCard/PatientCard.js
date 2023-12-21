@@ -6,11 +6,13 @@ import './PatientCard.css';
 // import Spinner from './../basicComponents/spinner/Spinner';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
+import ModalWindow from './../ModalWindow/ModalWindow';
 
 class PatientCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            show: false,
             patient: {
                 id: props.id,
                 completionDate: 'dd.mm.yyyy',
@@ -33,7 +35,18 @@ class PatientCard extends Component {
             error: false,
             errorPurpose: 'unknown'
         }
+
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
 
     componentDidMount() {
         this.onRequest();       
@@ -47,6 +60,12 @@ class PatientCard extends Component {
 
     }
 
+    date = (item) => (new Date(item)).toLocaleDateString('uk-UA', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    })
+    
     transformPatient = (response) => {
         const date = (item) => (new Date(item)).toLocaleDateString('uk-UA', {
             day: '2-digit',
@@ -101,8 +120,63 @@ class PatientCard extends Component {
         }
     }
 
-    componentDidUpdate(){
-        console.log('okay')
+    onDiseaseAdd = (e) => {
+        e.preventDefault();
+        
+        this.hideModal();
+        const newDisease = {
+            patientID: this.state.patient.id,
+            diseaseStatus: "Active",
+            diseaseName: e.target.name.value,
+            admissionDate: this.date(new Date()),
+            dischargeDate: null,
+            result: null
+          }
+        axios.post(
+            `https://localhost:5001/api/MedicalRecords/Disease/${this.state.patient.id}`,
+            newDisease,
+            { headers: { 
+                "Access-Control-Allow-Origin": "*"
+            } } )
+            .then(response => response.data)
+            .then(newDiagnosis=>{
+                let newPatient = this.state.patient;
+                newPatient.diseases = [...this.state.patient.diseases, newDiagnosis]
+                this.setState({patient: newPatient})
+                return newDiagnosis
+            })
+            .then((newDiagnosis)=>{
+                const doctorID = localStorage.getItem('id');
+
+                axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${doctorID}`)
+                    .then(response => response.data )
+                    .then((doctor) => {
+                        const openingRecordobj = {
+                            appointmentID: 0,
+                            patientID: this.state.patient.id,
+                            doctorID: doctor.doctorID,
+                            diagnosis: "Початок лікування",
+                            appointmentDate: new Date(),
+                            doctor: doctor.lastName + ' ' + doctor.firstName,
+                            description: "Пацієнтові поставлено новий діагноз, взято на облік.",
+                            treatment: null,
+                            appointmentType: newDiagnosis.diseaseName
+                        }
+                        console.log(openingRecordobj)
+                        axios.post(
+                            `https://localhost:5001/api/MedicalRecords/${newDiagnosis.patientID}/Appointments`,
+                            openingRecordobj,
+                            { headers: { 
+                                "Access-Control-Allow-Origin": "*"
+                            } } )
+                            .then(response => console.log(response))
+                            .catch(err => { console.log(err) })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            })
+            .catch(err => { console.log(err) })
     }
 
     htmlFunc = () => {
@@ -147,7 +221,7 @@ class PatientCard extends Component {
                 <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
                     {diseases}
-                    <button>Додати хворобу</button>
+                    <button onClick={this.showModal}>Додати хворобу</button>
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про щеплення</h3>
@@ -161,6 +235,14 @@ class PatientCard extends Component {
                     <p className="card-field">Застрахований до <span className='card-data'>27.06.2025</span></p>
 
                 </div>
+                <ModalWindow show={this.state.show} handleClose={this.hideModal}>
+                    <form className="modal-form" onSubmit={this.onDiseaseAdd}>
+                            <h1 className="modal-header">Прийняття на облік</h1>
+                            <p className="modal-label">Діагноз:</p>
+                            <input type="text" name="name" placeholder='Введіть діагноз' required></input>
+                            <button className="form-button-submit" value="Submit" type="submit" >Додати діагноз</button>
+                        </form>
+                </ModalWindow>
             </div>
         )
     }
