@@ -17,7 +17,7 @@ class MedCard extends Component{
             id: window.location.href.toString().split('/')[4],
             diseasesActive: [],
             diseasesAll: [],
-            filter: null
+            filter: 'All'
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -63,20 +63,26 @@ class MedCard extends Component{
 
     onSortButtonClick = (e) => {
         console.log(e.target.value)
-        this.setState({filter:e.target.value})
+        this.setState({
+            filter: e.target.value
+        })
     }
 
     formSortButtonList = (arr) => {
+
         const items = arr.map((item, index) => {
             return (
-                <button key={index} value={item} onClick={this.onSortButtonClick}>
+                <button key={index+1} value={item} onClick={this.onSortButtonClick}>
                     {item}
                 </button>
             )
         })
 
         return (
-            <div className="button-list"> 
+            <div className="button-list">
+                <button key={0} value={null} onClick={this.onSortButtonClick}>
+                    Всі записи
+                </button>
                 {items}
             </div>
         )
@@ -97,6 +103,8 @@ class MedCard extends Component{
     }
 
     render(){
+
+        console.log('render medCard');
 
         const buttonsAllForSort = this.formSortButtonList(this.state.diseasesAll),
               buttonsActiveForSort = this.formSortButtonList(this.state.diseasesActive),
@@ -125,6 +133,7 @@ class MedCard extends Component{
                 </div>
                 <div className="record-list-container">
                     <p>Список записів:</p>
+                    <p>Встановлений фільтр: {this.state.filter}</p>
                     <RecordList id={this.state.id} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>

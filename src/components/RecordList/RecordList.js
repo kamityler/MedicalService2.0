@@ -17,24 +17,44 @@ class RecordList extends Component{
             loading: true,
             error: false,
             newRecordLoading: false,
+            filter: props.filter,
         }
     }
 
     componentDidMount() {
         setTimeout(()=>{this.onRequest()},1000)
-        //this.onRequest();
+        // this.setState({filter:this.props.filter})
+        // console.log(this.state.filter)
+        // this.onRequest();
     }
+
+    // static getDerivedStateFromProps(){
+    //     // return {filter: this.props.filter}
+    // }
+    // componentWillUpdate(){
+    //     this.setState({filter: this.props.filter})
+    // }
 
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
              .then(response => {
                 // console.log(response.data)
-                return response;
+                return response;////
              })
              .then(response => response.data.map(this.transformRecords))
+             .then(array => array.filter(this.filterRecords))
+             .then(res => { 
+                console.log(res);
+                return res
+             })
              .then(res => this.onRecordsListLoaded(res))
-             .catch(this.onError);
+             .catch(err => console.log(err))
+            //  .catch(this.onError);
+    }
+
+    filterRecords = (item) => {
+        return item.type === this.props.filter        
     }
 
     transformRecords = (record) => {
@@ -99,6 +119,10 @@ class RecordList extends Component{
     }
 
     render(){ 
+        console.log('render recordList')
+        console.log(`${this.props.filter} props`)
+        console.log(`${this.state.filter} state`)
+
         const {loading, records, error} = this.state;
         const adjustedList = this.adjustItems(records);
 
