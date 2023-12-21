@@ -8,22 +8,20 @@ import Spinner from './../basicComponents/spinner/Spinner';
 import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import MedicalRecord from './../MedicalRecord/MedicalRecord';
 
-
-class RecordList extends Component{
-    constructor(props){
+class RecordList extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             id: props.id,
             itemsperPage: this.props.itemsperPage,
             records: [],
-            newRecordsList:[],
+            newRecordsList: [],
             loading: true,
             error: false,
             newRecordLoading: false,
             filter: props.filter,
-            currentPage:1
-            
-
+            currentPage: 1,
+            shouldUpdate: false,
         }
     }
 
@@ -32,16 +30,27 @@ class RecordList extends Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        return {filter: props.filter };
+        return {
+            filter: props.filter,
+            shouldUpdate: props.shouldUpdate
+        };
     }
 
-        }
+    shouldComponentUpdate(){
+        return true
+    }
+
+    componentDidUpdate(){
+        // setTimeout(()=>{this.onRequest()},1000)
+        console.log('update');
+    }
 
     sliceRecord = (newRecordsList)=>{
         const itemsperPage = 8;
         const records = newRecordsList.slice(0,itemsperPage); 
         this.setState({newRecordsList: records});
     }
+
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
@@ -55,7 +64,6 @@ class RecordList extends Component{
     }
 
     filterRecords = (item) => {
-        // console.log(item.type) type type
         if(this.state.filter === null || this.state.filter === ""){
             return true
         }
@@ -83,18 +91,20 @@ class RecordList extends Component{
             newRecordLoading: true
         })
     }
-    handlePageClick = (e,pg) => {
-        
-        
+
+    handlePageClick = (e, pg) => {
         console.log(pg);
         const itemsperPage = 8;
-        const start = (pg-1)*itemsperPage;
-        const end = (pg*itemsperPage);
-        console.log(start+ ' ' + end);
-        const recordsPerPage = this.state.records.slice(start,end);
-        console.log(recordsPerPage)   
-        this.setState({newRecordsList: recordsPerPage});
+        const start = (pg - 1) * itemsperPage;
+        const end = (pg * itemsperPage);
+        console.log(start + ' ' + end);
+        const recordsPerPage = this.state.records.slice(start, end);
+        console.log(recordsPerPage)
+        this.setState({
+            newRecordsList: recordsPerPage
+        });
     }
+
     onRecordsListLoaded = (newRecordsList) => {
         const newarr = newRecordsList.reverse();
         this.setState(({records})=>({
@@ -102,7 +112,6 @@ class RecordList extends Component{
             loading: false,
             newRecordLoading: false
         }))
-        console.log(newRecordsList);
         this.sliceRecord(newarr);
     }
 
@@ -114,7 +123,7 @@ class RecordList extends Component{
         })
     }
 
-    adjustItems(arr) {
+    adjustItems = (arr) => {
         const items = arr.map((item)=>{
             return (
                     <MedicalRecord key={item.id}
@@ -137,7 +146,7 @@ class RecordList extends Component{
     }
 
     render(){ 
-        const {loading, records, newRecordsList, error} = this.state;
+        const {loading, newRecordsList, error} = this.state;
         const adjustedList = this.adjustItems(newRecordsList);
 
         const spinnerComponent = loading ? <Spinner/> : null;
@@ -155,7 +164,7 @@ class RecordList extends Component{
                 {errorComponent}
                 {spinnerComponent}
                 {content}   
-                <Pagination onChange={this.handlePageClick}   count={Math.round(this.state.records.length/this.state.records.itemsperPage)} variant="outlined" />               
+                <Pagination onChange={this.handlePageClick} count={Math.round(this.state.records.length/this.state.records.itemsperPage)} variant="outlined" />               
              
             </div>
 

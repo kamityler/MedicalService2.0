@@ -61,7 +61,6 @@ class PatientList extends Component{
     slicePatient = (newPatientList)=>{
         const itemsperPage = this.state.itemsperPage;
         const patients = newPatientList.slice(0,itemsperPage); 
-        console.log(patients);
         this.setState({patientListToView: patients});
     }
 
@@ -94,7 +93,6 @@ class PatientList extends Component{
             newItemLoading: false,
             patientEnded: ended
         }))
-        console.log(newPatientList);
         this.slicePatient(newPatientList);
        
     }

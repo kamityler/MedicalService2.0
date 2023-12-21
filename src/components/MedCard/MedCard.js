@@ -7,7 +7,7 @@ import './MedCard.css'
 import './AddRecordModal.css'
 
 import RecordList from './../RecordList/RecordList';
-import ModalWindow from './../modalWindow/ModalWindow';
+import ModalWindow from './../ModalWindow/ModalWindow';
 
 class MedCard extends Component{
     constructor(props){
@@ -17,7 +17,8 @@ class MedCard extends Component{
             id: window.location.href.toString().split('/')[4],
             diseasesActive: [],
             diseasesAll: [],
-            filter: null
+            filter: null,
+            shouldUpdate: true,
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -63,12 +64,12 @@ class MedCard extends Component{
 
     onSortButtonClick = (e) => {
         this.setState({
-            filter: e.target.value
+            filter: e.target.value,
+            shouldComponent: false,
         })
     }
 
     formSortButtonList = (arr) => {
-
         const items = arr.map((item, index) => {
             return (
                 <button key={index+1} value={item} onClick={this.onSortButtonClick}>
@@ -131,7 +132,7 @@ class MedCard extends Component{
 
                     <p>Список записів:</p>
                     <p>Встановлений фільтр: {this.state.filter}</p>
-                    <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
+                    <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter} shouldUpdate={this.state.shouldUpdate}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
                     <button>повернутись до сторінки пацієнта</button>
