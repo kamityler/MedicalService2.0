@@ -29,7 +29,9 @@
 .profile-form {
     padding: 20px;
 }
-
+.css-1oj2twp-MuiPagination-root {
+    margin: 1%;
+  }
 .form-group {
     margin-bottom: 15px;
 }
@@ -169,7 +171,7 @@
     cursor: pointer;
   }
 
-  .appointment-block{height: 600px;
+  .appointment-block{height: auto;
     width: 1000px;
     background: #fff;
     border: 1px solid #ddd;

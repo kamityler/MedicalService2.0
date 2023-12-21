@@ -25,7 +25,11 @@ class UserPage extends Component{
             error: false,
             errorPurpose: 'unknown',
             loadingApp: true,
-            newRecordLoading: false
+            newRecordLoading: false,
+            itemsperPage: this.props.itemsperPage,
+            newRecordsList:[],
+            filter: props.filter,
+            currentPage:1
         }
     }
 
@@ -73,6 +77,12 @@ class UserPage extends Component{
        }
    }
 
+   sliceRecord = (newRecordsList)=>{
+        const itemsperPage = 4;
+        const records = newRecordsList.slice(0,itemsperPage); 
+        this.setState({newRecordsList: records});
+    }
+
    onRecordsListLoading = () => {
        this.setState({
            newRecordLoading: true
@@ -86,6 +96,7 @@ class UserPage extends Component{
            loading: false,
            newRecordLoading: false
        }))
+       this.sliceRecord(newarr);
    }
    adjustItems(arr) {
     const items = arr.map((item)=>{
@@ -107,6 +118,18 @@ class UserPage extends Component{
         </ul> 
     ) 
 }
+    handlePageClick = (e,pg) => {
+            
+            
+        console.log(pg);
+        const itemsperPage = 4;
+        const start = (pg-1)*itemsperPage;
+        const end = (pg*itemsperPage);
+        console.log(start+ ' ' + end);
+        const recordsPerPage = this.state.records.slice(start,end);
+        console.log(recordsPerPage)   
+        this.setState({newRecordsList: recordsPerPage});
+    }
 
     transformPatient = (response) => {
         const date = (item) => {
@@ -165,8 +188,8 @@ class UserPage extends Component{
       }
     render(){
         const url = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png";
-        const {records} = this.state;
-        const adjustedList = this.adjustItems(records);
+        const {newRecordsList} = this.state;
+        const adjustedList = this.adjustItems(newRecordsList);
         return(
             <div className="account-settings">
                 <div className="settings-spacer">
@@ -196,7 +219,7 @@ class UserPage extends Component{
                     <div className='appointmentContainer'>
                         {adjustedList}
                         
-                        <Pagination   count={10} variant="outlined" />
+                        <Pagination  onChange={this.handlePageClick} count={Math.round(this.state.records.length/4)} variant="outlined" />
                     </div>
                         
         

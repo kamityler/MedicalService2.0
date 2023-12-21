@@ -6,7 +6,7 @@ import './PatientCard.css';
 // import Spinner from './../basicComponents/spinner/Spinner';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
-import ModalWindow from './../ModalWindow/ModalWindow';
+import ModalWindow from './../modalWindow/ModalWindow';
 
 class PatientCard extends Component {
     constructor(props) {

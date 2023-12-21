@@ -39,13 +39,14 @@ class RecordList extends Component{
         console.log('update')
     }
 
-        }
+        
 
     sliceRecord = (newRecordsList)=>{
         const itemsperPage = 8;
         const records = newRecordsList.slice(0,itemsperPage); 
         this.setState({newRecordsList: records});
     }
+
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
@@ -114,7 +115,7 @@ class RecordList extends Component{
         })
     }
 
-    adjustItems(arr) {
+    adjustItems = (arr)=> {
         const items = arr.map((item)=>{
             return (
                     <MedicalRecord key={item.id}
@@ -137,7 +138,7 @@ class RecordList extends Component{
     }
 
     render(){ 
-        const {loading, records, newRecordsList, error} = this.state;
+        const {loading, newRecordsList, error} = this.state;
         const adjustedList = this.adjustItems(newRecordsList);
 
         const spinnerComponent = loading ? <Spinner/> : null;
@@ -155,7 +156,7 @@ class RecordList extends Component{
                 {errorComponent}
                 {spinnerComponent}
                 {content}   
-                <Pagination onChange={this.handlePageClick}   count={Math.round(this.state.records.length/this.state.records.itemsperPage)} variant="outlined" />               
+                <Pagination onChange={this.handlePageClick}   count={Math.round(this.state.records.length/8)} variant="outlined" />               
              
             </div>
 
