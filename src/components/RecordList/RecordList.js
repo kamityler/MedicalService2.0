@@ -14,20 +14,21 @@ class RecordList extends Component{
         super(props);
         this.state = {
             id: props.id,
+            itemsperPage: this.props.itemsperPage,
             records: [],
             newRecordsList:[],
             loading: true,
             error: false,
             newRecordLoading: false,
             currentPage:1,
-            itemsperPage:props.itemsperPage,
+            
         }
     }
 
     componentDidMount() {
         setTimeout(()=>{this.onRequest()},1000)
-        //this.onRequest();
-    }
+        console.log('pafe:' + this.state.itemsperPage);
+        }
 
     sliceRecord = (newRecordsList)=>{
         const itemsperPage = 8;
@@ -133,7 +134,7 @@ class RecordList extends Component{
                 {errorComponent}
                 {spinnerComponent}
                 {content}   
-                <Pagination onChange={this.handlePageClick}   count={Math.round(this.state.records.length/8)} variant="outlined" />               
+                <Pagination onChange={this.handlePageClick}   count={Math.round(this.state.records.length/this.state.records.itemsperPage)} variant="outlined" />               
              
             </div>
 

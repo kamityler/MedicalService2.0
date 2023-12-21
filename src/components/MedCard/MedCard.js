@@ -54,7 +54,7 @@ class MedCard extends Component{
                     <button>ковід</button>
                 </div>
                 <div className="record-list-container">
-                    <RecordList id={this.state.id}></RecordList>
+                    <RecordList itemsperPage={8} id={this.state.id}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
                     <button>повернутись до сторінки пацієнта</button>
