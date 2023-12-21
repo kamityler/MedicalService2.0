@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 
 import './Disease.css'
 
@@ -10,10 +11,27 @@ class Disease extends Component{
         }
     }
 
+    date = (item) => (new Date(item)).toLocaleDateString('uk-UA', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    })
+
+    onClosed = () => {
+        axios.put(`https://localhost:5001/api/MedicalRecords/Disease/${this.state.data.diseaseID}`,
+        {
+            diseaseStatus: "Closed",
+            dischargeDate: this.date(new Date()),
+            result: "Вилікуваний"
+        })
+    }
+
     render(){
         const {admissionDate, diseaseName, diseaseStatus, dischargeDate, result} = this.state.data;
 
         const classes = diseaseStatus === 'Active' ? 'disease-block active-disease' : 'disease-block closed-disease';
+
+        const closeButton = diseaseStatus === 'Active' ? <button onClick={this.onClosed}>Завершити лікування</button> : null;
 
         return(                    
             <div className={classes}>
@@ -25,6 +43,7 @@ class Disease extends Component{
                     <p className="card-field">Знятий з обліку <span className='card-data'>{diseaseStatus === 'Active' ? 'Ні' : dischargeDate}</span></p>
                     <p className="card-field">Причина <span className='card-data'>{diseaseStatus === 'Active' ? 'В процесі лікування' : result}</span></p>
                 </div>
+                {closeButton}
             </div>
         )
     }

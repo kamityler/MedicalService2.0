@@ -63,10 +63,8 @@ class MedCard extends Component{
                 <ModalWindow show={this.state.show} handleClose={this.hideModal}>
                         <form className="modal-form" onSubmit={this.addRecord}>
                             <h1 className="modal-header">Додавання запису</h1>
-
                             <p className="modal-label">Причина запису:</p>
                             <input required placeholder="Причина" type="text" name="reason" className="modal-field modal-input"></input>
-
                             <p className="modal-label">Обрати приналежність:</p>
                             <input type="text" id="diagnosis-input" list="diagnosis" name="diagnosis" autoComplete='off'/>
                             <datalist id="diagnosis">
@@ -74,14 +72,11 @@ class MedCard extends Component{
                                 <option value="Рак"/>
                                 <option value="Інше"/>    
                             </datalist>
-
                             {/* onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} */}
                             <p className="modal-label">Опис:</p>
                             <textarea required placeholder="Введіть опис тут..." name="description" className="modal-field modal-textarea"></textarea>
-
                             <p className="modal-label">Спосіб лікування:</p>
                             <textarea required placeholder="Введіть спосіб лікування тут..." name="treatment" className="modal-field modal-textarea"></textarea>
-
                             <div className="form-button-container">
                                 <button className="form-button-submit" value="Submit" type="submit" >Додати</button>
                                 <div className="between-div-container"></div>

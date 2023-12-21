@@ -36,7 +36,7 @@ class PatientCard extends Component {
     }
 
     componentDidMount() {
-        this.onRequest();
+        this.onRequest();       
     }
 
     onRequest = () => {
@@ -44,6 +44,7 @@ class PatientCard extends Component {
             .then(response => this.transformPatient(response.data))
             .then(result => this.onPatientInfoLoaded(result))
             .catch(this.onError);
+
     }
 
     transformPatient = (response) => {
@@ -54,7 +55,6 @@ class PatientCard extends Component {
         })
 
         const disease = response.diseases ? [...response.diseases] : [];
-        console.log(response)
         return ({
             id: response.patientID,
             completionDate: date(response.completionDate),
@@ -79,7 +79,7 @@ class PatientCard extends Component {
         this.setState(()=>({
             patient: info,
             loading: false
-        }))        
+        }))  
     }
 
     onError = (errorBody) => {
@@ -91,14 +91,18 @@ class PatientCard extends Component {
     }
 
     diseasesList = (arr) => {
-        if (!arr.length) {
-            return 'Список порожній'
+        if (!arr.length || arr === null) {
+            return 'Список порожній';
         } else {
             const diseases = arr.map(item => {
                 return (<Disease key={item.diseaseID} data={item}></Disease>)
             })
             return diseases;
         }
+    }
+
+    componentDidUpdate(){
+        console.log('okay')
     }
 
     htmlFunc = () => {
@@ -143,6 +147,7 @@ class PatientCard extends Component {
                 <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
                     {diseases}
+                    <button>Додати хворобу</button>
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про щеплення</h3>
