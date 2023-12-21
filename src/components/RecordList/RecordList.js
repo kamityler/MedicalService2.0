@@ -28,6 +28,10 @@ class RecordList extends Component{
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
+             .then(response => {
+                console.log(response.data)
+                return response;
+             })
              .then(response => response.data.map(this.transformRecords))
              .then(res => this.onRecordsListLoaded(res))
              .catch(this.onError);
@@ -44,7 +48,8 @@ class RecordList extends Component{
             date: date(record.appointmentDate),
             doctor: record.doctor,
             description: record.description,
-            treatment: record.treatment
+            treatment: record.treatment,
+            type: record.type
         }
     }
 
@@ -81,6 +86,7 @@ class RecordList extends Component{
                         date={item.date}
                         description={item.description}
                         treatment={item.treatment}
+                        type={item.type}
                     >
                     </MedicalRecord>
             )

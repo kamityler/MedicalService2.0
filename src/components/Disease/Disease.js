@@ -43,7 +43,7 @@ class Disease extends Component{
                     doctor: doctor.lastName + ' ' + doctor.firstName,
                     description: "Пацієнт здоровий і знятий з обліку",
                     treatment: null,
-                    appointmentType: this.state.data.diseaseName
+                    type: this.state.data.diseaseName
                 }
                 console.log(closingRecordobj)
                 axios.post(

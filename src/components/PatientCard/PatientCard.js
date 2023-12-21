@@ -147,22 +147,24 @@ class PatientCard extends Component {
             })
             .then((newDiagnosis)=>{
                 const doctorID = localStorage.getItem('id');
-
                 axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${doctorID}`)
                     .then(response => response.data )
                     .then((doctor) => {
+                        
                         const openingRecordobj = {
                             appointmentID: 0,
                             patientID: this.state.patient.id,
                             doctorID: doctor.doctorID,
                             diagnosis: "Початок лікування",
                             appointmentDate: new Date(),
+                            type: newDiagnosis.diseaseName,
                             doctor: doctor.lastName + ' ' + doctor.firstName,
                             description: "Пацієнтові поставлено новий діагноз, взято на облік.",
-                            treatment: null,
-                            appointmentType: newDiagnosis.diseaseName
+                            treatment: null
+                            
                         }
-                        console.log(openingRecordobj)
+                        console.log(openingRecordobj);
+                        console.log(newDiagnosis.diseaseName)
                         axios.post(
                             `https://localhost:5001/api/MedicalRecords/${newDiagnosis.patientID}/Appointments`,
                             openingRecordobj,
