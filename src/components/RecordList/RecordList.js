@@ -40,7 +40,7 @@ class RecordList extends Component{
                 return response;
              })
              .then(response => response.data.map(this.transformRecords))
-             .then(array => array.filter(this.filterRecords))
+            //  .then(array => array.filter(this.filterRecords))
              .then(res => this.onRecordsListLoaded(res))
              .catch(this.onError);
     }

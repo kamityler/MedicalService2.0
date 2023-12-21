@@ -133,24 +133,27 @@ class PatientCard extends Component {
             result: null
           }
         axios.post(
-            `https://localhost:5001/api/MedicalRecords/Disease/${this.state.patient.id}`,
-            newDisease,
-            { headers: { 
-                "Access-Control-Allow-Origin": "*"
-            } } )
+                `https://localhost:5001/api/MedicalRecords/Disease/${this.state.patient.id}`,
+                newDisease, {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                })
             .then(response => response.data)
-            .then(newDiagnosis=>{
+            .then(newDiagnosis => {
                 let newPatient = this.state.patient;
                 newPatient.diseases = [...this.state.patient.diseases, newDiagnosis]
-                this.setState({patient: newPatient})
+                this.setState({
+                    patient: newPatient
+                })
                 return newDiagnosis
             })
-            .then((newDiagnosis)=>{
+            .then((newDiagnosis) => {
                 const doctorID = localStorage.getItem('id');
                 axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${doctorID}`)
-                    .then(response => response.data )
+                    .then(response => response.data)
                     .then((doctor) => {
-                        
+
                         const openingRecordobj = {
                             appointmentID: 0,
                             patientID: this.state.patient.id,
@@ -161,24 +164,23 @@ class PatientCard extends Component {
                             doctor: doctor.lastName + ' ' + doctor.firstName,
                             description: "Пацієнтові поставлено новий діагноз, взято на облік.",
                             treatment: null
-                            
+
                         }
                         console.log(openingRecordobj);
                         console.log(newDiagnosis.diseaseName)
                         axios.post(
-                            `https://localhost:5001/api/MedicalRecords/${newDiagnosis.patientID}/Appointments`,
-                            openingRecordobj,
-                            { headers: { 
-                                "Access-Control-Allow-Origin": "*"
-                            } } )
+                                `https://localhost:5001/api/MedicalRecords/${newDiagnosis.patientID}/Appointments`,
+                                openingRecordobj, {
+                                    headers: {
+                                        "Access-Control-Allow-Origin": "*"
+                                    }
+                                })
                             .then(response => console.log(response))
-                            .catch(err => { console.log(err) })
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+                            .catch(err => console.log(err))
+                    })
+                    .catch(err => console.log(err))
             })
-            .catch(err => { console.log(err) })
+            .catch(err => console.log(err))
     }
 
     htmlFunc = () => {
