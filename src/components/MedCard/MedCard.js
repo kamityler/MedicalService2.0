@@ -7,7 +7,7 @@ import './MedCard.css'
 import './AddRecordModal.css'
 
 import RecordList from './../RecordList/RecordList';
-import ModalWindow from './../ModalWindow/ModalWindow';
+import ModalWindow from './../modalWindow/ModalWindow';
 
 class MedCard extends Component{
     constructor(props){
@@ -128,9 +128,10 @@ class MedCard extends Component{
                         {buttonsActiveForSort}
                 </div>
                 <div className="record-list-container">
+
                     <p>Список записів:</p>
                     <p>Встановлений фільтр: {this.state.filter}</p>
-                    <RecordList id={this.state.id} filter={this.state.filter}></RecordList>
+                    <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
                     <button>повернутись до сторінки пацієнта</button>

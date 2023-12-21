@@ -1,11 +1,12 @@
 import { Component } from "react";
 import axios from 'axios';
+import Pagination from '@mui/material/Pagination';
 
 import './PatientPageItem.css'
 
 import PatientCard from './../PatientCard/PatientCard';
 import RecordList from './../RecordList/RecordList';
-import ModalWindow from "../ModalWindow/ModalWindow";
+import ModalWindow from "./../modalWindow/ModalWindow";
 
 class PatientPageItem extends Component{
     constructor(props) {
@@ -53,7 +54,7 @@ class PatientPageItem extends Component{
     recordList = (patientID) => {
         return (           
         <div className="record-list-container">
-            <RecordList id={patientID}></RecordList>
+            <RecordList id={patientID} itemsperPage={8}></RecordList>
         </div>)        
     }
 
@@ -92,6 +93,7 @@ class PatientPageItem extends Component{
                     <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
                 </div>
                 {records}
+
             </div>
         );
     }
