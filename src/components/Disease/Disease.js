@@ -7,7 +7,9 @@ class Disease extends Component{
     constructor(props){
         super(props);
         this.state={
-            data: props.data
+            data: props.data,
+            doctor: {},
+            closingRecord: {}
         }
     }
 
@@ -24,6 +26,38 @@ class Disease extends Component{
             dischargeDate: this.date(new Date()),
             result: "Вилікуваний"
         })
+            .catch(err => { console.log(err) })
+
+        const doctorID = localStorage.getItem('id');
+
+        axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${doctorID}`)
+            .then(response => response.data )
+            .then((doctor) => {
+                console.log(doctor)
+                const closingRecordobj = {
+                    appointmentID: 0,
+                    patientID: this.state.data.patientID,
+                    doctorID: doctor.doctorID,
+                    diagnosis: "Завершення лікування",
+                    appointmentDate: new Date(),
+                    doctor: doctor.lastName + ' ' + doctor.firstName,
+                    description: "Пацієнт здоровий і знятий з обліку",
+                    treatment: null,
+                    appointmentType: this.state.data.diseaseName
+                }
+                console.log(closingRecordobj)
+                axios.post(
+                    `https://localhost:5001/api/MedicalRecords/${this.state.data.patientID}/Appointments`,
+                    closingRecordobj,
+                    { headers: { 
+                        "Access-Control-Allow-Origin": "*"
+                    } } )
+                    .then(response => console.log(response))
+                    .catch(err => { console.log(err) })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render(){
