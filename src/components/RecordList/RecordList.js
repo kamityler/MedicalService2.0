@@ -29,7 +29,7 @@ class RecordList extends Component{
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
              .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 return response;
              })
              .then(response => response.data.map(this.transformRecords))

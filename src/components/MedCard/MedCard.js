@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { CiSquareChevLeft } from "react-icons/ci";
+import axios from 'axios'
 
 import './MedCard.css'
 import './AddRecordModal.css'
@@ -13,7 +14,9 @@ class MedCard extends Component{
         super(props);
         this.state = {
             show: false,
-            id: window.location.href.toString().split('/')[4]
+            id: window.location.href.toString().split('/')[4],
+            diseasesActive: [],
+            diseasesAll: [],
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -33,7 +36,70 @@ class MedCard extends Component{
         this.setState({ show: false });
     };
 
+    componentDidMount(){
+        this.getPatientsDiseases();
+    }
+
+    getPatientsDiseases = () => {
+        axios.get(`https://localhost:5001/api/MedicalRecords/Disease/${this.state.id}`)
+             .then(response => {
+                let diseasesActive = new Set(),
+                    diseasesAll = new Set();
+                response.data.forEach(i => {
+                    if(i.diseaseStatus === 'Closed'){
+                        diseasesAll.add(i);
+                    } else {
+                        diseasesActive.add(i);
+                        diseasesAll.add(i);
+                    }
+                })
+                this.setState({
+                    diseasesActive: [...diseasesActive],
+                    diseasesAll: [...diseasesAll]})
+             })
+             .catch(err => console.log(err))
+    }
+
+    onPatientListLoaded = (newPatientList) => {
+        let ended = false;
+        if(newPatientList.length < 10){
+            ended = true;
+        }
+        
+        this.setState(({patientList})=>({
+            patientList: [...patientList, ...newPatientList],
+            loading: false,
+            newItemLoading: false,
+            patientEnded: ended
+        }))
+        this.slicePatient(newPatientList);       
+    }
+
+    formSortButtonList = () => {
+        // const items = arr.map((item)=>{
+        //     return (
+        //         <button
+        //             <MedicalRecord key={item.id}
+        //                 id={item.id} 
+        //                 doctor={item.doctor} 
+        //                 diagnosis={item.diagnosis}
+        //                 date={item.date}
+        //                 description={item.description}
+        //                 treatment={item.treatment}
+        //                 type={item.type}
+        //             >
+        //             </MedicalRecord>
+        //     )
+        // })
+        // return(
+        //     <ul className="record-list">
+        //         {items}    
+        //     </ul> 
+        // ) 
+    }
+
     render(){
+        
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
