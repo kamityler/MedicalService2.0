@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { CiLogin } from "react-icons/ci";
+import { useState, useEffect } from 'react'; // Додано для керування станом адаптивного меню
 // import { Component } from 'react';
 import './NavBar.css';
 
@@ -14,34 +15,67 @@ import MedCard from './../MedCard/MedCard';
 
 
 function NavBar(){
+    let [menuOpen,setMenuOpen] = useState(true); 
+    
+    
+    useEffect(() => {
+        const handleResize = () => {
+          if (window.innerWidth >= 600 && menuOpen) {
+            setMenuOpen(true);
+          }
+          if (window.innerWidth <= 600 ) {
+            setMenuOpen(true);
+          }
+          
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, [menuOpen]);
+      // Стан для керування відкриттям/закриттям меню
     function onGetId(patientID){
         //some code
     }
     return(
         <BrowserRouter>
-            <div className="NavBar display">
-                <ul className='navigationbar'>
-                    <li className='navigationbar-item main-page-li'>
-                        <a href="/mainpage">Головна сторінка</a>
-                    </li>
-                    <li className='navigationbar-item default-li'>
-                        <a href="/patientList">Пацієнти</a>
-                    </li>
-                    <li className='navigationbar-item default-li'>
-                        <a href="/about">Про нас</a>
-                    </li>
-                    <li className='navigationbar-item default-li'>
-                        <a href="/settings">Мій кабінет</a>
-                    </li>
-                    <li className='navigationbar-item default-li log-out'>
-                    <a href="/">
-        Вийти <CiLogin strokeWidth="1" viewBox="3 -3 24 24" height="1em" ></CiLogin>
-      </a>
-                        
-                    </li>
-                </ul>
-            </div>    
-            <Routes>
+      <div className={`NavBar ${menuOpen ? 'menu-open' : ''}`}>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </button>
+        <ul className={`navigationbar ${menuOpen ? 'display' : 'display-none'}`}>
+          <li className='navigationbar-item main-page-li'>
+            <a href="/mainpage" onClick={() => setMenuOpen(false)}>
+              Головна сторінка
+            </a>
+          </li>
+          <li className='navigationbar-item default-li'>
+            <a href="/patientList" onClick={() => setMenuOpen(false)}>
+              Пацієнти
+            </a>
+          </li>
+          <li className='navigationbar-item default-li'>
+            <a href="/about" onClick={() => setMenuOpen(false)}>
+              Про нас
+            </a>
+          </li>
+          <li className='navigationbar-item default-li'>
+            <a href="/settings" onClick={() => setMenuOpen(false)}>
+              Мій кабінет
+            </a>
+          </li>
+          <li className='navigationbar-item default-li log-out'>
+            <a href="/" onClick={() => setMenuOpen(false)}>
+              Вийти <CiLogin strokeWidth="1" viewBox="3 -3 24 24" height="1em" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <Routes>
                 <Route path = "/" element = {<LoginWindow />} />
                 <Route path = "/mainpage" element = {<MainPage />} />
                 <Route path = "/about" element = {<About />} />

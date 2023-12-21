@@ -1,10 +1,26 @@
+
+
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Зміни для адаптивного меню */
 .NavBar {
   background-color: rgba(44, 173, 65, 0.932);
   padding: 20px;
-}
-
-.display-none{
-  display: none;
+  position: relative;
 }
 
 .navigationbar {
@@ -12,14 +28,23 @@
   margin: 0;
   padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center; /* Center the items vertically */
-
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(44, 173, 65, 0.932);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
 }
 
 .navigationbar-item {
-  margin-right: 20px;
+  margin-bottom: 20px;
 }
+
 
 .navigationbar-item a {
   text-decoration: none;
@@ -28,20 +53,37 @@
   transition: color 0.3s ease-in-out;
 }
 
-.main-page-li {
-  font-size: 26px;
-  height: 34px;
-}
-
-.default-li {
-  font-size: 20px;
-    height: 21px;
-}
-
 .navigationbar-item a:hover {
-  color: #ffcc00; /* Change the color on hover as per your preference */
+  color: #ffcc00;
 }
 
-.log-out{
-  margin-left: auto ;
+.menu-open .navigationbar {
+  transform: translateY(0);
+}
+
+.display {
+  display: flex;
+}
+
+.display-none {
+  display: none;
+}
+
+/* Зміни для більших екранів */
+@media screen and (min-width: 600px) {
+  .navigationbar {
+    flex-direction: row;
+    position: relative;
+    top: 0;
+    background-color: transparent;
+  }
+
+  .navigationbar-item {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
 }
