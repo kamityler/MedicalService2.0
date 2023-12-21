@@ -166,8 +166,6 @@ class PatientCard extends Component {
                             treatment: null
 
                         }
-                        console.log(openingRecordobj);
-                        console.log(newDiagnosis.diseaseName)
                         axios.post(
                                 `https://localhost:5001/api/MedicalRecords/${newDiagnosis.patientID}/Appointments`,
                                 openingRecordobj, {
@@ -175,7 +173,7 @@ class PatientCard extends Component {
                                         "Access-Control-Allow-Origin": "*"
                                     }
                                 })
-                            .then(response => console.log(response))
+                            // .then(response => console.log(response))
                             .catch(err => console.log(err))
                     })
                     .catch(err => console.log(err))

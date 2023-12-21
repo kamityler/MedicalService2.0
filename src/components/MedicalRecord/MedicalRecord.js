@@ -18,7 +18,8 @@ class MedicalRecord extends Component{
     }
 
     render(){
-        let {id, diagnosis, date, doctor,patient, description, treatment, type} = this.state;
+        let {id, diagnosis, date, doctor, patient, description, treatment, type} = this.state;
+        console.log('render ' + type);
         const patientOrDoctor = (doctor===undefined)? 'Піцієнт' : 'Доктор'
         doctor = (doctor===undefined)? patient : doctor
         return(

@@ -28,24 +28,24 @@ class RecordList extends Component{
     static getDerivedStateFromProps(props, state) {
         return {filter: props.filter };
     }
-    
-    componentsDidUpdate() {
-        console.log('update')
-    }
 
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
-             .then(response => {
+             .then(response => { 
                 return response;
-             })
-             .then(response => response.data.map(this.transformRecords))
-            //  .then(array => array.filter(this.filterRecords))
-             .then(res => this.onRecordsListLoaded(res))
-             .catch(this.onError);
+             }) 
+             .then(response => response.data.map(this.transformRecords)) 
+             .then(array => array.filter(this.filterRecords))
+             .then(res => this.onRecordsListLoaded(res)) 
+             .catch(this.onError); 
     }
 
     filterRecords = (item) => {
+        // console.log(item.type) type type
+        if(this.state.filter === null || this.state.filter === ""){
+            return true
+        }
         return item.type === this.state.filter        
     }
 
