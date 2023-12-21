@@ -17,9 +17,14 @@ class MedCard extends Component{
             id: window.location.href.toString().split('/')[4],
             diseasesActive: [],
             diseasesAll: [],
+            filter: null
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
+    }
+
+    componentDidMount(){
+        this.getPatientsDiseases();
     }
 
     addRecord = (e) => {
@@ -36,10 +41,6 @@ class MedCard extends Component{
         this.setState({ show: false });
     };
 
-    componentDidMount(){
-        this.getPatientsDiseases();
-    }
-
     getPatientsDiseases = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/Disease/${this.state.id}`)
              .then(response => {
@@ -47,10 +48,10 @@ class MedCard extends Component{
                     diseasesAll = new Set();
                 response.data.forEach(i => {
                     if(i.diseaseStatus === 'Closed'){
-                        diseasesAll.add(i);
+                        diseasesAll.add(i.diseaseName);
                     } else {
-                        diseasesActive.add(i);
-                        diseasesAll.add(i);
+                        diseasesActive.add(i.diseaseName);
+                        diseasesAll.add(i.diseaseName);
                     }
                 })
                 this.setState({
@@ -60,45 +61,46 @@ class MedCard extends Component{
              .catch(err => console.log(err))
     }
 
-    onPatientListLoaded = (newPatientList) => {
-        let ended = false;
-        if(newPatientList.length < 10){
-            ended = true;
-        }
-        
-        this.setState(({patientList})=>({
-            patientList: [...patientList, ...newPatientList],
-            loading: false,
-            newItemLoading: false,
-            patientEnded: ended
-        }))
-        this.slicePatient(newPatientList);       
+    onSortButtonClick = (e) => {
+        console.log(e.target.value)
+        this.setState({filter:e.target.value})
     }
 
-    formSortButtonList = () => {
-        // const items = arr.map((item)=>{
-        //     return (
-        //         <button
-        //             <MedicalRecord key={item.id}
-        //                 id={item.id} 
-        //                 doctor={item.doctor} 
-        //                 diagnosis={item.diagnosis}
-        //                 date={item.date}
-        //                 description={item.description}
-        //                 treatment={item.treatment}
-        //                 type={item.type}
-        //             >
-        //             </MedicalRecord>
-        //     )
-        // })
-        // return(
-        //     <ul className="record-list">
-        //         {items}    
-        //     </ul> 
-        // ) 
+    formSortButtonList = (arr) => {
+        const items = arr.map((item, index) => {
+            return (
+                <button key={index} value={item} onClick={this.onSortButtonClick}>
+                    {item}
+                </button>
+            )
+        })
+
+        return (
+            <div className="button-list"> 
+                {items}
+            </div>
+        )
+    }
+
+    formSortOptionsList = (arr) => {
+        const items = arr.map((item, index) => {
+            return (
+                <option key={index} value={item} />
+            )
+        })
+
+        return (
+            <datalist id="diagnosis">
+                {items}
+            </datalist>
+        )
     }
 
     render(){
+
+        const buttonsAllForSort = this.formSortButtonList(this.state.diseasesAll),
+              buttonsActiveForSort = this.formSortButtonList(this.state.diseasesActive),
+              optionsForAdd = this.formSortOptionsList(this.state.diseasesActive);
         
         return(
             <div className='record-list'>
@@ -109,6 +111,7 @@ class MedCard extends Component{
                     {/* </div> */}
                     </button>
                 </Link>
+                <h1>Щоденник записів</h1>
                 <div className='filter-block'>
                     <p>Додати новий запис</p>
                     <button onClick={this.showModal}>Додати</button>
@@ -116,11 +119,13 @@ class MedCard extends Component{
                 <br></br>
                 <div className='filter-block'>
                     <p>Відфільтрувати по хворобах:</p>
-                    <button>діабет</button>
-                    <button>ковід</button>
+                        {buttonsAllForSort}
+                    <p>Відфільтрувати по активних хворобах:</p>
+                        {buttonsActiveForSort}
                 </div>
                 <div className="record-list-container">
-                    <RecordList id={this.state.id}></RecordList>
+                    <p>Список записів:</p>
+                    <RecordList id={this.state.id} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
                     <button>повернутись до сторінки пацієнта</button>
@@ -133,11 +138,7 @@ class MedCard extends Component{
                             <input required placeholder="Причина" type="text" name="reason" className="modal-field modal-input"></input>
                             <p className="modal-label">Обрати приналежність:</p>
                             <input type="text" id="diagnosis-input" list="diagnosis" name="diagnosis" autoComplete='off'/>
-                            <datalist id="diagnosis">
-                                <option value="Діабет"/>
-                                <option value="Рак"/>
-                                <option value="Інше"/>    
-                            </datalist>
+                            {optionsForAdd}
                             {/* onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} */}
                             <p className="modal-label">Опис:</p>
                             <textarea required placeholder="Введіть опис тут..." name="description" className="modal-field modal-textarea"></textarea>
