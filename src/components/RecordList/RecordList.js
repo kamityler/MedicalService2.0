@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import axios from 'axios';
+import Pagination from '@mui/material/Pagination';
 
 import './RecordList.css';
 
@@ -14,9 +15,12 @@ class RecordList extends Component{
         this.state = {
             id: props.id,
             records: [],
+            newRecordsList:[],
             loading: true,
             error: false,
             newRecordLoading: false,
+            currentPage:1,
+            itemsperPage:props.itemsperPage,
         }
     }
 
@@ -25,6 +29,11 @@ class RecordList extends Component{
         //this.onRequest();
     }
 
+    sliceRecord = (newRecordsList)=>{
+        const itemsperPage = 8;
+        const records = newRecordsList.slice(0,itemsperPage); 
+        this.setState({newRecordsList: records});
+    }
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
@@ -53,7 +62,18 @@ class RecordList extends Component{
             newRecordLoading: true
         })
     }
-
+    handlePageClick = (e,pg) => {
+        
+        
+        console.log(pg);
+        const itemsperPage = 8;
+        const start = (pg-1)*itemsperPage;
+        const end = (pg*itemsperPage);
+        console.log(start+ ' ' + end);
+        const recordsPerPage = this.state.records.slice(start,end);
+        console.log(recordsPerPage)   
+        this.setState({newRecordsList: recordsPerPage});
+    }
     onRecordsListLoaded = (newRecordsList) => {
         const newarr = newRecordsList.reverse();
         this.setState(({records})=>({
@@ -61,6 +81,8 @@ class RecordList extends Component{
             loading: false,
             newRecordLoading: false
         }))
+        console.log(newRecordsList);
+        this.sliceRecord(newarr);
     }
 
     onError = (errorBody) => {
@@ -93,8 +115,8 @@ class RecordList extends Component{
     }
 
     render(){ 
-        const {loading, records, error} = this.state;
-        const adjustedList = this.adjustItems(records);
+        const {loading, records, newRecordsList, error} = this.state;
+        const adjustedList = this.adjustItems(newRecordsList);
 
         const spinnerComponent = loading ? <Spinner/> : null;
         const errorComponent = 
@@ -110,7 +132,9 @@ class RecordList extends Component{
             <div className='record-list'>
                 {errorComponent}
                 {spinnerComponent}
-                {content}                
+                {content}   
+                <Pagination onChange={this.handlePageClick}   count={Math.round(this.state.records.length/8)} variant="outlined" />               
+             
             </div>
 
         );
