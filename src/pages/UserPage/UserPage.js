@@ -31,7 +31,14 @@ class UserPage extends Component{
 
     componentDidMount() {
         this.onRequest();
-        //this.onAppointmentRequest();
+        setTimeout(()=> document.querySelector('.editButton').style.width = document.querySelector('.doctor-card').getBoundingClientRect().width + 'px');
+
+        window.addEventListener('resize', this.handleResize);
+        //this.onRequest();
+    }
+    handleResize=()=>{
+        setTimeout(()=> document.querySelector('.editButton').style.width = document.querySelector('.doctor-card').getBoundingClientRect().width + 'px');
+
     }
         onRequest = () => {
         axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${this.state.user.id}`)
@@ -197,10 +204,11 @@ class UserPage extends Component{
                            
                 </div>
                 <div class="card">
+                <ul class="list-group list-group-flush">
   <div class="card-header">
     Історія записів
   </div>
-  <ul class="list-group list-group-flush">
+  
     <li class="list-group-item">Календар</li>
     <li class="list-group-item">Результати опитувань</li>
     <li class="list-group-item">Безпека</li>

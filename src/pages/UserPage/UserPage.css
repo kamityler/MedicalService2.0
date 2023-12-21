@@ -150,7 +150,16 @@
     transform: translate(-50%, -50%);
     background-color: #fefefe;
     }
-  
+    @media screen and (min-width: 600px) {
+        .doctor-card {
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: flex-start;
+        }
+    }
+    .log-out{
+        margin-left:57%
+    }
   /* Сховати кнопку закриття */
   .close {
     position: absolute;
@@ -223,6 +232,7 @@
         padding-left: 0;
         margin-bottom: 0;
         border-radius: .25rem;
+        margin-top: 0;
       }
       .list-group-flush {
         border-radius: 0;
@@ -237,7 +247,12 @@
           border-right-width: 1px;
           border-bottom-width: 1px;
           border-left-width: 1px;
+          transition: background-color 0.5s ease; /* Властивість transition для плавного змінення background-color протягом 0.5 секунди з ефектом ease */
       }
+      .list-group-item:hover {
+        background-color:#e5e3e3
+      }
+
       .list-group-flush > .list-group-item {
         border-width: 0 0 1px;
       }
