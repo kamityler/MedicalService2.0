@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { CiSquareChevLeft } from "react-icons/ci";
+import axios from 'axios'
 
 import './MedCard.css'
 import './AddRecordModal.css'
@@ -13,10 +14,17 @@ class MedCard extends Component{
         super(props);
         this.state = {
             show: false,
-            id: window.location.href.toString().split('/')[4]
+            id: window.location.href.toString().split('/')[4],
+            diseasesActive: [],
+            diseasesAll: [],
+            filter: null
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
+    }
+
+    componentDidMount(){
+        this.getPatientsDiseases();
     }
 
     addRecord = (e) => {
@@ -33,7 +41,71 @@ class MedCard extends Component{
         this.setState({ show: false });
     };
 
+    getPatientsDiseases = () => {
+        axios.get(`https://localhost:5001/api/MedicalRecords/Disease/${this.state.id}`)
+             .then(response => {
+                let diseasesActive = new Set(),
+                    diseasesAll = new Set();
+                response.data.forEach(i => {
+                    if(i.diseaseStatus === 'Closed'){
+                        diseasesAll.add(i.diseaseName);
+                    } else {
+                        diseasesActive.add(i.diseaseName);
+                        diseasesAll.add(i.diseaseName);
+                    }
+                })
+                this.setState({
+                    diseasesActive: [...diseasesActive],
+                    diseasesAll: [...diseasesAll]})
+             })
+             .catch(err => console.log(err))
+    }
+
+    onSortButtonClick = (e) => {
+        this.setState({
+            filter: e.target.value
+        })
+    }
+
+    formSortButtonList = (arr) => {
+
+        const items = arr.map((item, index) => {
+            return (
+                <button key={index+1} value={item} onClick={this.onSortButtonClick}>
+                    {item}
+                </button>
+            )
+        })
+
+        return (
+            <div className="button-list">
+                <button key={0} value={null} onClick={this.onSortButtonClick}>
+                    Всі записи
+                </button>
+                {items}
+            </div>
+        )
+    }
+
+    formSortOptionsList = (arr) => {
+        const items = arr.map((item, index) => {
+            return (
+                <option key={index} value={item} />
+            )
+        })
+
+        return (
+            <datalist id="diagnosis">
+                {items}
+            </datalist>
+        )
+    }
+
     render(){
+        const buttonsAllForSort = this.formSortButtonList(this.state.diseasesAll),
+              buttonsActiveForSort = this.formSortButtonList(this.state.diseasesActive),
+              optionsForAdd = this.formSortOptionsList(this.state.diseasesActive);
+        
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
@@ -43,6 +115,7 @@ class MedCard extends Component{
                     {/* </div> */}
                     </button>
                 </Link>
+                <h1>Щоденник записів</h1>
                 <div className='filter-block'>
                     <p>Додати новий запис</p>
                     <button onClick={this.showModal}>Додати</button>
@@ -50,11 +123,15 @@ class MedCard extends Component{
                 <br></br>
                 <div className='filter-block'>
                     <p>Відфільтрувати по хворобах:</p>
-                    <button>діабет</button>
-                    <button>ковід</button>
+                        {buttonsAllForSort}
+                    <p>Відфільтрувати по активних хворобах:</p>
+                        {buttonsActiveForSort}
                 </div>
                 <div className="record-list-container">
-                    <RecordList itemsperPage={8} id={this.state.id}></RecordList>
+
+                    <p>Список записів:</p>
+                    <p>Встановлений фільтр: {this.state.filter}</p>
+                    <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
                     <button>повернутись до сторінки пацієнта</button>
@@ -67,11 +144,7 @@ class MedCard extends Component{
                             <input required placeholder="Причина" type="text" name="reason" className="modal-field modal-input"></input>
                             <p className="modal-label">Обрати приналежність:</p>
                             <input type="text" id="diagnosis-input" list="diagnosis" name="diagnosis" autoComplete='off'/>
-                            <datalist id="diagnosis">
-                                <option value="Діабет"/>
-                                <option value="Рак"/>
-                                <option value="Інше"/>    
-                            </datalist>
+                            {optionsForAdd}
                             {/* onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} */}
                             <p className="modal-label">Опис:</p>
                             <textarea required placeholder="Введіть опис тут..." name="description" className="modal-field modal-textarea"></textarea>

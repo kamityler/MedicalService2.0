@@ -7,7 +7,9 @@ class Disease extends Component{
     constructor(props){
         super(props);
         this.state={
-            data: props.data
+            data: props.data,
+            doctor: {},
+            closingRecord: {}
         }
     }
 
@@ -18,12 +20,47 @@ class Disease extends Component{
     })
 
     onClosed = () => {
-        axios.put(`https://localhost:5001/api/MedicalRecords/Disease/${this.state.data.diseaseID}`,
-        {
-            diseaseStatus: "Closed",
-            dischargeDate: this.date(new Date()),
-            result: "Вилікуваний"
-        })
+        axios.put(`https://localhost:5001/api/MedicalRecords/Disease/${this.state.data.diseaseID}`, {
+                diseaseStatus: "Closed",
+                dischargeDate: this.date(new Date()),
+                result: "Вилікуваний"
+            })
+            .then(() => {
+                axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${localStorage.getItem('id')}`)
+                    .then(response => response.data)
+                    .then((doctor) => {
+                        console.log(doctor)
+                        const closingRecordobj = {
+                            appointmentID: 0,
+                            patientID: this.state.data.patientID,
+                            doctorID: doctor.doctorID,
+                            diagnosis: "Завершення лікування",
+                            appointmentDate: new Date(),
+                            doctor: doctor.lastName + ' ' + doctor.firstName,
+                            description: "Пацієнт здоровий і знятий з обліку",
+                            treatment: null,
+                            type: this.state.data.diseaseName
+                        }
+                        console.log(closingRecordobj)
+                        axios.post(
+                                `https://localhost:5001/api/MedicalRecords/${this.state.data.patientID}/Appointments`,
+                                closingRecordobj, {
+                                    headers: {
+                                        "Access-Control-Allow-Origin": "*"
+                                    }
+                                })
+                            .then(response => console.log(response))
+                            .catch(err => {
+                                console.log(err)
+                            })
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            })
+            .catch(err => { console.log(err) })
+
+
     }
 
     render(){

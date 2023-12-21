@@ -20,14 +20,25 @@ class RecordList extends Component{
             loading: true,
             error: false,
             newRecordLoading: false,
-            currentPage:1,
+            filter: props.filter,
+            currentPage:1
             
+
         }
     }
 
     componentDidMount() {
         setTimeout(()=>{this.onRequest()},1000)
-        console.log('pafe:' + this.state.itemsperPage);
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return {filter: props.filter };
+    }
+    
+    componentsDidUpdate() {
+        console.log('update')
+    }
+
         }
 
     sliceRecord = (newRecordsList)=>{
@@ -38,9 +49,17 @@ class RecordList extends Component{
     onRequest = () => {
         this.onRecordsListLoading();
         axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`)
+             .then(response => {
+                return response;
+             })
              .then(response => response.data.map(this.transformRecords))
+            //  .then(array => array.filter(this.filterRecords))
              .then(res => this.onRecordsListLoaded(res))
              .catch(this.onError);
+    }
+
+    filterRecords = (item) => {
+        return item.type === this.state.filter        
     }
 
     transformRecords = (record) => {
@@ -54,7 +73,8 @@ class RecordList extends Component{
             date: date(record.appointmentDate),
             doctor: record.doctor,
             description: record.description,
-            treatment: record.treatment
+            treatment: record.treatment,
+            type: record.type
         }
     }
 
@@ -104,6 +124,7 @@ class RecordList extends Component{
                         date={item.date}
                         description={item.description}
                         treatment={item.treatment}
+                        type={item.type}
                     >
                     </MedicalRecord>
             )
