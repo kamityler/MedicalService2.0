@@ -17,7 +17,7 @@ class MedCard extends Component{
             id: window.location.href.toString().split('/')[4],
             diseasesActive: [],
             diseasesAll: [],
-            filter: 'All'
+            filter: null
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -62,7 +62,6 @@ class MedCard extends Component{
     }
 
     onSortButtonClick = (e) => {
-        console.log(e.target.value)
         this.setState({
             filter: e.target.value
         })
@@ -103,9 +102,6 @@ class MedCard extends Component{
     }
 
     render(){
-
-        console.log('render medCard');
-
         const buttonsAllForSort = this.formSortButtonList(this.state.diseasesAll),
               buttonsActiveForSort = this.formSortButtonList(this.state.diseasesActive),
               optionsForAdd = this.formSortOptionsList(this.state.diseasesActive);
