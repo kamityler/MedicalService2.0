@@ -82,6 +82,7 @@ function NavBar(){
                 <Route path = "/patientList" element = {<PatientList onGetId={onGetId}/>}/>
                 <Route path = "/patientList/:patientID" element={<PatientPage />}/>
                 <Route path = "/patientList/:patientID/records" element={<MedCard />}/>
+                <Route path = "/patientList/:patientID/records/:filter" element={<MedCard/>}/>
                 <Route path = "/settings" element = {<UserPage />} />
                 <Route path = "*" element = {<NoMatch />} />
             </Routes>
