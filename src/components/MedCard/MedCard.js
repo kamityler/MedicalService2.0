@@ -180,7 +180,6 @@ class MedCard extends Component{
                 <div className="record-list-container">
                     <div className='label-for-button'>Встановлений фільтр: {this.state.filter === null || this.state.filter === "" ? "Відсутній" : this.state.filter}</div>
                     <RecordList key={Date.now()} itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
-                    <RecordList itemsperPage={8} id={this.state.id} rerender={true} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
                     <button class="back-button">Повернутись</button>

@@ -74,21 +74,21 @@ class PatientPageItem extends Component{
                     <PatientCard id={patientID}/> 
                     <ModalWindow show={this.state.show} handleClose={this.hideModal}>
                         <form className="modal-form" onSubmit={this.addRecord}>
-                            <h1 className="modal-header">Add new medical record</h1>
-                            <p className="modal-label">Enter diagnosis here:</p>
+                            <h1 className="modal-header">Додати новий запис</h1>
+                            <p className="modal-label">Введіть діагноз:</p>
                             <input required placeholder="Diagnosis" type="text" onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} name="diagnosis" className="modal-field modal-input"></input>
-                            <p className="modal-label">Enter description here:</p>
+                            <p className="modal-label">Додайте опис:</p>
                             <textarea required placeholder="Enter description here..." onChange={(e) => this.onChangeHandle("description", e.target.value )} name="description" className="modal-field modal-textarea"></textarea>
-                            <p className="modal-label">Enter ways of treatment here:</p>
+                            <p className="modal-label">Введіть шлях лікування:</p>
                             <textarea required placeholder="Enter treatment here..." onChange={(e) => this.onChangeHandle("treatment", e.target.value )} name="treatment" className="modal-field modal-textarea"></textarea>
                             <div className="form-button-container">
-                                <button className="form-button-submit" value="Submit" type="submit" >Submit</button>
+                                <button className="form-button-submit" value="Submit" type="submit" >Підтвердити</button>
                                 <div className="between-div-container"></div>
                                 <input className="form-button-submit" type="reset" value="Reset"/>
                             </div>
                         </form>
                     </ModalWindow>
-                    <button className="add-form-button" type="button" onClick={this.showModal}>Add new record</button>
+                    <button className="add-form-button" type="button" onClick={this.showModal}>Додати новий зартс</button>
                 </div>
                 {records}
 
