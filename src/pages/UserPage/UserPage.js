@@ -199,18 +199,18 @@ class UserPage extends Component{
                 <div className="doctor-card">
                     <ul className="doctor-info-ul">
                             <img className="doctor-avatar" src={url} alt="doctor" />
-                            <li className="doctor-info-li">Name: <span className="exact-information-item">{this.state.user.firstName}</span></li>
-                            <li className="doctor-info-li">Surname: <span className="exact-information-item">{this.state.user.lastName}</span></li>
-                            <li className="doctor-info-li">Occupation: <span className="exact-information-item">{this.state.user.specialty}</span></li>
-                            <li className="doctor-info-li">Gender: <span className="exact-information-item">Male</span></li>
-                            <li className="doctor-info-li">Date of brith: <span className="exact-information-item">{this.state.user.birthDate}</span></li>
-                            <li className="doctor-info-li">Address: <span className="exact-information-item">{this.state.user.address}</span></li>
-                            <li className="doctor-info-li">Email: <span className="exact-information-item">{this.state.user.email}</span></li>
-                            <li className="doctor-info-li">Phone: <span className="exact-information-item">{this.state.user.phoneNumber}</span></li>
+                            <li className="doctor-info-li">Ім'я: <span className="exact-information-item">{this.state.user.firstName}</span></li>
+                            <li className="doctor-info-li">Прізвише: <span className="exact-information-item">{this.state.user.lastName}</span></li>
+                            <li className="doctor-info-li">Спецільність: <span className="exact-information-item">{this.state.user.specialty}</span></li>
+                            <li className="doctor-info-li">Стать: <span className="exact-information-item">Male</span></li>
+                            <li className="doctor-info-li">Дата народження: <span className="exact-information-item">{this.state.user.birthDate}</span></li>
+                            <li className="doctor-info-li">Адреса: <span className="exact-information-item">{this.state.user.address}</span></li>
+                            <li className="doctor-info-li">Елетронна адреса: <span className="exact-information-item">{this.state.user.email}</span></li>
+                            <li className="doctor-info-li">Номер телефону: <span className="exact-information-item">{this.state.user.phoneNumber}</span></li>
                             
                         </ul>
                         </div>
-                        <button className="editButton" onClick={this.openModal}type="button" >Edit profile</button>
+                        <button className="editButton" onClick={this.openModal}type="button" >Редагувати профіль</button>
 
                 </div>
                 
@@ -240,26 +240,26 @@ class UserPage extends Component{
                 <div id="MyModal" className=" modal">
                     <div className='modal-content profile-container'>
                     <div className="profile-header">
-                        <h2>Profile Settings</h2>
+                        <h2>Налаштування профілю</h2>
                     </div>
                     <div className="profile-form "  >
                         <form>
             
                             <div className="form-group">
-                                <label htmlFor="adress">Change your adress:</label>
+                                <label htmlFor="adress">Змінити адресу</label>
                                 <input type="text" id="adress" name="adress"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="email">Change your email:</label>
+                                <label htmlFor="email">Змінити елетрону адресу:</label>
                                 <input type="email" id="email" name="email" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="tel">Change your phone number:</label>
+                                <label htmlFor="tel">Змінити номер телефону:</label>
                                 <input type="text" id="tel" name="tel" />
                             </div>
                           
                             <div className="form-group">
-                                <button type="submit" onClick={this.closeModal} >Save Changes</button>
+                                <button type="submit" onClick={this.closeModal} >Зберегти зміни</button>
                             </div>
                         </form>
                     </div>

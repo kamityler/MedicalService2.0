@@ -115,6 +115,12 @@
     font-size: 20px;
     padding: 10px;
 }
+.inputDiagnose{
+    
+        height: 45px;
+        border: 1px solid #d5d5d5;
+        border-radius: 15px;
+}
 
 .card-data {
     font-weight: normal;
