@@ -182,6 +182,18 @@ class PatientCard extends Component {
             })
             .catch(err => console.log(err))
     }
+    addVactination = (data)=>{
+        let vactination = [<p className="card-field">Стовбняк <span className='card-data'>05.01.2017</span></p>,
+        <p className="card-field">Модерна <span className='card-data'>12.07.2021</span></p>,
+        <p className="card-field">Модерна <span className='card-data'>16.08.2021</span></p>,
+        <p className="card-field">Гепатит <span className='card-data'>24.12.2022</span></p>]
+        //vactination.add(data);
+        return vactination.map(arr=>arr)
+    }
+
+    onClick = () =>{
+
+    }
 
     htmlFunc = () => {
         const { id, completionDate, name, middlename, surname, gender, dateOfBirth, phone, email, address, work, position, groupDispensary, contingents, privilegeNumber } = this.state.patient;
@@ -228,11 +240,9 @@ class PatientCard extends Component {
                     <button className="form-button-addDisease" onClick={this.showModal}>Додати хворобу</button>
                 </div>
                 <div className="patient-card-block">
-                    <h3 className="card-topic">Інформація про щеплення</h3>
-                    <p className="card-field">Стовбняк <span className='card-data'>05.01.2017</span></p>
-                    <p className="card-field">Модерна <span className='card-data'>12.07.2021</span></p>
-                    <p className="card-field">Модерна <span className='card-data'>16.08.2021</span></p>
-                    <p className="card-field">Гепатит <span className='card-data'>24.12.2022</span></p>
+                    
+                    {this.addVactination()}
+                    <button class="endDiseaseButton">Додати інформацію про щеплення</button>
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про страхування</h3>
@@ -249,7 +259,7 @@ class PatientCard extends Component {
                 </ModalWindow>
             </div>
         )
-    }
+    } 
 
     render(){
         // const {loading, error} = this.state;

@@ -21,7 +21,8 @@ class RecordList extends Component{
             error: false,
             newRecordLoading: false,
             filter: props.filter,
-            currentPage:1
+            currentPage:1,
+            rerender: false
             
 
         }
@@ -32,7 +33,7 @@ class RecordList extends Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        return {filter: props.filter };
+        return {rerender: props.rerender,filter: props.filter };
     }
     
     componentsDidUpdate() {
@@ -65,7 +66,11 @@ class RecordList extends Component{
             return item.type === this.state.filter        
         }
     }
-
+    componentDidUpdate(){
+        if(this.state.rerender){
+            this.setState({rerender:false});
+        }
+    }
     transformRecords = (record) => {
         const date = (item) => {
             const dateArr = item.split("-")
@@ -140,10 +145,17 @@ class RecordList extends Component{
         ) 
     }
 
+     rerender(){
+      
+        
+        
+    }
     render(){ 
+        this.rerender();
         const {loading, newRecordsList, error} = this.state;
         const adjustedList = this.adjustItems(newRecordsList);
-
+        //const b = this.state.rerender;
+        
         const spinnerComponent = loading ? <Spinner/> : null;
         const errorComponent = 
             error ? 
