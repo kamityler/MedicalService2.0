@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { CiSquareChevLeft } from "react-icons/ci";
 import axios from 'axios'
 
 import './MedCard.css'
@@ -17,7 +16,17 @@ class MedCard extends Component{
             id: window.location.href.toString().split('/')[4],
             diseasesActive: [],
             diseasesAll: [],
-            filter: null
+            filter: null,
+            medicalRecord: {
+                diagnosis: 'some diagnosis',
+                appointmentDate: new Date(),
+                doctorID: localStorage.getItem('id'),
+                doctor: localStorage.getItem('id') === 1 ? 'Jones Emily' : 'Oleg Olegovich',
+                description: 'something went wrong',
+                treatment: 'two pills in the vessel',
+                type: 'General',
+                date: props.date,
+            }
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -29,8 +38,25 @@ class MedCard extends Component{
 
     addRecord = (e) => {
         e.preventDefault();
-        console.log('record added')
+
+        axios.post(
+            `https://localhost:5001/api/MedicalRecords/${this.state.id}/Appointments`,
+            this.state.medicalRecord,
+            { headers: { 
+                "Access-Control-Allow-Origin": "*"
+            } } )
+            .then(response => console.log(response))
+            .catch(err => { console.log(err); })
+
         this.hideModal();
+    }
+
+    onChangeHandle = (name, value) =>{
+        this.setState(prevState => {
+            let medicalRecord = Object.assign({}, prevState.medicalRecord);
+            medicalRecord[name] = value
+            return {medicalRecord};
+        })
     }
 
     showModal = () => {
@@ -79,7 +105,7 @@ class MedCard extends Component{
 
         return (
             <div className="button-list">
-                <button key={0} value={null} onClick={this.onSortButtonClick}>
+                <button className="" key={0} value={null} onClick={this.onSortButtonClick}>
                     Всі записи
                 </button>
                 {items}
@@ -109,22 +135,17 @@ class MedCard extends Component{
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button>
-                    {/* <div className='goback-button'> */}
-                        Повернутись до сторінки пацієнта <CiSquareChevLeft strokeWidth="1" viewBox="3 -3 24 24" height="1em" ></CiSquareChevLeft>
-                    {/* </div> */}
-                    </button>
+                    <button class="appointment-button">Повернутись</button>
                 </Link>
-                <h1>Щоденник записів</h1>
+                <h1 className='page-header'>Щоденник записів</h1>
                 <div className='filter-block'>
-                    <p>Додати новий запис</p>
+                    <p className='label-for button'>Додати новий запис</p>
                     <button onClick={this.showModal}>Додати</button>
                 </div>
-                <br></br>
                 <div className='filter-block'>
-                    <p>Відфільтрувати по хворобах:</p>
+                    <p className='label-for button'>Відфільтрувати по хворобах:</p>
                         {buttonsAllForSort}
-                    <p>Відфільтрувати по активних хворобах:</p>
+                    <p className='label-for button'>Відфільтрувати по активних хворобах:</p>
                         {buttonsActiveForSort}
                 </div>
                 <div className="record-list-container">
@@ -134,22 +155,22 @@ class MedCard extends Component{
                     <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button>повернутись до сторінки пацієнта</button>
+                    <button class="appointment-button">Повернутись</button>
                 </Link>
 
                 <ModalWindow show={this.state.show} handleClose={this.hideModal}>
                         <form className="modal-form" onSubmit={this.addRecord}>
                             <h1 className="modal-header">Додавання запису</h1>
                             <p className="modal-label">Причина запису:</p>
-                            <input required placeholder="Причина" type="text" name="reason" className="modal-field modal-input"></input>
+                            <input required placeholder="Причина" type="text" name="reason" onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} className="modal-field modal-input"></input>
                             <p className="modal-label">Обрати приналежність:</p>
-                            <input type="text" id="diagnosis-input" list="diagnosis" name="diagnosis" autoComplete='off'/>
+                            <input className="modal-field modal-input" type="text" id="diagnosis-input" list="diagnosis" name="diagnosis" onChange={(e) => this.onChangeHandle("type", e.target.value )} autoComplete='off' placeholder='Оберіть причину'/>
                             {optionsForAdd}
                             {/* onChange={(e) => this.onChangeHandle("diagnosis", e.target.value )} */}
                             <p className="modal-label">Опис:</p>
-                            <textarea required placeholder="Введіть опис тут..." name="description" className="modal-field modal-textarea"></textarea>
+                            <textarea required placeholder="Введіть опис тут..." name="description" className="modal-field modal-textarea" onChange={(e) => this.onChangeHandle("description", e.target.value )}></textarea>
                             <p className="modal-label">Спосіб лікування:</p>
-                            <textarea required placeholder="Введіть спосіб лікування тут..." name="treatment" className="modal-field modal-textarea"></textarea>
+                            <textarea required placeholder="Введіть спосіб лікування тут..." name="treatment" className="modal-field modal-textarea" onChange={(e) => this.onChangeHandle("treatment", e.target.value )}></textarea>
                             <div className="form-button-container">
                                 <button className="form-button-submit" value="Submit" type="submit" >Додати</button>
                                 <div className="between-div-container"></div>

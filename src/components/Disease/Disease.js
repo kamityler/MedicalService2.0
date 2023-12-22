@@ -66,7 +66,7 @@ class Disease extends Component{
     render(){
         const {admissionDate, diseaseName, diseaseStatus, dischargeDate, result} = this.state.data;
 
-        const classes = diseaseStatus === 'Active' ? 'disease-block active-disease' : 'disease-block closed-disease';
+        // const classes = diseaseStatus === 'Active' ? 'disease-block active-disease' : 'disease-block closed-disease';
         const isHealth = diseaseStatus === 'Active' ? false : true
         const statusClasess = (isHealth)? 'badge badge-success' : ' badge badge-danger';
         const closeButton = diseaseStatus === 'Active' ? <button className="endDiseaseButton" onClick={this.onClosed}>Завершити лікування</button> : null;

@@ -1,6 +1,5 @@
 import { Component } from "react";
 import axios from 'axios';
-import Pagination from '@mui/material/Pagination';
 
 import './PatientPageItem.css'
 
