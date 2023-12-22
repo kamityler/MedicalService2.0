@@ -36,10 +36,9 @@ class RecordList extends Component{
     }
     
     componentsDidUpdate() {
+
         console.log('update')
     }
-
-        
 
     sliceRecord = (newRecordsList)=>{
         const itemsperPage = 8;
@@ -54,13 +53,17 @@ class RecordList extends Component{
                 return response;
              })
              .then(response => response.data.map(this.transformRecords))
-            //  .then(array => array.filter(this.filterRecords))
+             .then(array => array.filter(this.filterRecords))
              .then(res => this.onRecordsListLoaded(res))
              .catch(this.onError);
     }
 
     filterRecords = (item) => {
-        return item.type === this.state.filter        
+        if(this.state.filter === '' || this.state.filter === null){
+            return true
+        } else {
+            return item.type === this.state.filter        
+        }
     }
 
     transformRecords = (record) => {
