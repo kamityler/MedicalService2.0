@@ -171,9 +171,9 @@ class PatientList extends Component{
             <div className="container-patient-list">
                 <div className="container-header">
                     <div className="container-header-item image-item"></div>
-                    <div className="container-header-item">Ім'я</div>
-                    <div className="container-header-item">Вік</div>
-                    <div className="container-header-item">Діагноз</div>
+                    <div className="container-header-item">Name</div>
+                    <div className="container-header-item">Age</div>
+                    <div className="container-header-item">Diagnosis</div>
                 </div>    
                 <div className='search-element'>
                     <SearchPannel onUpdateSearch={this.onUpdateSearch}/>

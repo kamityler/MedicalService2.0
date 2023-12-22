@@ -124,17 +124,15 @@ class MedCard extends Component{
     formSortButtonList = (arr) => {
         const items = arr.map((item, index) => {
             return (
-                <Link to={`/patientList/${this.state.id}/records/${item}`}>
-                    <button className="one-sort-button" key={index+1} value={item} onClick={this.onSortButtonClick}>
-                        {item}
-                    </button>
-                </Link>
+                <button className="one-sort-button" key={index+1} value={item} onClick={this.onSortButtonClick}>
+                    {item}
+                </button>
             )
         })
 
         return (
             <div className="button-list">
-                <button className="one-sort-button" key={0} value={null} onClick={this.onSortButtonClick}>
+                <button className="one-sort-button" key={arr.length+1} value={null} onClick={this.onSortButtonClick}>
                     Всі записи
                 </button>
                 {items}
@@ -164,7 +162,7 @@ class MedCard extends Component{
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button class="back-button">Повернутись</button>
+                    <button className="back-button">Повернутись</button>
                 </Link>
                 <h1 className='page-header'>Щоденник записів</h1>
                 <div className='filter-block'>
@@ -179,11 +177,11 @@ class MedCard extends Component{
                 </div>   
                 <div className="record-list-container">
                     <div className='label-for-button'>Встановлений фільтр: {this.state.filter === null || this.state.filter === "" ? "Відсутній" : this.state.filter}</div>
-                    <RecordList key={Date.now()} itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
-                    <RecordList itemsperPage={8} id={this.state.id} rerender={true} filter={this.state.filter}></RecordList>
+                    <RecordList itemsperPage={8} id={this.state.id} key={Date.now()} filter={this.state.filter}></RecordList>
+                    {/* <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList> */}
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button class="back-button">Повернутись</button>
+                    <button className="back-button">Повернутись</button>
                 </Link>
 
                 <ModalWindow show={this.state.show} handleClose={this.hideModal}>
