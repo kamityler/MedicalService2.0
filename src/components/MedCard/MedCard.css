@@ -6,8 +6,11 @@
     padding: 5px;
     border-radius: 5px;;
 }
+
+
+
 .form-button-submit{
-    float: left;
+  /* float: left; */
   padding: .5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;

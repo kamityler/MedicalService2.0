@@ -135,7 +135,7 @@ class MedCard extends Component{
         return(
             <div className='record-list'>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button class="appointment-button">Повернутись</button>
+                    <button class="back-button">Повернутись</button>
                 </Link>
                 <h1 className='page-header'>Щоденник записів</h1>
                 <div className='filter-block'>
