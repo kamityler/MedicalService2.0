@@ -39,7 +39,7 @@ class PatientList extends Component{
     
         handlePageClick = (e,pg) => {
         
-        
+        this.setState({currentPage:pg});
         console.log(this.state.currentPage);
         const itemsperPage = this.state.itemsperPage;
         const start = (pg-1)*itemsperPage;
@@ -138,18 +138,40 @@ class PatientList extends Component{
         if (term.length === 0) {
             return items;
         }
-        if(
-       (term.length !== 0)
-        ){
-            return this.state.patientList.filter(item => {
+        
+      
+        const itemsToView =  this.state.patientList.filter(item => {
                 return item.name.indexOf(term) > -1
-            })
-        }
+        });
+        const pg = this.state.currentPage;
+        console.log(this.state.currentPage);
+        const itemsperPage = this.state.itemsperPage;
+        const start = (pg-1)*itemsperPage;
+        const end = (pg*itemsperPage);
+        console.log(start+ ' ' + end);
+        const patients = itemsToView.slice(start,end);   
+        //this.setState({patientListToView: patients});
+       
+        return patients;
+
     }
     
 
     onUpdateSearch = (term) => {
+        const {patientList} = this.state;
+        //this.slicePatient(this.searchEmp(patientList,this.state.term));
+
         this.setState({term});
+
+    }
+    getPageCout = () =>{
+        if(this.state.term.length !== 0){
+            const itemsToView =  this.state.patientList.filter(item => {
+                return item.name.indexOf(this.state.term) > -1
+        });
+            return itemsToView.length 
+        }
+        return this.state.patientList.length
     }
 
     render(){ 
@@ -183,7 +205,7 @@ class PatientList extends Component{
                     {spinnerComponent}
                     {content}
                 </div>
-                <Pagination onChange={this.handlePageClick}  count={Math.round(patientList.length/itemsperPage)} variant="outlined" />               
+                <Pagination onChange={this.handlePageClick}  count={Math.round(this.getPageCout()/itemsperPage)} variant="outlined" />               
             </div>
 
         );

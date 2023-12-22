@@ -6,7 +6,7 @@ import './MedCard.css'
 import './AddRecordModal.css'
 
 import RecordList from './../RecordList/RecordList';
-import ModalWindow from './../ModalWindow/ModalWindow';
+import ModalWindow from './../modalWindow/ModalWindow';
 
 class MedCard extends Component{
     constructor(props){

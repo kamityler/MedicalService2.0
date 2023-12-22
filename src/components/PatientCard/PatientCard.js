@@ -6,7 +6,7 @@ import './PatientCard.css';
 // import Spinner from './../basicComponents/spinner/Spinner';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
-import ModalWindow from './../ModalWindow/ModalWindow';
+import ModalWindow from './../modalWindow/ModalWindow';
 
 class PatientCard extends Component {
     constructor(props) {
@@ -253,7 +253,7 @@ class PatientCard extends Component {
                     <form className="modal-form" onSubmit={this.onDiseaseAdd}>
                             <h1 className="modal-header">Прийняття на облік</h1>
                             <p className="modal-label">Діагноз:</p>
-                            <input type="text" name="name" placeholder='Введіть діагноз' required></input>
+                            <input type="text" name="name" className="inputDiagnose" placeholder='Введіть діагноз' required></input>
                             <button className="form-button-submit" value="Submit" type="submit" >Додати діагноз</button>
                         </form>
                 </ModalWindow>
