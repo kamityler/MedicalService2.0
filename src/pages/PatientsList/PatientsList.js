@@ -51,7 +51,7 @@ class PatientList extends Component{
     }
     onRequest = () => {
         this.onPatientListLoading();
-        axios.get(`https://localhost:5001/api/MedicalRecords`)
+        axios.get(`https://localhost:5001/api/MedicalRecords/${this.state.doctorId}/Patients`)
             //  .then(data=>console.log(data))
              .then(response => response.data.map(this.transformPatient))
              .then(res => this.onPatientListLoaded(res))
@@ -109,6 +109,7 @@ class PatientList extends Component{
     adjustItems(arr) {
         
         const items = arr.map((item)=>{
+            console.log(item)
             return (
                 <div key={item.id}>
                     <Link to={`/patientList/${item.id}`}>
