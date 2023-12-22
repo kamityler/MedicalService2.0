@@ -97,7 +97,7 @@ class MedCard extends Component{
 
         const items = arr.map((item, index) => {
             return (
-                <button key={index+1} value={item} onClick={this.onSortButtonClick}>
+                <button className="one-sort-button" key={index+1} value={item} onClick={this.onSortButtonClick}>
                     {item}
                 </button>
             )
@@ -105,7 +105,7 @@ class MedCard extends Component{
 
         return (
             <div className="button-list">
-                <button className="" key={0} value={null} onClick={this.onSortButtonClick}>
+                <button className="one-sort-button" key={0} value={null} onClick={this.onSortButtonClick}>
                     Всі записи
                 </button>
                 {items}
@@ -139,23 +139,21 @@ class MedCard extends Component{
                 </Link>
                 <h1 className='page-header'>Щоденник записів</h1>
                 <div className='filter-block'>
-                    <p className='label-for button'>Додати новий запис</p>
-                    <button onClick={this.showModal}>Додати</button>
+                    <div className='label-for-button'>Додати новий запис:</div>
+                    <button className="add-record-button" onClick={this.showModal}>Додати</button>
                 </div>
                 <div className='filter-block'>
-                    <p className='label-for button'>Відфільтрувати по хворобах:</p>
+                    <div className='label-for-button'>Відфільтрувати по хворобах:</div>
                         {buttonsAllForSort}
-                    <p className='label-for button'>Відфільтрувати по активних хворобах:</p>
+                    <div className='label-for-button'>Відфільтрувати по активних хворобах:</div>
                         {buttonsActiveForSort}
-                </div>
+                </div>   
                 <div className="record-list-container">
-
-                    <p>Список записів:</p>
-                    <p>Встановлений фільтр: {this.state.filter}</p>
+                    <div className='label-for-button'>Встановлений фільтр: {this.state.filter === null || this.state.filter === "" ? "Відсутній" : this.state.filter}</div>
                     <RecordList itemsperPage={8} id={this.state.id} filter={this.state.filter}></RecordList>
                 </div>
                 <Link to={`/patientList/${this.state.id}`}>
-                    <button class="appointment-button">Повернутись</button>
+                    <button class="back-button">Повернутись</button>
                 </Link>
 
                 <ModalWindow show={this.state.show} handleClose={this.hideModal}>

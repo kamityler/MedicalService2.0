@@ -1,13 +1,19 @@
-.goback-button{
-    background-color: rgb(212, 212, 212);
-    max-width:fit-content;
-    border: 1px solid rgba(44, 173, 65, 0.825);
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;;
+.back-button{
+  padding: 10px 30px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(174, 174, 174, 0.825);
+  background-color: rgb(130, 130, 130);
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; 
 }
 
-
+.back-button:hover{
+  background-color: rgb(90, 90, 90);;
+}
 
 .form-button-submit{
   /* float: left; */
@@ -20,10 +26,58 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  color: #fff;
+  /* color: #fff;  */
   background-color: #bfbfbf;
-  border-color: #e5e5e6;
   border: 1px solid;
   border-radius: 10px;
   transition: background-color 0.5s ease
+}
+
+.label-for-button{
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #333; /* Колір тексту */
+  margin-bottom: 5px;
+  display: block;
+  margin-left: 15px;
+}
+
+.one-sort-button{
+  padding: 7px 30px;
+  margin: 2px;
+  border-radius: 5px;
+  border: 1px solid rgba(179, 131, 131, 0.825);
+  background-color: rgb(146, 80, 80);
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; 
+}
+
+.one-sort-button:hover{
+  background-color: rgb(99, 54, 54);
+}
+
+.button-list{
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.add-record-button:hover{
+  background-color: rgb(43, 91, 49);
+}
+
+.add-record-button{
+  margin-left: 15px;
+  margin-bottom: 20px;
+  padding: 7px 30px;
+  border-radius: 5px;
+  border: 1px solid rgba(140, 179, 131, 0.825);
+  background-color: rgb(60, 125, 68);
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; 
 }
