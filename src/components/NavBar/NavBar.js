@@ -60,7 +60,7 @@ function NavBar(){
           </li>
           <li className='navigationbar-item default-li'>
             <a href="/about" onClick={() => setMenuOpen(false)}>
-              Про нас
+              Календар
             </a>
           </li>
           <li className='navigationbar-item default-li'>

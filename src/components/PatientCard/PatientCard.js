@@ -202,7 +202,7 @@ class PatientCard extends Component {
 
                 <div className="patient-card-block">
                     <p className="card-field block1-row-1-col-1">Код хворого: <span className='card-data'>{patientCode}</span></p>
-                    <p className="card-field block1-row-1-col-2 left-aligned-text"><span className='card-data'>{completionDate}</span> дата заповнення</p>
+                    <p className="card-field block1-row-1-col-2 left-aligned-text"> Дата заповнення: <span className='card-data'>{completionDate}</span></p>
                     <div className='block1-row-2-col-1'>
                         <p className="card-field">Прізвище: <span className='card-data'>{surname}</span></p>
                         <p className="card-field">Ім'я: <span className='card-data'>{name}</span></p>
@@ -211,10 +211,10 @@ class PatientCard extends Component {
                         <p className="card-field">Дата народження: <span className='card-data'>{dateOfBirth}</span></p>
                     </div>
                     <div className='block1-row-2-col-2'>
-                        <p className="card-field left-aligned-text"><span className='card-data'>{phone}</span> телефон</p>
-                        <p className="card-field left-aligned-text"><span className='card-data'>{email}</span> е-пошта</p>
-                        <p className="card-field left-aligned-text"><span className='card-data'>{address}</span> місце проживання</p>
-                        <p className="card-field left-aligned-text"><span className='card-data'>{workHtml}</span> місце роботи, посада</p>                    
+                        <p className="card-field left-aligned-text">Телефон: <span className='card-data'>{phone}</span></p>
+                        <p className="card-field left-aligned-text">Електрона адреса: <span className='card-data'>{email}</span> </p>
+                        <p className="card-field left-aligned-text">Місце проживання: <span className='card-data'>{address}</span> </p>
+                        <p className="card-field left-aligned-text">Місце роботи, посада: <span className='card-data'>{workHtml}</span> </p>                    
                     </div>
                     <div className='block1-row-3'>
                         <p className="card-field">Диспансерна група: <span className='card-data'>{groupDispensary ? 'Так' : 'Ні'}</span></p>

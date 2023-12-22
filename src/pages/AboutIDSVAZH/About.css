@@ -33,3 +33,10 @@
     color: #555;
     margin-top: 10px;
 }
+.Calendar{
+    width: 80%;
+    margin: 0 auto
+}
+.fc-media-screen{
+    height: 800px;
+}
