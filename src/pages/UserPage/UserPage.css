@@ -261,3 +261,7 @@
       .list-group-flush > .list-group-item {
         border-width: 0 0 1px;
       }
+      img{
+       width: 90%;
+        height: 300px;
+      }

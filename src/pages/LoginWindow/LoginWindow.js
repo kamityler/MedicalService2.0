@@ -29,20 +29,23 @@ class LoginWindow extends Component{
         let email = document.querySelector('#username');
         let id = null
         let form = document.querySelector('form')
-
+        let photo = ''
         if (email.value === 'emily.jones@example.com') {
             id = 1;
+            photo = 'https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1703203200&semt=sph'
+
             
         } else if (email.value === 'oleg.olegovich@example.com') {
             id = 2;
-            
+            photo = 'https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg';
+
         } else {
             if (!email.parentNode.isSameNode(this.state.errorMessage.parentNode)) {
                 email.parentElement.appendChild(this.state.errorMessage);
             }
         }
         if(id!=null){
-            axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/2`)
+            axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/${id}`)
     .then(response => response.data)
     .then((doctor) => {
         localStorage.setItem('doctorName', (doctor.lastName + ' ' + doctor.firstName))
@@ -56,6 +59,8 @@ class LoginWindow extends Component{
             console.error("Response Headers:", err.response.headers);
         }
     });
+    localStorage.setItem('doctorPhoto', photo);
+
     setTimeout(()=>{form.submit()},100);
                     
         }
