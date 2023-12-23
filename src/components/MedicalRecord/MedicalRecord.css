@@ -2,16 +2,21 @@
     list-style: none;
     padding: 10px;
     padding-bottom: 2px;
+    margin: 10px;
+    width: 40%;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
+    border: 2px solid rgb(136, 136, 136);
     border-radius: 15px;
     background-color: #fff;
-    display: block;
+    display: inline flow-root list-item;
     transition: background-color 0.3s, color 0.3s, border 0.3s;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5); 
 }
 
+
+
 .medical-record-item:hover {
-    background-color: #f3f3f3a4;
+    background-color: #b9b9b9a4;
 }
 
 .medical-record-p{

@@ -24,7 +24,7 @@ class MedCard extends Component{
                 doctor: localStorage.getItem('id') === 1 ? 'Jones Emily' : 'Oleg Olegovich',
                 description: 'something went wrong',
                 treatment: 'two pills in the vessel',
-                type: 'General',
+                type: 'Загальне',
                 date: props.date,
             }
         }

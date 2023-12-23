@@ -184,36 +184,7 @@
     .appointmentContainer ul{
         margin-left: 10%;
     }
-    .medical-record-item {
-        list-style: none;
-        padding: 10px;
-        padding-bottom: 2px;
-        margin: 10px;
-        border: 1px solid #ddd;
-        border-radius: 15px;
-        background-color: #fff;
-        display: block;
-        transition: background-color 0.3s, color 0.3s, border 0.3s;
-        width: 40%;
-        display: inline flow-root list-item
-    }
-    
-    .medical-record-item:hover {
-        background-color: #f3f3f3a4;
-    }
-    
-    .medical-record-p{
-        font-weight: bold;
-        font-size: 16px;
-        margin: 0;
-        margin-bottom: 8px;
-    }
-    
-    .medical-record-p span{
-        color: #555;
-        font-weight: normal;
-        font-size: 18px;
-    }
+
     .MuiPagination-ul{
         justify-content: center;
     }
