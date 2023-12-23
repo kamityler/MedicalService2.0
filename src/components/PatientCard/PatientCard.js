@@ -7,6 +7,7 @@ import './PatientCard.css';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
 import ModalWindow from './../modalWindow/ModalWindow';
+import VactinationList from '../VactinationList/VactinationList';
 
 class PatientCard extends Component {
     constructor(props) {
@@ -183,12 +184,7 @@ class PatientCard extends Component {
             .catch(err => console.log(err))
     }
     addVactination = (data)=>{
-        let vactination = [<p className="card-field">Стовбняк <span className='card-data'>05.01.2017</span></p>,
-        <p className="card-field">Модерна <span className='card-data'>12.07.2021</span></p>,
-        <p className="card-field">Модерна <span className='card-data'>16.08.2021</span></p>,
-        <p className="card-field">Гепатит <span className='card-data'>24.12.2022</span></p>]
-        //vactination.add(data);
-        return vactination.map(arr=>arr)
+        return <VactinationList id={this.state.patient.id}></VactinationList>
     }
 
     onClick = () =>{
@@ -242,7 +238,7 @@ class PatientCard extends Component {
                 <div className="patient-card-block">
                     
                     {this.addVactination()}
-                    <button class="endDiseaseButton">Додати інформацію про щеплення</button>
+                    <button className="endDiseaseButton">Додати інформацію про щеплення</button>
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про страхування</h3>
@@ -253,7 +249,7 @@ class PatientCard extends Component {
                     <form className="modal-form" onSubmit={this.onDiseaseAdd}>
                             <h1 className="modal-header">Прийняття на облік</h1>
                             <p className="modal-label">Діагноз:</p>
-                            <input type="text" name="name" className="inputDiagnose" placeholder='Введіть діагноз' required></input>
+                            <input type="text" name="name" className="Name" placeholder='Введіть діагноз' required></input>
                             <button className="form-button-submit" value="Submit" type="submit" >Додати діагноз</button>
                         </form>
                 </ModalWindow>
