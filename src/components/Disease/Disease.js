@@ -73,7 +73,7 @@ class Disease extends Component{
 
         return(                    
             <div className="desease-container" >
-                 <span class={statusClasess}>{(isHealth)? 'Вилікуванно' : 'Хворіє'}</span>
+                 <span className={statusClasess}>{(isHealth)? 'Вилікуванно' : 'Хворіє'}</span>
 
                 <div className="disease-upper-block">
                     <p className="card-field">Взятий на облік <span className='card-data'>{admissionDate}</span></p>
