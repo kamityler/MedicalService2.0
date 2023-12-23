@@ -16,7 +16,7 @@ class MedCard extends Component{
             id: window.location.href.toString().split('/')[4],
             diseasesActive: [],
             diseasesAll: [],
-            filter: props.filter,
+            filter: null,
             medicalRecord: {
                 diagnosis: 'some diagnosis',
                 appointmentDate: new Date(),

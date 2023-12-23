@@ -145,8 +145,8 @@ class VactinationList extends Component{
         const items = arr.map((item)=>{
             return (
                     <Vactination  
-                    key={item.id}
-                    id={item.id} 
+                        key={item.id+1000}
+                        id={item.id} 
                         vaccineName={item.vaccineName} 
                         vaccinationDate={item.vaccinationDate}
                         description={item.description}
