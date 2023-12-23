@@ -49,14 +49,14 @@
   white-space: nowrap;
   vertical-align: middle;
   color: #fff;
-  background-color: #bfbfbf;
-  border-color: #e5e5e6;
+  border: 1px solid rgba(174, 174, 174, 0.825);
+  background-color: rgb(130, 130, 130);
   border: 1px solid;
   border-radius: 10px;
   transition: background-color 0.5s ease
 }
 .form-button-addDisease:hover{
-    background-color: #949494;
+    background-color: rgb(90, 90, 90);;
 
 }
 .patient-card {

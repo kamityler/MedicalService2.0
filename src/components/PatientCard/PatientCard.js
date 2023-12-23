@@ -240,7 +240,7 @@ class PatientCard extends Component {
                 <div className="patient-card-block">
                     
                     {this.addVactination()}
-                    <button className="endDiseaseButton">Додати інформацію про щеплення</button>
+                    {/* <button className="endDiseaseButton">Додати інформацію про щеплення</button> */}
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про страхування</h3>

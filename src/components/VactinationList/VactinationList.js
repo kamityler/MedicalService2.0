@@ -1,5 +1,8 @@
 import {Component} from 'react'
 import axios from 'axios';
+
+import './VactinationList.css'
+
 import Vactination from '../Vactination/Vactination';
 import ModalWindow from '../ModalWindow/ModalWindow';
 
@@ -171,7 +174,7 @@ class VactinationList extends Component{
         return(  
         <div>
            {content}
-           <button onClick={this.onAddVactinationClick}className="endDiseaseButton">Додати інформацію про щеплення</button>
+           <button onClick={this.onAddVactinationClick}className="endDiseaseButton add-button-width">Додати інформацію про щеплення</button>
            <ModalWindow show={this.state.show} handleClose={this.hideModal}>
                     <form className="modal-form" onSubmit={this.onVactineAdd}>
                             <h1 className="modal-header">Інформація про щеплення</h1>
