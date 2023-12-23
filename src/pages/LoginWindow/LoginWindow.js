@@ -1,6 +1,9 @@
 
 import React from 'react';
 import { Component } from 'react';
+
+import axios from 'axios'
+
 import './LoginWindow.css'
 class LoginWindow extends Component{
     constructor(props) {
@@ -29,18 +32,37 @@ class LoginWindow extends Component{
 
         if (email.value === 'emily.jones@example.com') {
             id = 1;
-            form.submit();
+            
         } else if (email.value === 'oleg.olegovich@example.com') {
             id = 2;
-            form.submit();
+            
         } else {
             if (!email.parentNode.isSameNode(this.state.errorMessage.parentNode)) {
                 email.parentElement.appendChild(this.state.errorMessage);
             }
         }
+        if(id!=null){
+            axios.get(`https://localhost:5001/api/MedicalRecords/Doctor/2`)
+    .then(response => response.data)
+    .then((doctor) => {
+        localStorage.setItem('doctorName', (doctor.lastName + ' ' + doctor.firstName))
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        if (err.response) {
+            // Вивести дані відповіді, якщо є
+            console.error("Response Data:", err.response.data);
+            console.error("Response Status:", err.response.status);
+            console.error("Response Headers:", err.response.headers);
+        }
+    });
+    setTimeout(()=>{form.submit()},100);
+                    
+        }
         localStorage.setItem('id', id);
         console.log(localStorage.getItem('id'));
-    };
+    }
+    
     render(){
         return(
             <div className="login-window">
