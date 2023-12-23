@@ -169,7 +169,7 @@ class VactinationList extends Component{
         const content = this.adjustItems(records);
 
         return(  
-        <div>
+        <div >
            {content}
            <button onClick={this.onAddVactinationClick}className="addVaccine endDiseaseButton">Додати інформацію про щеплення</button>
            <ModalWindow show={this.state.show} handleClose={this.hideModal}>
