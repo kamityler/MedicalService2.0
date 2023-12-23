@@ -33,7 +33,7 @@ class VactinationList extends Component{
              .then(response => response.data.map(this.transformRecords))
             //  .then(array => array.filter(this.filterRecords))
              .then(res => this.onRecordsListLoaded(res))
-             .catch(this.onError);
+             .catch((er)=>{console.log(er)});
     }
     transformRecords = (record) => {
         return {
