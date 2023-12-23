@@ -58,17 +58,34 @@ class VactinationList extends Component{
         }))
         console.log(newRecordsList);
     }
-
+     extractDate(inputString) {
+        // Створюємо об'єкт Date і передаємо в нього рядок з датою
+        const dateObject = inputString;
+    
+        // Отримуємо рік, місяць і день
+        const year = dateObject.getFullYear();
+        const month = (dateObject.getMonth() + 1).toString().padStart(2, '0'); // Додаємо 1, оскільки місяці в Date починаються з 0
+        const day = dateObject.getDate().toString().padStart(2, '0');
+    
+        // Складаємо рядок у форматі "YYYY-MM-DD"
+        const result = `${year}-${month}-${day}`;
+    
+        return result;
+    }
     onVactineAdd = (e) => {
         e.preventDefault();
         
         this.hideModal();
         const vaccineName = document.querySelector('#vacineName').value;
         const vaccineDescriprion = document.querySelector('#vacineDescriptiom').value;
+        const date = (item) => {
+            const dateArr = item.split("-")
+            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
+        }
         const newVaccine = {
             patientID: this.state.id,
             vaccineName: vaccineName,
-            vaccinationDate: new Date(),
+            vaccinationDate: this.extractDate(new Date()),
             description: vaccineDescriprion,
             doctorName: localStorage.getItem('doctorName'),
           }
