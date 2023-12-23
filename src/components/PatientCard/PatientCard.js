@@ -7,7 +7,7 @@ import './PatientCard.css';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
 import ModalWindow from './../ModalWindow/ModalWindow';
-import { List } from '@mui/material';
+// import { List } from '@mui/material';
 
 class PatientCard extends Component {
     constructor(props) {
@@ -236,15 +236,15 @@ class PatientCard extends Component {
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
-                    <List key={Date.now()}>
+                    {/* <List key={Date.now()}> */}
                        {diseases} 
-                    </List>
+                    {/* </List> */}
                     <button className="form-button-addDisease" onClick={this.showModal}>Додати хворобу</button>
                 </div>
                 <div className="patient-card-block">
                     
                     {this.addVactination()}
-                    <button class="endDiseaseButton">Додати інформацію про щеплення</button>
+                    <button className="endDiseaseButton">Додати інформацію про щеплення</button>
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про страхування</h3>

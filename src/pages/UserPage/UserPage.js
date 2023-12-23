@@ -65,7 +65,7 @@ class UserPage extends Component{
            const dateArr = item.split("-")
            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
        }
-       console.log(record.medicalRecord)
+    //    console.log(record.medicalRecord)
        return {
            id: record.appointmentID,
            diagnosis: record.diagnosis,
@@ -211,7 +211,6 @@ class UserPage extends Component{
                         </ul>
                         </div>
                         <button className="editButton" onClick={this.openModal}type="button" >Редагувати профіль</button>
-
                 </div>
                 
                 <div className='appointment-block'>
@@ -220,21 +219,17 @@ class UserPage extends Component{
                         {adjustedList}
                         
                         <Pagination  onChange={this.handlePageClick} count={Math.round(this.state.records.length/4)} variant="outlined" />
-                    </div>
-                        
-        
-                    
-                           
+                    </div>         
                 </div>
-                <div class="card">
-                <ul class="list-group list-group-flush">
-  <div class="card-header">
+                <div className="card">
+                <ul className="list-group list-group-flush">
+  <div className="card-header">
     Історія записів
   </div>
   
-    <li class="list-group-item">Календар</li>
-    <li class="list-group-item">Результати опитувань</li>
-    <li class="list-group-item">Безпека</li>
+    <li className="list-group-item">Календар</li>
+    <li className="list-group-item">Результати опитувань</li>
+    <li className="list-group-item">Безпека</li>
   </ul>
 </div>
                 <div id="MyModal" className=" modal">

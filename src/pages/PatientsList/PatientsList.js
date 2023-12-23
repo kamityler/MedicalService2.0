@@ -40,11 +40,11 @@ class PatientList extends Component{
         handlePageClick = (e,pg) => {
         
         
-        console.log(this.state.currentPage);
+        // console.log(this.state.currentPage);
         const itemsperPage = this.state.itemsperPage;
         const start = (pg-1)*itemsperPage;
         const end = (pg*itemsperPage);
-        console.log(start+ ' ' + end);
+        // console.log(start+ ' ' + end);
         const patients = this.state.patientList.slice(start,end);   
         this.setState({patientListToView: patients});
        
@@ -61,7 +61,7 @@ class PatientList extends Component{
     slicePatient = (newPatientList)=>{
         const itemsperPage = this.state.itemsperPage;
         const patients = newPatientList.slice(0,itemsperPage); 
-        console.log(patients);
+        // console.log(patients);
         this.setState({patientListToView: patients});
     }
 
@@ -94,7 +94,7 @@ class PatientList extends Component{
             newItemLoading: false,
             patientEnded: ended
         }))
-        console.log(newPatientList);
+        // console.log(newPatientList);
         this.slicePatient(newPatientList);
        
     }
@@ -109,7 +109,7 @@ class PatientList extends Component{
     adjustItems(arr) {
         
         const items = arr.map((item)=>{
-            console.log(item)
+            // console.log(item)
             return (
                 <div key={item.id}>
                     <Link to={`/patientList/${item.id}`}>
