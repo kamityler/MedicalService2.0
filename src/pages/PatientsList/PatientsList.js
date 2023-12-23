@@ -158,7 +158,7 @@ class PatientList extends Component{
     
 
     onUpdateSearch = (term) => {
-        const {patientList} = this.state;
+        // const {patientList} = this.state;
         //this.slicePatient(this.searchEmp(patientList,this.state.term));
 
         this.setState({term});
@@ -175,7 +175,7 @@ class PatientList extends Component{
     }
 
     render(){ 
-        const {loading, patientListToView,itemsperPage, patientList,error, term} = this.state;
+        const {loading, patientListToView,itemsperPage,error, term} = this.state;
         const visibleData = this.searchEmp(patientListToView, term);
         const adjustedList = this.adjustItems(visibleData);
 
@@ -193,9 +193,9 @@ class PatientList extends Component{
             <div className="container-patient-list">
                 <div className="container-header">
                     <div className="container-header-item image-item"></div>
-                    <div className="container-header-item">Ім'я</div>
-                    <div className="container-header-item">Вік</div>
-                    <div className="container-header-item">Діагноз</div>
+                    <div className="container-header-item">Name</div>
+                    <div className="container-header-item">Age</div>
+                    <div className="container-header-item">Diagnosis</div>
                 </div>    
                 <div className='search-element'>
                     <SearchPannel onUpdateSearch={this.onUpdateSearch}/>

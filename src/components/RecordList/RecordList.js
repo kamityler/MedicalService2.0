@@ -23,8 +23,6 @@ class RecordList extends Component{
             filter: props.filter,
             currentPage:1,
             rerender: false
-            
-
         }
     }
 
@@ -53,9 +51,25 @@ class RecordList extends Component{
              .then(response => {
                 return response;
              })
+             .then(response => {
+                console.log(response.data)
+                return response
+             })
              .then(response => response.data.map(this.transformRecords))
+             .then(response => {
+                console.log(response)
+                return response
+             })
              .then(array => array.filter(this.filterRecords))
+             .then(response => {
+                console.log(response)
+                return response
+             })
              .then(res => this.onRecordsListLoaded(res))
+             .then(response => {
+                console.log(response)
+                return response
+             })
              .catch(this.onError);
     }
 

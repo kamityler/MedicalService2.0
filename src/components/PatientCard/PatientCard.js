@@ -6,7 +6,8 @@ import './PatientCard.css';
 // import Spinner from './../basicComponents/spinner/Spinner';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
-import ModalWindow from './../modalWindow/ModalWindow';
+import ModalWindow from './../ModalWindow/ModalWindow';
+import { List } from '@mui/material';
 import VactinationList from '../VactinationList/VactinationList';
 
 class PatientCard extends Component {
@@ -58,7 +59,6 @@ class PatientCard extends Component {
             .then(response => this.transformPatient(response.data))
             .then(result => this.onPatientInfoLoaded(result))
             .catch(this.onError);
-
     }
 
     date = (item) => (new Date(item)).toLocaleDateString('uk-UA', {
@@ -232,7 +232,9 @@ class PatientCard extends Component {
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Хвороби</h3>
-                    {diseases}
+                    <List key={Date.now()}>
+                       {diseases} 
+                    </List>
                     <button className="form-button-addDisease" onClick={this.showModal}>Додати хворобу</button>
                 </div>
                 <div className="patient-card-block">

@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import axios from 'axios';
 import Vactination from '../Vactination/Vactination';
-import ModalWindow from '../modalWindow/ModalWindow';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 class VactinationList extends Component{
     constructor(props){
@@ -78,10 +78,6 @@ class VactinationList extends Component{
         this.hideModal();
         const vaccineName = document.querySelector('#vacineName').value;
         const vaccineDescriprion = document.querySelector('#vacineDescriptiom').value;
-        const date = (item) => {
-            const dateArr = item.split("-")
-            return dateArr[2][0] + dateArr[2][1] +'.'+ dateArr[1] +'.'+ dateArr[0]
-        }
         const newVaccine = {
             patientID: this.state.id,
             vaccineName: vaccineName,
