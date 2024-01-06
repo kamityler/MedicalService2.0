@@ -33,11 +33,9 @@ class PatientList extends Component{
 
     componentDidMount() {
         this.onRequest();
-        //setTimeout(()=>{this.slicePatient()},200)
     }
 
-    
-        handlePageClick = (e,pg) => {
+    handlePageClick = (e,pg) => {
         
         this.setState({currentPage:pg});
         console.log(this.state.currentPage);
@@ -74,11 +72,12 @@ class PatientList extends Component{
     transformPatient = (patient) => {
         const birth = new Date(patient.dateOfBirth);
         let age = new Date().getFullYear() - birth.getFullYear();
+        console.log(patient)
         return {
             id: patient.patientID,
             name: patient.firstName + ' ' + patient.lastName,
             age: age,
-            diagnosis: patient.previousIllnesses
+            diagnosis: patient.gender
         }
     }
 
@@ -106,8 +105,7 @@ class PatientList extends Component{
         })
     }
 
-    adjustItems(arr) {
-        
+    adjustItems(arr) { 
         const items = arr.map((item)=>{
             console.log(item)
             return (
@@ -139,7 +137,6 @@ class PatientList extends Component{
             return items;
         }
         
-      
         const itemsToView =  this.state.patientList.filter(item => {
                 return item.name.indexOf(term) > -1
         });
@@ -150,19 +147,12 @@ class PatientList extends Component{
         const end = (pg*itemsperPage);
         console.log(start+ ' ' + end);
         const patients = itemsToView.slice(start,end);   
-        //this.setState({patientListToView: patients});
-       
         return patients;
-
     }
     
 
     onUpdateSearch = (term) => {
-        // const {patientList} = this.state;
-        //this.slicePatient(this.searchEmp(patientList,this.state.term));
-
         this.setState({term});
-
     }
     getPageCout = () =>{
         if(this.state.term.length !== 0){
@@ -193,9 +183,9 @@ class PatientList extends Component{
             <div className="container-patient-list">
                 <div className="container-header">
                     <div className="container-header-item image-item"></div>
-                    <div className="container-header-item">Name</div>
-                    <div className="container-header-item">Age</div>
-                    <div className="container-header-item">Diagnosis</div>
+                    <div className="container-header-item">Ім'я</div>
+                    <div className="container-header-item">Вік</div>
+                    <div className="container-header-item">Стать</div>
                 </div>    
                 <div className='search-element'>
                     <SearchPannel onUpdateSearch={this.onUpdateSearch}/>

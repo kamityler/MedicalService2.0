@@ -8,12 +8,13 @@
     border-radius: 15px;
 }
 .desease-container{
-    border: 1px solid #cecece;
+    border: 2px solid #cecece;
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
-}
+    box-shadow: 4px 4px 5px rgba(158, 158, 158, 0.5); /* Параметри тіні: відступ зліва, відступ зверху, розмір розсіювання, колір тіні (з використанням альфа-каналу) */
 
+}
 
 .badge{
     display: block;
@@ -64,6 +65,5 @@
 
 .endDiseaseButton:hover{
     background-color: rgb(90, 90, 90);;
-
 }
 
