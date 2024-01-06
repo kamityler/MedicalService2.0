@@ -6,7 +6,7 @@ import './PatientCard.css';
 // import Spinner from './../basicComponents/spinner/Spinner';
 // import ErrorMessage from './../basicComponents/errorMessage/ErrorMessage';
 import Disease from '../Disease/Disease';
-import ModalWindow from './../ModalWindow/ModalWindow';
+import ModalWindow from './../modalWindow/ModalWindow';
 import { List } from '@mui/material';
 import VactinationList from '../VactinationList/VactinationList';
 
@@ -240,7 +240,10 @@ class PatientCard extends Component {
                 <div className="patient-card-block">
                     
                     {this.addVactination()}
+<<<<<<< HEAD
                     {/* <button className="endDiseaseButton">Додати інформацію про щеплення</button> */}
+=======
+>>>>>>> 0de30dc84fad70c6c8c5f7c092e4a5cf2d10abfd
                 </div>
                 <div className="patient-card-block">
                     <h3 className="card-topic">Інформація про страхування</h3>

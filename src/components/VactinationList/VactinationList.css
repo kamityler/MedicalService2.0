@@ -16,3 +16,26 @@
     transition: background-color 0.5s ease;
     width: 100%;
 }
+
+.addVaccine{
+    width: 100%;
+}
+.appointment-button{
+    background-color: rgb(130, 130, 130)
+}
+.appointment-button:hover {
+    background-color:  rgb(90, 90, 90)
+  }
+  .endDiseaseButton:hover{
+    background-color:  rgb(90, 90, 90)
+
+  }
+  .endDiseaseButton{
+    background-color: rgb(130, 130, 130)
+
+  }
+  .vaccine-block{ 
+    border: 1px solid #cecece;
+    border-radius: 10px;
+    padding: 10px;
+}

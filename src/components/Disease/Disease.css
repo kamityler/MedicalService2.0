@@ -18,6 +18,7 @@
 
 .badge{
     display: block;
+    float: right;
     padding: .25em .4em;
     font-size: 75%;
     font-weight: 700;
@@ -60,6 +61,7 @@
   border-radius: 10px;
   transition: background-color 0.5s ease
 }
+<<<<<<< HEAD
 
 
 
@@ -67,3 +69,8 @@
     background-color: rgb(90, 90, 90);;
 }
 
+=======
+.endDiseaseButton:hover{
+    background-color: #9e9e9e;
+}
+>>>>>>> 0de30dc84fad70c6c8c5f7c092e4a5cf2d10abfd

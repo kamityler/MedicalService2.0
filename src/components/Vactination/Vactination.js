@@ -1,6 +1,6 @@
 import {Component} from 'react'
 // import axios from 'axios';
-
+import './Vactination.css'
 class Vactination extends Component{
     constructor(props){
         super(props);
@@ -16,7 +16,7 @@ class Vactination extends Component{
         const {vaccineName,vaccinationDate,description,doctorName} = this.state
 
         return(  
-            <div>                 
+            <div className='vaccine-block'>                 
                 <div className='block1-row-2-col-1'>
                         <p className="card-field">Назва вакцини: <span className='card-data'>{vaccineName}</span></p>
                         <p className="card-field">Дата вакцинації: <span className='card-data'>{vaccinationDate}</span></p>
